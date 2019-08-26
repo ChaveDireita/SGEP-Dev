@@ -1,0 +1,28 @@
+body{
+  margin-top:0%;
+  margin-left:0%;
+}
+nav{
+  background-color: #000059;
+  padding: 0;
+}
+
+nav a:hover
+{
+  text-decoration: none;
+}
+
+li a:hover
+{
+  text-decoration: none;
+  text-shadow: 0 0 10px white, 0 0  10px white;
+}
+
+ul li
+{
+  font-size:20px;
+  padding: 10px;
+}
+nav div{
+  padding-left: 10px;
+}

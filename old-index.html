@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SGEP</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/estilo-old.css">
+    <link rel="stylesheet" href="css/estilo_layout.css">
+</head>
+<body>
+  <div class="tela">
+    <div class="barra-lateral">
+      <div class="botoes-laterais">
+        <div><a>INÍCIO</a></div>
+        <div><a>MATERIAIS</a></div>
+        <div><a>PROJETOS</a></div>
+        <div><a>HISTÓRICO</a></div>
+        <div><a>SOLICITAÇÕES</a></div>
+        <div><a>CONFIGURAÇÕES</a></div>
+      </div>
+    </div>
+
+    <div class="tela-centro">
+      <div class="info-usuario">
+        <p>Usuário atual: Gerente/Almoxarife Usuário de Exemplo da Silva Santos</p>
+      </div>
+      <div class="container-fluid" style="align: center; width: 300px; background: linear-gradient(#0018b5, #000e69); padding-bottom:3%; box-shadow: 0 0 1em grey;">
+        <h2 style="text-align: center">Cadastrar Material</h2>
+        <form class="" asp-action="Criar" method="post">
+          <h6>Nome:</h6>
+          <input type="text" name="" value="" placeholder="Insira o nome..."><hr>
+          <h6>Unidade:</h6>
+          <input type="text" name="" value="" placeholder="Insira o tipo de unidade..."><hr>
+          <h6>Preço:</h6>
+          <input type="number" step=0.01 name="" value="" placeholder="Insia o preço unitário..." maxlength="4">
+          <hr>
+          <input type="submit" class="btn btn-default" name="" value="Adicionar" style = "background-color:#00069c; color:white">
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

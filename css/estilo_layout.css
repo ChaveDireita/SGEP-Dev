@@ -3,3 +3,15 @@
   --nav-light:;
   --nav-dark:;
 }
+div{
+  color:white;
+  align-content: center;
+  align-items: center;
+}
+form{
+  align-content: center;
+  align-items: center;
+}
+p{
+  size: 50px; 
+}
