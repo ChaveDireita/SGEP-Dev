@@ -11,6 +11,7 @@ namespace SGEP.Models
         public string Unidade { get; set; }
 
         private double _preco;
+        [Display(Name = "Preço")]
         public double Preco
         {
           get

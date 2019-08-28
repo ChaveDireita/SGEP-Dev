@@ -42,15 +42,10 @@ namespace SGEP
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseMvc(r => r.MapRoute("default", "/controller=Inicio/action=Index/{id?}"));
+            app.UseMvc(r => r.MapRoute("default", "/{controller=Inicio}/{action=Index}/{id?}"));
         }
     }
 }

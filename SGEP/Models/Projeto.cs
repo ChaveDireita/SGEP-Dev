@@ -9,9 +9,12 @@ namespace SGEP.Models
         [Key]
         public ulong Id { get; set; }
         public string Nome {get; set;}
+        [Display(Name = "Data de início")]
         public DateTime DataInicio {get; set;}
+        [Display(Name = "Data final estimada")]
         public DateTime PrazoEstimado {get; set;}
-        public DateTime DataFim {get; set;}
+        [Display(Name = "Data final")]
+        public DateTime? DataFim {get; set;}
         public EstadoProjeto Estado {get; set;}
         //public Dictionary <Material,double> Materiais {get; set;}
 
