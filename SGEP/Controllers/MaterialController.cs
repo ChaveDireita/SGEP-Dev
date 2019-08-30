@@ -27,7 +27,7 @@ namespace SGEP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Criar([Bind("Id", "Quantidade", "Nome", "Unidade", "Preco")] Material material, bool inutil)
         {
-            return await AcaoCriarPost(ModelState.IsValid, material);
+            return await AcaoCriarPost(material);
         }
 
         public async Task<IActionResult> Editar(ulong id)

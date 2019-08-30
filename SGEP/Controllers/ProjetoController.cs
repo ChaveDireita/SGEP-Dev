@@ -27,7 +27,7 @@ namespace SGEP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Criar([Bind("Id", "Nome", "PrazoEstimado", "DataInicio", "DataFim", "Estado")] Projeto projeto, bool inutil)
         {
-            return await AcaoCriarPost(ModelState.IsValid, projeto);
+            return await AcaoCriarPost(projeto);
         }
 
         public async Task<IActionResult> Editar(ulong id)
