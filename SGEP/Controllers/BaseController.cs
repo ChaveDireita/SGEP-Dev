@@ -9,14 +9,26 @@ using SGEP.Banco;
 
 namespace SGEP.Controllers
 {
+    /// <summary>
+    /// Superclasse de todos os outros controllers do programa. Ela faz extenso uso de métodos genérico para
+    /// seguir o princípio DRY em troca de um forte acoplamento com suas classes filhas.
+    /// </summary>
     public class BaseController : Controller
     {
+        /// <summary>
+        /// <c>_contexto</c> concede às suas subclasses acesso aos DbSets da classe ContextoBD (e, consequentemente
+        /// de todos os seus campos públicos).
+        /// <seealso cref="ContextoBD"/>
+        /// </summary>
         protected readonly ContextoBD _contexto;
+        /// <summary>
+        /// O construtor apenas inicializa o campo <c>_contexto</c>
+        /// </summary>
+        /// <param name="contexto">Uma referência ao contexto do banco de dados utilizado</param>
         public BaseController(ContextoBD contexto)
         {
             _contexto = contexto;
         }
-
         protected async Task<IActionResult> AcaoCriarPost<T>(bool valido, T model)
         {
             if (valido)
