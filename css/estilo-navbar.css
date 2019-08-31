@@ -7,6 +7,11 @@ nav{
   padding: 0;
 }
 
+.nav-li-a
+{
+  transition: text-shadow 0.5s;
+}
+
 .nav-a:hover
 {
   text-decoration: none;
@@ -15,7 +20,8 @@ nav{
 .nav-li-a:hover
 {
   text-decoration: none;
-  text-shadow: 0 0 10px white, 0 0  10px white;
+  text-shadow: 0 0 10px white, 0 0 #FFFFFF30;
+
 }
 
 ul li
