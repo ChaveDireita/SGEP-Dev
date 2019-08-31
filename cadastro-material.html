@@ -14,31 +14,28 @@
 
 <body>
     <div class="container">
+      <h3 class="display-4 mt-5 mb-5 text-center">Cadastrar Material</h3>
         <div class="row justify-content-center">
             <form asp-action="Criar" class="col-sm-8" method="post">
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" name="" id="nome" aria-describedby="helpId"
                         placeholder="Nome...">
-                    <small id="helpId" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                     <label for="preco">Preço</label>
                     <input type="number" class="form-control" name="" id="preco" aria-describedby="helpId"
                         placeholder="Preço...">
-                    <small id="helpId" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                     <label for="unidade">Unidade</label>
                     <input type="text" class="form-control" name="" id="unidade" aria-describedby="helpId"
                         placeholder="Unidade...">
-                    <small id="helpId" class="form-text text-muted"></small>
                 </div>
-                <div class="row">
-                    <div class="col-xs-4">
-                        <input name="" id="" class="btn btn-success" type="button" value="Cadastrar">
-                        <input name="" id="" class="btn btn-danger" type="button" value="Cancelar">
-                    </div>
+                  <div class="form-group">
+                    <input name="" id="" class="btn btn-success" type="button" value="Cadastrar">
+                    <input name="" id="" class="btn btn-danger" type="button" value="Cancelar">
+                  </div>
                 </div>
             </form>
         </div>
