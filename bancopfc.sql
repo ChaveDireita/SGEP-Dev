@@ -23,7 +23,6 @@ create table participa(projetoCod bigint unsigned,
                         foreign key(funcionarioCod) references funcionario(idFuncionario));
 create table material(idMaterial bigint unsigned,
 						nome varchar(100),
-                        peso double,
                         preco double, 
                         unidade varchar(45),
                         primary key(idMaterial));
