@@ -12,9 +12,14 @@ nav {
     text-decoration: none;
 }
 
+.nav-li-a 
+{
+    transition: text-shadow 0.25s;
+}
+
 .nav-li-a:hover {
     text-decoration: none;
-    text-shadow: 0 0 10px white, 0 0 10px white;
+    text-shadow: 0 0 10px #FFFFFFD0;
 }
 
 ul li {

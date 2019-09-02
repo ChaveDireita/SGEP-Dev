@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGEP.Models
 {
@@ -6,13 +7,15 @@ namespace SGEP.Models
     {
         [Key]
         public ulong Id { get; set; }
-        public double Quantidade { get; set; }
+        [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
+        public decimal Quantidade { get; set; } = 0;
         public string Nome { get; set; }
         public string Unidade { get; set; }
 
-        private double _preco;
-        [Display(Name = "Preço")]
-        public double Preco
+        private decimal _preco;
+        [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]
+        [Column(TypeName = "decimal(27, 2)")]
+        public decimal Preco
         {
           get
           {
@@ -25,32 +28,17 @@ namespace SGEP.Models
           }
         }
 
-        public Material(ulong id, double quantidade, string nome, string unidade, double preco){
-            Id = id;
-            Quantidade = quantidade;
-            Nome = nome;
-            Unidade = unidade;
-            Preco = preco;
-        }
-        public Material(double quantidade, string nome, string unidade, double preco){
-            Id = 0;
-            Quantidade = quantidade;
-            Nome = nome;
-            Unidade = unidade;
-            Preco = preco;
-        }
-
-        public void RemoverMaterial(double quantidade)
-        {
-          if (quantidade > 0 && Quantidade - quantidade > 0)
-            Quantidade -= quantidade;
-        }
-
-        public void AdicionarMaterial(double quantidade)
-        {
-          if (quantidade > 0)
-            Quantidade += quantidade;
-        }
+        //public void RemoverMaterial(double quantidade)
+        //{
+        //  if (quantidade > 0 && Quantidade - quantidade > 0)
+        //    Quantidade -= quantidade;
+        //}
+        //
+        //public void AdicionarMaterial(double quantidade)
+        //{
+        //  if (quantidade > 0)
+        //    Quantidade += quantidade;
+        //}
 
     }
 }

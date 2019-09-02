@@ -38,15 +38,5 @@ namespace SGEP.Models
              }
         }
 
-        public Usuario(string login, string senha, string nome, CargoUsuario cargo, string telefone, string email){
-            Login = login;
-            Senha = senha;
-            Nome = nome;
-            Cargo = cargo;
-            Telefone = telefone;
-            Email = email;
-        }
-
-
     }
 }

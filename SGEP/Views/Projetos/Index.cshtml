@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SGEP.Models.Projeto>
+
+@{
+    ViewData["Title"] = "Projetos";
+}
+
+<h3 class="display-4 mt-5 mb-5 text-center">Projetos</h3>
+
+<p>
+    <a class="btn btn-success" role="button" asp-action="Create">Cadastrar</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <div class="float-right btn-group">
+                    <a class="btn btn-secondary" role="button" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-secondary" role="button" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

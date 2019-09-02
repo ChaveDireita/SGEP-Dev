@@ -9,7 +9,7 @@ namespace SGEP.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Funcionarios",
+                name: "Funcionario",
                 columns: table => new
                 {
                     Id = table.Column<ulong>(nullable: false)
@@ -18,27 +18,27 @@ namespace SGEP.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funcionarios", x => x.Id);
+                    table.PrimaryKey("PK_Funcionario", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Materiais",
+                name: "Material",
                 columns: table => new
                 {
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Quantidade = table.Column<double>(nullable: false),
+                    Quantidade = table.Column<decimal>(nullable: false),
                     Nome = table.Column<string>(nullable: true),
                     Unidade = table.Column<string>(nullable: true),
-                    Preco = table.Column<double>(nullable: false)
+                    Preco = table.Column<decimal>(type: "decimal(29, 2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Materiais", x => x.Id);
+                    table.PrimaryKey("PK_Material", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Projetos",
+                name: "Projeto",
                 columns: table => new
                 {
                     Id = table.Column<ulong>(nullable: false)
@@ -46,25 +46,25 @@ namespace SGEP.Migrations
                     Nome = table.Column<string>(nullable: true),
                     DataInicio = table.Column<DateTime>(nullable: false),
                     PrazoEstimado = table.Column<DateTime>(nullable: false),
-                    DataFim = table.Column<DateTime>(nullable: false),
+                    DataFim = table.Column<DateTime>(nullable: true),
                     Estado = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projetos", x => x.Id);
+                    table.PrimaryKey("PK_Projeto", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Funcionarios");
+                name: "Funcionario");
 
             migrationBuilder.DropTable(
-                name: "Materiais");
+                name: "Material");
 
             migrationBuilder.DropTable(
-                name: "Projetos");
+                name: "Projeto");
         }
     }
 }

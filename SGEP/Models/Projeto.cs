@@ -9,34 +9,18 @@ namespace SGEP.Models
         [Key]
         public ulong Id { get; set; }
         public string Nome {get; set;}
+        [DataType(DataType.Date)]
         [Display(Name = "Data de início")]
         public DateTime DataInicio {get; set;}
-        [Display(Name = "Data final estimada")]
-        public DateTime PrazoEstimado {get; set;}
-        [Display(Name = "Data final")]
-        public DateTime? DataFim {get; set;}
-        public EstadoProjeto Estado {get; set;}
-        //public Dictionary <Material,double> Materiais {get; set;}
+        //[DataType(DataType.Date)]
+        //[Display(Name = "Data final estimada")]
+        //public DateTime PrazoEstimado {get; set;}
+        [DataType(DataType.Date)]
+        [Display(Name = "Data de Término")]
+        public DateTime? DataFim { get; set; } 
+        public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
 
-        public Projeto(string nome,DateTime dataInicio,DateTime prazoEstimado){
-            Id = 0;
-            Nome = nome;
-            DataInicio = dataInicio;
-            PrazoEstimado = prazoEstimado;
-        }
-        public Projeto(ulong id,string nome,DateTime dataInicio,DateTime prazoEstimado){
-            Id = id;
-            Nome = nome;
-            DataInicio = dataInicio;
-            PrazoEstimado = prazoEstimado;
-        }
-        public Projeto(ulong id,string nome,DateTime dataInicio,DateTime prazoEstimado,DateTime dataFim){
-            Id = id;
-            Nome = nome;
-            DataInicio = dataInicio;
-            PrazoEstimado = prazoEstimado;
-            DataFim = dataFim;
-        }
+        //public Dictionary <Material,double> Materiais {get; set;}
 
         //public void AlocarMaterial(Material m, double quantidade)
         //{

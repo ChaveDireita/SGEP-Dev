@@ -9,7 +9,7 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20190826140925_Migracao")]
+    [Migration("20190901152312_Migracao")]
     partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,7 +28,7 @@ namespace SGEP.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Funcionarios");
+                    b.ToTable("Funcionario");
                 });
 
             modelBuilder.Entity("SGEP.Models.Material", b =>
@@ -38,15 +38,16 @@ namespace SGEP.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<double>("Preco");
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(29, 2)");
 
-                    b.Property<double>("Quantidade");
+                    b.Property<decimal>("Quantidade");
 
                     b.Property<string>("Unidade");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Materiais");
+                    b.ToTable("Material");
                 });
 
             modelBuilder.Entity("SGEP.Models.Projeto", b =>
@@ -54,7 +55,7 @@ namespace SGEP.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DataFim");
+                    b.Property<DateTime?>("DataFim");
 
                     b.Property<DateTime>("DataInicio");
 
@@ -67,7 +68,7 @@ namespace SGEP.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projetos");
+                    b.ToTable("Projeto");
                 });
 #pragma warning restore 612, 618
         }
