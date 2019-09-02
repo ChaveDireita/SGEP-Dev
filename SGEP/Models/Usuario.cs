@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using SGEP.Models.Validacao;
 
 namespace SGEP.Models
 {

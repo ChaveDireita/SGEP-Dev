@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using SGEP.Models.Validacao;
+
 namespace SGEP.Models
 {
-    public class Material
+    public class Material: IAutoValida
     {
         [Key]
         public ulong Id { get; set; }
@@ -27,6 +29,8 @@ namespace SGEP.Models
               _preco = value;
           }
         }
+
+        public bool Validar() => Preco >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Unidade);
 
         //public void RemoverMaterial(double quantidade)
         //{

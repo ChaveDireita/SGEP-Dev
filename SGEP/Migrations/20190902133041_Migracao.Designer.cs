@@ -9,7 +9,7 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20190901152312_Migracao")]
+    [Migration("20190902133041_Migracao")]
     partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,8 @@ namespace SGEP.Migrations
                 {
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Cargo");
 
                     b.Property<string>("Nome");
 
@@ -39,7 +41,7 @@ namespace SGEP.Migrations
                     b.Property<string>("Nome");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(29, 2)");
+                        .HasColumnType("decimal(27, 2)");
 
                     b.Property<decimal>("Quantidade");
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 using SGEP.Banco;
 using SGEP.Models;
 
@@ -56,7 +57,7 @@ namespace SGEP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
         {
-            if (ModelState.IsValid)
+            if (material.Validar())
             {
                 _context.Add(material);
                 await _context.SaveChangesAsync();
@@ -93,7 +94,7 @@ namespace SGEP.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (material.Validar())
             {
                 try
                 {

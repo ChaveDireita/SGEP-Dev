@@ -56,7 +56,7 @@ namespace SGEP.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome")] Funcionario funcionario)
         {
-            if (ModelState.IsValid)
+            if (funcionario.Validar())
             {
                 _context.Add(funcionario);
                 await _context.SaveChangesAsync();
@@ -93,7 +93,7 @@ namespace SGEP.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (funcionario.Validar())
             {
                 try
                 {

@@ -22,6 +22,8 @@ namespace SGEP.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Cargo");
+
                     b.Property<string>("Nome");
 
                     b.HasKey("Id");
@@ -37,7 +39,7 @@ namespace SGEP.Migrations
                     b.Property<string>("Nome");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(29, 2)");
+                        .HasColumnType("decimal(27, 2)");
 
                     b.Property<decimal>("Quantidade");
 

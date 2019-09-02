@@ -2,9 +2,11 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
+using SGEP.Models.Validacao;
+
 namespace SGEP.Models
 {
-    public class Projeto
+    public class Projeto : IAutoValida
     {
         [Key]
         public ulong Id { get; set; }
@@ -12,13 +14,17 @@ namespace SGEP.Models
         [DataType(DataType.Date)]
         [Display(Name = "Data de início")]
         public DateTime DataInicio {get; set;}
-        //[DataType(DataType.Date)]
-        //[Display(Name = "Data final estimada")]
-        //public DateTime PrazoEstimado {get; set;}
+        [DataType(DataType.Date)]
+        [Display(Name = "Data final estimada")]
+        public DateTime PrazoEstimado {get; set;}
         [DataType(DataType.Date)]
         [Display(Name = "Data de Término")]
         public DateTime? DataFim { get; set; } 
         public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
+
+        public bool Validar() => !string.IsNullOrEmpty(Nome) && PrazoEstimado >= DataInicio && 
+                                 (DataFim == null       && Estado == EstadoProjeto.Andamento || 
+                                  DataFim >= DataInicio && Estado == EstadoProjeto.Finalizado);
 
         //public Dictionary <Material,double> Materiais {get; set;}
 

@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace SGEP.Models
+namespace SGEP.Models.Validacao
 {
   public sealed class ValidadorDeEntrada
   {

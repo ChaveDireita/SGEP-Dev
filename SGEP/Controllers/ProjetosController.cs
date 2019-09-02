@@ -54,9 +54,9 @@ namespace SGEP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,DataInicio,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Create([Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
         {
-            if (ModelState.IsValid)
+            if (projeto.Validar())
             {
                 _context.Add(projeto);
                 await _context.SaveChangesAsync();
@@ -86,14 +86,14 @@ namespace SGEP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,DataInicio,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
         {
             if (id != projeto.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (projeto.Validar())
             {
                 try
                 {
@@ -118,7 +118,7 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Finalizar(ulong id, [Bind("Id,Nome,DataInicio,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Finalizar(ulong id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
         {
             projeto.Estado = EstadoProjeto.Finalizado;
 
@@ -127,7 +127,7 @@ namespace SGEP.Controllers
                 return NotFound();
             }
 
-            if (true)
+            if (projeto.Validar())
             {
                 try
                 {
@@ -147,6 +147,7 @@ namespace SGEP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            projeto.Estado = EstadoProjeto.Finalizado;
             return View(projeto);
         }
 

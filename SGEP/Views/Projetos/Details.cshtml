@@ -7,31 +7,40 @@
 <h3 class="display-4 mt-5 mb-5 text-center">Criar Projeto</h3>
 
 <dl class="row justify-content-center">
-    <dt class = "col-sm-2">
+    <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.Nome)
     </dt>
-    <dd class = "col-sm-10">
+    <dd class="col-sm-10">
         @Html.DisplayFor(model => model.Nome)
     </dd>
-    <dt class = "col-sm-2">
+    <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.DataInicio)
     </dt>
-    <dd class = "col-sm-10">
+    <dd class="col-sm-10">
         @Html.DisplayFor(model => model.DataInicio)
     </dd>
-    <dt class = "col-sm-2">
+    <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.Estado)
     </dt>
-    <dd class = "col-sm-10">
+    <dd class="col-sm-10">
         @Html.DisplayFor(model => model.Estado)
     </dd>
-    @if(Model.Estado == EstadoProjeto.Finalizado)
+    @if (Model.Estado == EstadoProjeto.Finalizado)
     {
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.DataFim)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.DataFim)
+        </dd>
+    }
+    else
+    {
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PrazoEstimado)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PrazoEstimado)
         </dd>
     }
 </dl>
