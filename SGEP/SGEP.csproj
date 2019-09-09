@@ -1,33 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190831200424_Migracao.cs" />
-    <Compile Remove="Migrations\20190831200424_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190831204517_Migracao.cs" />
-    <Compile Remove="Migrations\20190831204517_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190831211731_Migracao.cs" />
-    <Compile Remove="Migrations\20190831211731_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190831214417_Migracao.cs" />
-    <Compile Remove="Migrations\20190831214417_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190901005915_Migracao.cs" />
-    <Compile Remove="Migrations\20190901005915_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190901012001_Migracao.cs" />
-    <Compile Remove="Migrations\20190901012001_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190901152312_Migracao.cs" />
-    <Compile Remove="Migrations\20190901152312_Migracao.Designer.cs" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
   </ItemGroup>
 
 </Project>

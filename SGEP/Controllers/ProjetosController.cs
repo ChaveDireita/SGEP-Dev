@@ -148,7 +148,8 @@ namespace SGEP.Controllers
                 return RedirectToAction(nameof(Index));
             }
             projeto.Estado = EstadoProjeto.Finalizado;
-            return View(projeto);
+            //return View(projeto);
+            return RedirectToAction(nameof(Edit), new { id = projeto.Id});
         }
 
         // GET: Projetos/Delete/5
