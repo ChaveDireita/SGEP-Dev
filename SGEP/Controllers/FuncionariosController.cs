@@ -13,17 +13,15 @@ namespace SGEP.Controllers
     public class FuncionariosController : Controller
     {
         private readonly ContextoBD _context;
-
+        private readonly string NomePropriedades;
         public FuncionariosController(ContextoBD context)
         {
             _context = context;
+            NomePropriedades = AcoesComunsDosControllers<Funcionario>.ListaDeProptiedades(typeof(Funcionario));
         }
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Funcionario.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.Funcionario.ToListAsync());
 
         // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(ulong? id)
