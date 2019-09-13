@@ -8,17 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using SGEP.Banco;
 using SGEP.Models;
 
+using _a = SGEP.Controllers.AcoesComunsDosControllers;
+
 namespace SGEP.Controllers
 {
     public class FuncionariosController : Controller
     {
         private readonly ContextoBD _context;
-        private readonly string NomePropriedades;
-        public FuncionariosController(ContextoBD context)
-        {
-            _context = context;
-            NomePropriedades = AcoesComunsDosControllers<Funcionario>.ListaDeProptiedades(typeof(Funcionario));
-        }
+        public FuncionariosController(ContextoBD context) => _context = context;
 
         // GET: Funcionarios
         public async Task<IActionResult> Index() => View(await _context.Funcionario.ToListAsync());
@@ -26,26 +23,12 @@ namespace SGEP.Controllers
         // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(ulong? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var funcionario = await _context.Funcionario
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (funcionario == null)
-            {
-                return NotFound();
-            }
-
-            return View(funcionario);
+            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);
+            return (funcionario == null) ? (IActionResult) NotFound() : View(funcionario);
         }
 
         // GET: Funcionarios/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Funcionarios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -56,8 +39,7 @@ namespace SGEP.Controllers
         {
             if (funcionario.Validar())
             {
-                _context.Add(funcionario);
-                await _context.SaveChangesAsync();
+                await _a.SalvarModelo(funcionario, _context);
                 return RedirectToAction(nameof(Index));
             }
             return View(funcionario);
@@ -66,17 +48,9 @@ namespace SGEP.Controllers
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);
 
-            var funcionario = await _context.Funcionario.FindAsync(id);
-            if (funcionario == null)
-            {
-                return NotFound();
-            }
-            return View(funcionario);
+            return (funcionario == null) ? (IActionResult)NotFound() : View(funcionario);
         }
 
         // POST: Funcionarios/Edit/5
@@ -87,27 +61,20 @@ namespace SGEP.Controllers
         public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,Cargo")] Funcionario funcionario)
         {
             if (id != funcionario.Id)
-            {
                 return NotFound();
-            }
 
             if (funcionario.Validar())
             {
                 try
                 {
-                    _context.Update(funcionario);
-                    await _context.SaveChangesAsync();
+                    await _a.AtualizarModelo(funcionario, _context);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!FuncionarioExists(funcionario.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -115,37 +82,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Funcionarios/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var funcionario = await _context.Funcionario
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (funcionario == null)
-            {
-                return NotFound();
-            }
-
-            return View(funcionario);
-        }
-
-        // POST: Funcionarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
-        {
-            var funcionario = await _context.Funcionario.FindAsync(id);
-            _context.Funcionario.Remove(funcionario);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool FuncionarioExists(ulong id)
-        {
-            return _context.Funcionario.Any(e => e.Id == id);
-        }
+        private bool FuncionarioExists(ulong id) => _context.Funcionario.Any(e => e.Id == id);
     }
 }

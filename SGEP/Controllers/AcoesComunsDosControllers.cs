@@ -12,65 +12,30 @@ using SGEP.Models.Validacao;
 
 namespace SGEP.Controllers
 {
-    public sealed class AcoesComunsDosControllers<T> where T : class, IAutoValida
+    public sealed class AcoesComunsDosControllers
     {
-        public readonly DbSet<T> Tabela;
-        public AcoesComunsDosControllers(DbSet<T> tabela) => Tabela = tabela;
+        private AcoesComunsDosControllers() { }
 
-        /*public async void SalvarModelo(DbSet<T> tabela, T modelo)
+        public static async Task<T> ChecarPeloId<T>(ulong? id, DbSet<T> tabela) where T : class
         {
-            tabela.Add(modelo);
+            if (id == null)
+                return null;
+            Task<T> modelo = tabela.FindAsync(id);
+            return await modelo;
+        }
 
-        }*/
-
-        public static string ListaDeProptiedades(Type tipo)
+        public static async Task SalvarModelo<T>(T modelo, ContextoBD contexto) where T : class
         {
-            PropertyInfo[] info = tipo.GetProperties();
-            string nomesPropriedades = "";
-
-            foreach (PropertyInfo p in info)
-            {
-                if ("".Equals(nomesPropriedades))
-                    nomesPropriedades += p.Name;
-                else
-                    nomesPropriedades += (", " + p.Name);
-            }
-
-            return nomesPropriedades;
+            contexto.Add(modelo);
+            await contexto.SaveChangesAsync();
+        }
+        public static async Task AtualizarModelo<T>(T modelo, ContextoBD contexto) where T : class
+        {
+            contexto.Add(modelo);
+            await contexto.SaveChangesAsync();
         }
 
 
 
-    }
-
-    public sealed class NomesPropriedades
-    {
-        public static readonly string NomesFuncionario;
-        public static string NomesMaterial { get; set; }
-        
-
-        static NomesPropriedades()
-        {
-            NomesFuncionario = ListaDeProptiedades(typeof(Funcionario));
-        }
-
-
-        private NomesPropriedades() { }
-
-        private static string ListaDeProptiedades(Type tipo)
-        {
-            PropertyInfo[] info = tipo.GetProperties();
-            string nomesPropriedades = "";
-
-            foreach (PropertyInfo p in info)
-            {
-                if ("".Equals(nomesPropriedades))
-                    nomesPropriedades += p.Name;
-                else
-                    nomesPropriedades += (", " + p.Name);
-            }
-
-            return nomesPropriedades;
-        }
     }
 }

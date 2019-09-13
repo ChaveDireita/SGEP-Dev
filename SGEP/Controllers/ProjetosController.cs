@@ -8,46 +8,28 @@ using Microsoft.EntityFrameworkCore;
 using SGEP.Banco;
 using SGEP.Models;
 
+using _a = SGEP.Controllers.AcoesComunsDosControllers;
+
 namespace SGEP.Controllers
 {
     public class ProjetosController : Controller
     {
         private readonly ContextoBD _context;
 
-        public ProjetosController(ContextoBD context)
-        {
-            _context = context;
-        }
+        public ProjetosController(ContextoBD context) => _context = context;
 
         // GET: Projetos
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Projeto.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View(await _context.Projeto.ToListAsync());
 
         // GET: Projetos/Details/5
         public async Task<IActionResult> Details(ulong? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var projeto = await _context.Projeto
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (projeto == null)
-            {
-                return NotFound();
-            }
-
-            return View(projeto);
+            Projeto projeto = await _a.ChecarPeloId(id, _context.Projeto);
+            return (projeto == null) ? (IActionResult)NotFound() : View(projeto);
         }
 
         // GET: Projetos/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         // POST: Projetos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -58,8 +40,7 @@ namespace SGEP.Controllers
         {
             if (projeto.Validar())
             {
-                _context.Add(projeto);
-                await _context.SaveChangesAsync();
+                await _a.SalvarModelo(projeto, _context);
                 return RedirectToAction(nameof(Index));
             }
             return View(projeto);
@@ -68,17 +49,8 @@ namespace SGEP.Controllers
         // GET: Projetos/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var projeto = await _context.Projeto.FindAsync(id);
-            if (projeto == null)
-            {
-                return NotFound();
-            }
-            return View(projeto);
+            Projeto projeto = await _a.ChecarPeloId(id, _context.Projeto);
+            return (projeto == null) ? (IActionResult)NotFound() : View(projeto);
         }
 
         // POST: Projetos/Edit/5
@@ -89,27 +61,21 @@ namespace SGEP.Controllers
         public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
         {
             if (id != projeto.Id)
-            {
                 return NotFound();
-            }
+            
 
             if (projeto.Validar())
             {
                 try
                 {
-                    _context.Update(projeto);
-                    await _context.SaveChangesAsync();
+                    await _a.AtualizarModelo(projeto, _context);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ProjetoExists(projeto.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -123,67 +89,27 @@ namespace SGEP.Controllers
             projeto.Estado = EstadoProjeto.Finalizado;
 
             if (id != projeto.Id)
-            {
                 return NotFound();
-            }
 
             if (projeto.Validar())
             {
                 try
                 {
-                    _context.Update(projeto);
-                    await _context.SaveChangesAsync();
+                    await _a.AtualizarModelo(projeto, _context);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!ProjetoExists(projeto.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            projeto.Estado = EstadoProjeto.Finalizado;
+            projeto.Estado = EstadoProjeto.Andamento;
             //return View(projeto);
             return RedirectToAction(nameof(Edit), new { id = projeto.Id});
         }
-
-        // GET: Projetos/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var projeto = await _context.Projeto
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (projeto == null)
-            {
-                return NotFound();
-            }
-
-            return View(projeto);
-        }
-
-        // POST: Projetos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
-        {
-            var projeto = await _context.Projeto.FindAsync(id);
-            _context.Projeto.Remove(projeto);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ProjetoExists(ulong id)
-        {
-            return _context.Projeto.Any(e => e.Id == id);
-        }
+        private bool ProjetoExists(ulong id) => _context.Projeto.Any(e => e.Id == id);
     }
 }
