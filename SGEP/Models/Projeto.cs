@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
 using SGEP.Models.Validacao;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SGEP.Models
 {
@@ -13,12 +14,15 @@ namespace SGEP.Models
         public string Nome {get; set;}
         [DataType(DataType.Date)]
         [Display(Name = "Data de início")]
+        [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado) + ", " + nameof(DataFim))]
         public DateTime DataInicio {get; set;}
         [DataType(DataType.Date)]
         [Display(Name = "Data final estimada")]
+        [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado))]
         public DateTime PrazoEstimado {get; set;}
         [DataType(DataType.Date)]
         [Display(Name = "Data de Término")]
+        [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado) + ", " + nameof(DataFim))]
         public DateTime? DataFim { get; set; } 
         public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
 

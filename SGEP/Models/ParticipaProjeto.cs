@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGEP.Models
 {
-    public class ParticipaProjeto : IAutoValida
+    public class ParticipaProjeto //: IAutoValida
     {
         public ulong idFuncionario { get; set; }
         public ulong idProjeto { get; set; }

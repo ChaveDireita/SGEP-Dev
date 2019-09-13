@@ -111,5 +111,16 @@ namespace SGEP.Controllers
             return RedirectToAction(nameof(Edit), new { id = projeto.Id});
         }
         private bool ProjetoExists(ulong id) => _context.Projeto.Any(e => e.Id == id);
+
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerificarData(DateTime dataInicio, DateTime prazoEstimado, DateTime? dataFim)
+        {
+            if (dataInicio > prazoEstimado)
+                return Json("O prazo estimado não pode ser menor que a data inicial");
+            if (dataFim != null && dataInicio > dataFim)
+                return Json("A data final não pode ser menor que a data inicial");
+            return Json(true);
+        }
+
     }
 }
