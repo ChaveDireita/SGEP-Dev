@@ -6,7 +6,7 @@ namespace SGEP.Models
   public class Funcionario: IAutoValida
   {
     [Key]
-    public ulong Id { get; set; }
+    public int Id { get; set; }
     public string Nome { get; set; }
     public string Cargo { get; set; }
 

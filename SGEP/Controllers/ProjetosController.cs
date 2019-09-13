@@ -26,7 +26,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Projetos/Details/5
-        public async Task<IActionResult> Details(ulong? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Projetos/Edit/5
-        public async Task<IActionResult> Edit(ulong? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace SGEP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
         {
             if (id != projeto.Id)
             {
@@ -118,7 +118,7 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Finalizar(ulong id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Finalizar(int id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
         {
             projeto.Estado = EstadoProjeto.Finalizado;
 
@@ -153,7 +153,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Projetos/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -173,7 +173,7 @@ namespace SGEP.Controllers
         // POST: Projetos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var projeto = await _context.Projeto.FindAsync(id);
             _context.Projeto.Remove(projeto);
@@ -181,7 +181,7 @@ namespace SGEP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProjetoExists(ulong id)
+        private bool ProjetoExists(int id)
         {
             return _context.Projeto.Any(e => e.Id == id);
         }

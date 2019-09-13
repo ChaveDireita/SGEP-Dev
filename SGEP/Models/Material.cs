@@ -8,7 +8,7 @@ namespace SGEP.Models
     public class Material: IAutoValida
     {
         [Key]
-        public ulong Id { get; set; }
+        public int Id { get; set; }
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         public decimal Quantidade { get; set; } = 0;
         public string Nome { get; set; }
@@ -16,6 +16,7 @@ namespace SGEP.Models
 
         private decimal _preco;
         [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]
+        [Display(Name = "Preço (R$)")]
         [Column(TypeName = "decimal(27, 2)")]
         public decimal Preco
         {

@@ -26,7 +26,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Funcionarios/Details/5
-        public async Task<IActionResult> Details(ulong? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -66,7 +66,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Funcionarios/Edit/5
-        public async Task<IActionResult> Edit(ulong? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace SGEP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,Cargo")] Funcionario funcionario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Cargo")] Funcionario funcionario)
         {
             if (id != funcionario.Id)
             {
@@ -117,7 +117,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Funcionarios/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -137,7 +137,7 @@ namespace SGEP.Controllers
         // POST: Funcionarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var funcionario = await _context.Funcionario.FindAsync(id);
             _context.Funcionario.Remove(funcionario);
@@ -145,7 +145,7 @@ namespace SGEP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FuncionarioExists(ulong id)
+        private bool FuncionarioExists(int id)
         {
             return _context.Funcionario.Any(e => e.Id == id);
         }
