@@ -14,6 +14,9 @@ namespace SGEP.Controllers
 {
     public class ProjetosController : Controller
     {
+        /// <summary>
+        /// Uma referência ao contexto do banco de dados.
+        /// </summary>
         private readonly ContextoBD _context;
 
         public ProjetosController(ContextoBD context) => _context = context;
@@ -82,6 +85,7 @@ namespace SGEP.Controllers
             return View(projeto);
         }
 
+        // POST: Projetos/Finalizar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Finalizar(ulong id, [Bind("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
@@ -112,6 +116,14 @@ namespace SGEP.Controllers
         }
         private bool ProjetoExists(ulong id) => _context.Projeto.Any(e => e.Id == id);
 
+
+        /// <summary>
+        /// Valida as datas do projeto. Obviamente, a data inicial deve ser maior que a final real ou estimada.
+        /// </summary>
+        /// <param name="dataInicio">A data de início do projeto</param>
+        /// <param name="prazoEstimado">A data final estimada do projeto</param>
+        /// <param name="dataFim">A data final do projeto</param>
+        /// <returns>Json com true caso os valores sejam válidos ou uma mensagem de erro caso não.</returns>
         [AcceptVerbs("GET", "POST")]
         public IActionResult VerificarData(DateTime dataInicio, DateTime prazoEstimado, DateTime? dataFim)
         {
@@ -120,6 +132,13 @@ namespace SGEP.Controllers
             if (dataFim != null && dataInicio > dataFim)
                 return Json("A data final não pode ser menor que a data inicial");
             return Json(true);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AdicionarFuncionario([Bind(nameof(ParticipaProjeto.IdFuncionario) + ", " + nameof(ParticipaProjeto.IdProjeto))] ParticipaProjeto participaProjeto)
+        {
+            return View();//RETIRAR
         }
     }
 }

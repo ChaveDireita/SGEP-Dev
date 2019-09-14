@@ -8,7 +8,7 @@ namespace SGEP.Models
 {
     public class ParticipaProjeto //: IAutoValida
     {
-        public ulong idFuncionario { get; set; }
-        public ulong idProjeto { get; set; }
+        public ulong IdFuncionario { get; set; }
+        public ulong IdProjeto { get; set; }
     }
 }
