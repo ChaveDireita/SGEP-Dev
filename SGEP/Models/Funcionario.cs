@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SGEP.Models.Validacao;
 
@@ -11,5 +12,7 @@ namespace SGEP.Models
     public string Cargo { get; set; }
 
     public bool Validar() => !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Cargo);
+
+    public virtual ICollection<ParticipaProjeto> Participcoes { get; set; }
   }
 }
