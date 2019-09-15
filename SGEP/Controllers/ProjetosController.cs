@@ -136,9 +136,26 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AdicionarFuncionario([Bind(nameof(ParticipaProjeto.IdFuncionario) + ", " + nameof(ParticipaProjeto.IdProjeto))] ParticipaProjeto participaProjeto)
+        public /*Task<*/IActionResult/*>*/ AdicionarFuncionario(ulong idProjeto, ulong idFuncionario)
         {
+            /*if (_contexto.ParticipaProjetos.Any(pp => new {IdFuncionario = pp.IdFuncionario, IdProjeto = pp.IdProjeto})
+                return BadRequest();
+              _contexto.Add(participaProjeto);
+              await _contexto.SaveChangesAsync();*/
             return View();//RETIRAR
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public /*Task<*/IActionResult/*>*/ AdicionarMaterial(ulong idProjeto, ulong idMaterial)
+        {
+            /*if (_contexto.ParticipaProjetos.Any(pp => new {IdFuncionario = pp.IdFuncionario, IdProjeto = pp.IdProjeto})
+                return BadRequest();
+              _contexto.Add(participaProjeto);
+              await _contexto.SaveChangesAsync();*/
+            return View();//RETIRAR
+        }
+
+
     }
 }
