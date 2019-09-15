@@ -13,6 +13,9 @@ namespace ModelPFCII.Models
         public ulong CodMaterial { get; set; }
         [ForeignKey("Projeto")]
         public ulong CodProjeto { get; set; }
+        
+        public virtual Material Material { get; set; }
+        public virtual Projeto Projeto { get; set; }
 
         public bool Validar() => Quantidade >= 0;
     }
