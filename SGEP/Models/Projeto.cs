@@ -10,20 +10,22 @@ namespace SGEP.Models
     {
         [Key]
         public ulong Id { get; set; }
-        public string Nome {get; set;}
+        public string Nome { get; set; }
         [DataType(DataType.Date)]
-        [Display(Name = "Data de início")]
-        public DateTime DataInicio {get; set;}
+        [Display(Name = "Data de inÃ­cio")]
+        public DateTime DataInicio { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Data final estimada")]
-        public DateTime PrazoEstimado {get; set;}
+        public DateTime PrazoEstimado { get; set; }
         [DataType(DataType.Date)]
-        [Display(Name = "Data de Término")]
-        public DateTime? DataFim { get; set; } 
+        [Display(Name = "Data de TÃ©rmino")]
+        public DateTime? DataFim { get; set; }
         public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
 
-        public bool Validar() => !string.IsNullOrEmpty(Nome) && PrazoEstimado >= DataInicio && 
-                                 (DataFim == null       && Estado == EstadoProjeto.Andamento || 
+        public virtual ICollection<Material> Materials { get; set; }
+
+        public bool Validar() => !string.IsNullOrEmpty(Nome) && PrazoEstimado >= DataInicio &&
+                                 (DataFim == null && Estado == EstadoProjeto.Andamento ||
                                   DataFim >= DataInicio && Estado == EstadoProjeto.Finalizado);
 
         //public Dictionary <Material,double> Materiais {get; set;}
