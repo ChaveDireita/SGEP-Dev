@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,7 @@ namespace SGEP.Models
         public ulong Id { get; set; }
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         public decimal Quantidade { get; set; } = 0;
-        public string Descricao { get; set; }
+        public string Nome { get; set; }
         public string Unidade { get; set; }
 
         public virtual ICollection<AlocacaoPossui> Alocacoes {get; set; }
@@ -19,7 +20,8 @@ namespace SGEP.Models
         private decimal _preco;
         [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]
         [Column(TypeName = "decimal(27, 2)")]
-        public decimal PrecoUnitario
+        [Display(Name = "Preço unitário")]
+        public decimal Preco
         {
             get
             {
@@ -32,7 +34,7 @@ namespace SGEP.Models
             }
         }
 
-        public bool Validar() => PrecoUnitario >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Descricao) && !string.IsNullOrEmpty(Unidade);
+        public bool Validar() => Preco >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Unidade);
 
         //public void RemoverMaterial(double quantidade)
         //{

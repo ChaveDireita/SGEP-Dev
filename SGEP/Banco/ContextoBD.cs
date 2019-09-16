@@ -29,6 +29,13 @@ namespace SGEP.Banco
             builder.Entity<Projeto>()
                    .Property(p => p.Estado)
                    .HasConversion(e => e.ToString(), s => (EstadoProjeto)Enum.Parse(typeof(EstadoProjeto), s));
+
+            builder.Entity<AlocacaoPossui>()
+                   .HasKey(ap => ap.CodMaterial);
+
+            builder.Entity<AlocacaoPossui>()
+                   .HasKey(ap => ap.CodProjeto);
+                   
         }
         ///<summary>
         ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
