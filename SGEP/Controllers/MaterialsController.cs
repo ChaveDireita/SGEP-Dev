@@ -47,7 +47,7 @@ namespace SGEP.Controllers
         // GET: Materials/Create
         public IActionResult Create()
         {
-            return View("CreateMaterial");
+            return View("Create");
         }
         // POST: Materials/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

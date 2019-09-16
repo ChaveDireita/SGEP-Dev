@@ -42,7 +42,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nome)
+                    @Html.DisplayNameFor(model => model.Descricao)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Preco)
@@ -61,7 +61,7 @@
             {
             <tr onclick="liberarClick(@item.Id)">
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
+                    @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Preco)

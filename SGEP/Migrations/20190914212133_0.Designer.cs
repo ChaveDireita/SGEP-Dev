@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGEP.Banco;
 
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    partial class ContextoBDModelSnapshot : ModelSnapshot
+    [Migration("20190914212133_0")]
+    partial class _0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +28,6 @@ namespace SGEP.Migrations
 
                     b.Property<string>("Nome");
 
-                    b.Property<string>("Projeto");
-
                     b.HasKey("Id");
 
                     b.ToTable("Funcionario");
@@ -39,6 +39,8 @@ namespace SGEP.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descricao");
+
+                    b.Property<string>("Nome");
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(27, 2)");
