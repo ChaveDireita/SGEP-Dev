@@ -30,27 +30,10 @@ namespace SGEP.Banco
                    .Property(p => p.Estado)
                    .HasConversion(e => e.ToString(), s => (EstadoProjeto)Enum.Parse(typeof(EstadoProjeto), s));
         }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
         public DbSet<SGEP.Models.Funcionario> Funcionario { get; set; }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
         public DbSet<SGEP.Models.Material> Material { get; set; }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
         public DbSet<SGEP.Models.Projeto> Projeto { get; set; }
+        public DbSet<SGEP.Models.Unidades> Unidades { get; set; }
 
         
     }

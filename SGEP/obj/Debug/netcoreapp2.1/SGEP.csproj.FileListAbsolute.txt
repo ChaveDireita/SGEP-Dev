@@ -1,0 +1,92 @@
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.csprojAssemblyReference.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.csproj.CoreCompileInputs.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorAssemblyInfo.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorAssemblyInfo.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.AssemblyInfoInputs.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.AssemblyInfo.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.TagHelpers.input.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.TagHelpers.output.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorCoreGenerate.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.dll
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.pdb
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.deps.json
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.runtimeconfig.json
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.runtimeconfig.dev.json
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.dll
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.pdb
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.Views.dll
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.Views.pdb
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Create.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Edit.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Index.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Inicio\Index.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Inicio\Privacy.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Details.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Edit.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Index.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\ManagementView.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Create.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Details.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Edit.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Index.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Unidade\Index.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Unidade\Unidades.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorTargetAssemblyInfo.cache
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorTargetAssemblyInfo.cs
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.Views.pdb
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.csproj.CopyComplete
+C:\Users\danpg\OneDrive\Documentos\C# Projects\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Create.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.csprojAssemblyReference.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.csproj.CoreCompileInputs.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorAssemblyInfo.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorAssemblyInfo.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.AssemblyInfoInputs.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.AssemblyInfo.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.TagHelpers.input.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.TagHelpers.output.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorCoreGenerate.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Create.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Edit.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Index.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Inicio\Index.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Inicio\Privacy.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Create.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\CreateMaterial.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Details.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Edit.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\Index.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Materials\ManagementView.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Create.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Details.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Edit.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Projetos\Index.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Unidade\Index.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Unidade\Unidades.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorTargetAssemblyInfo.cache
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.RazorTargetAssemblyInfo.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.dll
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.pdb
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\Razor\Views\Funcionarios\Details.g.cshtml.cs
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.deps.json
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.runtimeconfig.json
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.runtimeconfig.dev.json
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.dll
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.pdb
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.Views.dll
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\bin\Debug\netcoreapp2.1\SGEP.Views.pdb
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.Views.pdb
+C:\Users\aluno\Documents\Daniel\SGEP\SGEP\obj\Debug\netcoreapp2.1\SGEP.csproj.CopyComplete

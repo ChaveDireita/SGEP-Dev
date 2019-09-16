@@ -8,14 +8,15 @@ namespace SGEP.Models
     public class Material: IAutoValida
     {
         [Key]
-        public ulong Id { get; set; }
+        public int Id { get; set; }
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         public decimal Quantidade { get; set; } = 0;
-        public string Nome { get; set; }
         public string Unidade { get; set; }
-
+        [Display(Name = "Descrição")]
+        public string Descricao { get; set; }
         private decimal _preco;
         [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]
+        [Display(Name = "Preço unitário(R$)")]
         [Column(TypeName = "decimal(27, 2)")]
         public decimal Preco
         {
@@ -30,7 +31,7 @@ namespace SGEP.Models
           }
         }
 
-        public bool Validar() => Preco >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Unidade);
+        public bool Validar() => Preco >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Descricao) && !string.IsNullOrEmpty(Unidade);
 
         //public void RemoverMaterial(double quantidade)
         //{

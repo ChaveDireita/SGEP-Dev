@@ -23,11 +23,11 @@ namespace SGEP.Controllers
         // GET: Materials
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Material.ToListAsync());
+            return View("ManagementView", await _context.Material.ToListAsync());
         }
 
         // GET: Materials/Details/5
-        public async Task<IActionResult> Details(ulong? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -47,9 +47,8 @@ namespace SGEP.Controllers
         // GET: Materials/Create
         public IActionResult Create()
         {
-            return View();
+            return View("Create");
         }
-
         // POST: Materials/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -67,7 +66,7 @@ namespace SGEP.Controllers
         }
 
         // GET: Materials/Edit/5
-        public async Task<IActionResult> Edit(ulong? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -87,7 +86,7 @@ namespace SGEP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
         {
             if (id != material.Id)
             {
@@ -119,7 +118,7 @@ namespace SGEP.Controllers
 
 
         // GET: Materials/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -139,7 +138,7 @@ namespace SGEP.Controllers
         // POST: Materials/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var material = await _context.Material.FindAsync(id);
             _context.Material.Remove(material);
@@ -147,7 +146,7 @@ namespace SGEP.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MaterialExists(ulong id)
+        private bool MaterialExists(int id)
         {
             return _context.Material.Any(e => e.Id == id);
         }
