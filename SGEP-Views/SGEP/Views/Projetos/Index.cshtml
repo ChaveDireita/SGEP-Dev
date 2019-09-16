@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SGEP.Models.Projeto>
+@{
+    ViewData["Title"] = "Projetos";
+}
+
+<br />
+<h2>Projetos</h2>
+<br />
+<h5>Pesquisar:</h5>
+<p>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text squareborder">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+
+        <input class="form-control squareborder" type="text" placeholder="Pesquisar projeto..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+    </div>
+</p>
+<p>
+    <a asp-action="Create"><input type="button" value="Adicionar projeto" class="btn btn-success squareborder"></a>
+    <a asp-action="Edit" id="linkEdit"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
+    <a asp-action="Details" id="linkDetails"><input type="button" id="detailsButton" class="btn btn-primary squareborder" value="Detalhes" /></a>
+    <script>
+        document.getElementById("editButton").disabled = true;
+        document.getElementById("detailsButton").disabled = true;
+
+        function liberarClick(ID) {
+            document.getElementById("editButton").disabled = false;
+            document.getElementById("detailsButton").disabled = false;
+            $('#linkEdit').prop("href", "/Projetos/Edit/" + ID);
+            $('#linkDetails').prop("href", "/Projetos/Details/" + ID);
+
+        }
+    </script>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PrazoEstimado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="lista">
+            @foreach (var item in Model)
+            {
+                <tr onclick="liberarClick(@item.Id)">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrazoEstimado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript" src="~/js/search_system.js"></script>

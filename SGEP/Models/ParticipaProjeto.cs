@@ -2,24 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGEP.Models
 {
-    public class ParticipaProjeto : IAutoValida
+    public class ParticipaProjeto //: IAutoValida
     {
-        [Key]
-        public ulong idParticipacao { get; set; }
-        public ulong idFuncionario { get; set; }
-        public ulong idProjeto { get; set; }
-
-        public virtual Funcionario Funcionario { get; set; }
-        public virtual Projeto Projeto { get; set; }
-
-        public bool Validar()
-        {
-            throw new NotImplementedException();
-        }
+        [ForeignKey("Material")]
+        public ulong IdFuncionario { get; set; }
+        [ForeignKey("Material")]
+        public ulong IdProjeto { get; set; }
     }
 }

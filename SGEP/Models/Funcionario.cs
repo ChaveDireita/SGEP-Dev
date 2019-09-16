@@ -13,6 +13,6 @@ namespace SGEP.Models
 
     public bool Validar() => !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Cargo);
 
-    public virtual ICollection<ParticipaProjeto> Participcoes { get; set; }
+    //public virtual ICollection<ParticipaProjeto> Participacoes { get; set; }
   }
 }

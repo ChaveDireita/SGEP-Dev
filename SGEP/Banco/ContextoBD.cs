@@ -16,7 +16,6 @@ namespace SGEP.Banco
     ///</summary>
     public class ContextoBD : DbContext
     {
-
         public ContextoBD(DbContextOptions<ContextoBD> options) : base(options) { }
         ///<summary>
         ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
@@ -35,6 +34,12 @@ namespace SGEP.Banco
 
             builder.Entity<AlocacaoPossui>()
                    .HasKey(ap => ap.CodProjeto);
+
+            builder.Entity<ParticipaProjeto>()
+                   .HasKey(ap => ap.IdFuncionario);
+
+            builder.Entity<ParticipaProjeto>()
+                   .HasKey(ap => ap.IdProjeto);
                    
         }
         ///<summary>
