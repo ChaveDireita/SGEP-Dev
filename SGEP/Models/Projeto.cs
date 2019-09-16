@@ -9,6 +9,7 @@ namespace SGEP.Models
     public class Projeto : IAutoValida
     {
         [Key]
+        [Display(Name ="Código do projeto")]
         public int Id { get; set; }
         public string Nome {get; set;}
         [DataType(DataType.Date)]

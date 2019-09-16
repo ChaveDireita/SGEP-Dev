@@ -28,8 +28,8 @@
         function liberarClick(ID) {
             document.getElementById("editButton").disabled = false;
             document.getElementById("detailsButton").disabled = false;
-            $('#linkEdit').prop("href", "/Projetos/Edit/" + ID);
-            $('#linkDetails').prop("href", "/Projetos/Details/" + ID);
+            $('#linkEdit').prop("href", "/Funcionarios/Edit/" + ID);
+            $('#linkDetails').prop("href", "/Funcionarios/Details/" + ID);
 
         }
     </script>
@@ -46,9 +46,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cargo)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Projeto)
-            </th>
+            <!--<th>
+                Html.DisplayNameFor(model => model.Projeto)
+            </th>-->
         </tr>
     </thead>
     <tbody id ="lista">
@@ -64,8 +64,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Cargo)
                 </td>
-                <td>
-                    @if (item.Projeto=="")
+                <!--<td>
+                    //if (item.Projeto=="")
                     {
                         Html.Display("Nenhum projeto associado");
                     }
@@ -73,7 +73,7 @@
                     {
                         Html.DisplayFor(modelItem => item.Projeto);
                     }
-                </td>
+                </td>-->
             </tr>
         }
     </tbody>
