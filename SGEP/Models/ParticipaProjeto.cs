@@ -10,9 +10,13 @@ namespace SGEP.Models
 {
     public class ParticipaProjeto //: IAutoValida
     {
-        [ForeignKey("Material")]
-        public ulong IdFuncionario { get; set; }
-        [ForeignKey("Material")]
-        public ulong IdProjeto { get; set; }
+        [ForeignKey("Funcionario")]
+        public ulong CodFuncionario { get; set; }
+        [ForeignKey("Projeto")]
+        public ulong CodProjeto { get; set; }
+
+        public virtual Funcionario Funcionario { get; set; }
+        public virtual Projeto Projeto { get; set; }
+
     }
 }

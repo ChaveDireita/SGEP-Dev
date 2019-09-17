@@ -9,7 +9,7 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20190916171235_Migracao")]
+    [Migration("20190917194459_Migracao")]
     partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,14 +69,13 @@ namespace SGEP.Migrations
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
                 {
-                    b.Property<ulong>("IdProjeto")
-                        .ValueGeneratedOnAdd();
+                    b.Property<ulong>("CodProjeto");
 
-                    b.Property<ulong>("IdFuncionario");
+                    b.Property<ulong>("CodFuncionario");
 
-                    b.HasKey("IdProjeto");
+                    b.HasKey("CodProjeto");
 
-                    b.HasAlternateKey("IdFuncionario");
+                    b.HasAlternateKey("CodFuncionario");
 
                     b.ToTable("ParticipaProjeto");
                 });
@@ -111,6 +110,19 @@ namespace SGEP.Migrations
 
                     b.HasOne("SGEP.Models.Projeto", "Projeto")
                         .WithMany("Alocacoes")
+                        .HasForeignKey("CodProjeto")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
+                {
+                    b.HasOne("SGEP.Models.Funcionario", "Funcionario")
+                        .WithMany("Participacoes")
+                        .HasForeignKey("CodFuncionario")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SGEP.Models.Projeto", "Projeto")
+                        .WithMany("Participacoes")
                         .HasForeignKey("CodProjeto")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

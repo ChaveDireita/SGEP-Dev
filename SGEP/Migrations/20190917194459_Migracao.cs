@@ -39,20 +39,6 @@ namespace SGEP.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ParticipaProjeto",
-                columns: table => new
-                {
-                    IdFuncionario = table.Column<ulong>(nullable: false),
-                    IdProjeto = table.Column<ulong>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ParticipaProjeto", x => x.IdProjeto);
-                    table.UniqueConstraint("AK_ParticipaProjeto_IdFuncionario", x => x.IdFuncionario);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Projeto",
                 columns: table => new
                 {
@@ -94,6 +80,31 @@ namespace SGEP.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ParticipaProjeto",
+                columns: table => new
+                {
+                    CodFuncionario = table.Column<ulong>(nullable: false),
+                    CodProjeto = table.Column<ulong>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParticipaProjeto", x => x.CodProjeto);
+                    table.UniqueConstraint("AK_ParticipaProjeto_CodFuncionario", x => x.CodFuncionario);
+                    table.ForeignKey(
+                        name: "FK_ParticipaProjeto_Funcionario_CodFuncionario",
+                        column: x => x.CodFuncionario,
+                        principalTable: "Funcionario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ParticipaProjeto_Projeto_CodProjeto",
+                        column: x => x.CodProjeto,
+                        principalTable: "Projeto",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -102,13 +113,13 @@ namespace SGEP.Migrations
                 name: "AlocacaoPossui");
 
             migrationBuilder.DropTable(
-                name: "Funcionario");
-
-            migrationBuilder.DropTable(
                 name: "ParticipaProjeto");
 
             migrationBuilder.DropTable(
                 name: "Material");
+
+            migrationBuilder.DropTable(
+                name: "Funcionario");
 
             migrationBuilder.DropTable(
                 name: "Projeto");

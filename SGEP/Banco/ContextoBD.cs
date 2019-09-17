@@ -36,10 +36,10 @@ namespace SGEP.Banco
                    .HasKey(ap => ap.CodProjeto);
 
             builder.Entity<ParticipaProjeto>()
-                   .HasKey(ap => ap.IdFuncionario);
+                   .HasKey(ap => ap.CodFuncionario);
 
             builder.Entity<ParticipaProjeto>()
-                   .HasKey(ap => ap.IdProjeto);
+                   .HasKey(ap => ap.CodProjeto);
                    
         }
         ///<summary>
