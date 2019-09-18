@@ -22,7 +22,7 @@ namespace SGEP.Controllers
         public MaterialsController(ContextoBD context) => _context = context;
 
         // GET: Materials
-        public async Task<IActionResult> Index() => View(await _context.Material.ToListAsync());
+        public async Task<IActionResult> Index() => View("ManagementView", await _context.Material.ToListAsync());
 
         // GET: Materials/Details/5
         public async Task<IActionResult> Details(ulong? id)
@@ -32,7 +32,11 @@ namespace SGEP.Controllers
         }
 
         // GET: Materials/Create
-        public IActionResult Create() => View();
+        public IActionResult Create()
+	{
+		ViewData["unidades"] = await _context.Unidades.ToListAsync();
+		return View();
+	} 
         
 
         // POST: Materials/Create

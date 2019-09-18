@@ -10,10 +10,10 @@ namespace SGEP.Models
     public class Projeto : IAutoValida
     {
         [Key]
+	[Display(Name ="Código do projeto")]
         public ulong Id { get; set; }
         public string Nome {get; set;}
         [DataType(DataType.Date)]
-
         [Display(Name = "Data de início")]
         [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado) + ", " + nameof(DataFim))]
         public DateTime DataInicio {get; set;}

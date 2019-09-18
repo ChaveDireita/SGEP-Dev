@@ -12,6 +12,7 @@ namespace SGEP.Models
         public ulong Id { get; set; }
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         public decimal Quantidade { get; set; } = 0;
+        [Display(Name = "Descrição")]
         public string Nome { get; set; }
         public string Unidade { get; set; }
 

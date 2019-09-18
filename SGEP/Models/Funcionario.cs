@@ -7,6 +7,7 @@ namespace SGEP.Models
   public class Funcionario: IAutoValida
   {
     [Key]
+    [Display(Name = "Código do funcionário")]
     public ulong Id { get; set; }
     public string Nome { get; set; }
     public string Cargo { get; set; }

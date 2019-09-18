@@ -63,7 +63,7 @@ namespace SGEP.Banco
         ///automaticamente
         ///</summary>
         public DbSet<SGEP.Models.Projeto> Projeto { get; set; }
-
+	public DbSet<SGEP.Models.Unidades> Unidades { get; set; }
         
     }
 

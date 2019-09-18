@@ -4,15 +4,72 @@
     ViewData["Title"] = "Detalhes";
 }
 
-<h3 class="display-4 mt-5 mb-5 text-center">Criar Projeto</h3>
-
-<dl class="row justify-content-center">
-    <dt class="col-sm-2">
-        @Html.DisplayNameFor(model => model.Nome)
-    </dt>
-    <dd class="col-sm-10">
-        @Html.DisplayFor(model => model.Nome)
-    </dd>
+<h5 class="display-4 mt-2 mb-5 text-center">@Html.DisplayFor(model=>model.Nome)</h5>
+    <div class="shadow-regular">
+        <table class="table table-bordered shadow-regular">
+            <tr>
+                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.DataInicio)</td>
+                <td>@Html.DisplayFor(model => model.DataInicio)</td>
+            </tr>
+            <tr>
+                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Estado)</td>
+                <td>@Html.DisplayFor(model => model.Estado)</td>
+            </tr>
+            <tr>
+                <td class="table-dark alert-link" style="width:250px">
+                    @if (Model.Estado == EstadoProjeto.Finalizado)
+                    {
+                        @Html.DisplayNameFor(model => model.DataFim)
+                    }
+                    else
+                    {
+                        @Html.DisplayNameFor(model => model.PrazoEstimado)
+                    }
+                </td>
+                <td>
+                    @if (Model.Estado == EstadoProjeto.Finalizado)
+                    {
+                        @Html.DisplayFor(model => model.DataFim)    
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.PrazoEstimado)
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+<!--
+    <ul class="list-group alert-primary" style="width:300px">
+        <li class ="list-group-item">@Html.DisplayNameFor(model => model.DataInicio)</li>
+        <li class ="list-group-item">@Html.DisplayNameFor(model => model.Estado)</li>
+        <li class ="list-group-item">
+            @if (Model.Estado == EstadoProjeto.Finalizado)
+            {
+                @Html.DisplayNameFor(model => model.DataFim)
+            }
+            else
+            {
+                @Html.DisplayNameFor(model => model.PrazoEstimado)
+            }
+        </li>
+    </ul>
+<ul class="list-group" style="width:500px">
+    <li class="list-group-item">@Html.DisplayFor(model => model.DataInicio)</li>
+    <li class="list-group-item">@Html.DisplayFor(model => model.Estado)</li>
+    <li class="list-group-item">
+        @if (Model.Estado == EstadoProjeto.Finalizado)
+        {
+             @Html.DisplayFor(model => model.DataFim)
+        }
+        else
+        {
+             @Html.DisplayFor(model => model.PrazoEstimado)
+        }
+    </li>
+</ul>
+<!--
+<dl class="row justify-content-center alert-danger">
     <dt class="col-sm-2">
         @Html.DisplayNameFor(model => model.DataInicio)
     </dt>
@@ -43,8 +100,11 @@
             @Html.DisplayFor(model => model.PrazoEstimado)
         </dd>
     }
-</dl>
+</dl>-->
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary" role="button">Editar</a>
-    <a asp-action="Index" class="btn btn-danger" role="button">Voltar</a>
+    <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
+    <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
+    <a id="linkFuncionario"><input type="button" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
 </div>
+@await Html.PartialAsync("ListFun.cshtml", ViewData["funcionarios"], ViewData)
+
