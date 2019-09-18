@@ -17,6 +17,5 @@ namespace SGEP.Models
 
         public virtual Funcionario Funcionario { get; set; }
         public virtual Projeto Projeto { get; set; }
-
     }
 }

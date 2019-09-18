@@ -15,8 +15,10 @@ namespace SGEP.Controllers
 {
     public class MaterialsController : Controller
     {
+        /// <summary>
+        /// Uma referência ao contexto do banco de dados.
+        /// </summary>
         private readonly ContextoBD _context;
-
         public MaterialsController(ContextoBD context) => _context = context;
 
         // GET: Materials
