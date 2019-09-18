@@ -36,15 +36,15 @@ namespace SGEP.Controllers
 	    {
 		    ViewData["unidades"] = await _context.Unidades.ToListAsync();
 		    return View();
-	    } 
-        
+	    }
+
 
         // POST: Materials/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
+        public async Task<IActionResult> Create([Bind(nameof(Material.Id) + "," + nameof(Material.Quantidade) + "," + nameof(Material.Descricao) + "," + nameof(Material.Unidade) + "," + nameof(Material.Preco))] Material material)
         {
             if (material.Validar())
             {
@@ -66,7 +66,7 @@ namespace SGEP.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
+        public async Task<IActionResult> Edit(ulong id, [Bind(nameof(Material.Id) + "," + nameof(Material.Quantidade) + "," + nameof(Material.Descricao) + "," + nameof(Material.Unidade) + "," + nameof(Material.Preco))] Material material)
         {
             if (id != material.Id)
                 return NotFound();

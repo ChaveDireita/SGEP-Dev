@@ -28,8 +28,15 @@ namespace SGEP.Controllers
         public async Task<IActionResult> Details(ulong? id)
         {
             Projeto projeto = await _a.ChecarPeloId(id, _context.Projeto);
-	    var funcionarios = from f in await _context.Funcionario.ToListAsync() select f;
+	        var funcionarios = from f in await _context.Funcionario.ToListAsync() select f;
+            var projetos = from p in await _context.Projeto.ToListAsync() select p;
+            var participas = from pp in await _context.ParticipaProjetos.ToListAsync() select pp;
+
             ViewData["funcionarios"] = funcionarios;
+            ViewData["participaProjetos"] = from pp in participas
+                                            join p in projetos on pp.CodProjeto equals p.Id
+                                            select pp.CodFuncionario;
+
             return (projeto == null) ? (IActionResult)NotFound() : View(projeto);
         }
 

@@ -48,23 +48,13 @@ namespace SGEP.Banco
         ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
         ///automaticamente
         ///</summary>
-        public DbSet<SGEP.Models.Funcionario> Funcionario { get; set; }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
-        public DbSet<SGEP.Models.Material> Material { get; set; }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
-        public DbSet<SGEP.Models.Projeto> Projeto { get; set; }
-	public DbSet<SGEP.Models.Unidades> Unidades { get; set; }
-        
+        public DbSet<Funcionario> Funcionario { get; set; }
+        public DbSet<Material> Material { get; set; }
+        public DbSet<Projeto> Projeto { get; set; }
+	    public DbSet<Unidades> Unidades { get; set; }
+        public DbSet<AlocacaoPossui> AlocacaoPossuis { get; set; }
+        public DbSet<ParticipaProjeto> ParticipaProjetos { get; set; }
+
     }
 
 

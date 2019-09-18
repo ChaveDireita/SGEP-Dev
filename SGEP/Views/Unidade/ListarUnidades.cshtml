@@ -2,7 +2,7 @@
 
 @foreach (var item in Model)
 {
-    <option>
+    <option value="@Html.DisplayFor(_ => item.Unidade)">
         @Html.DisplayFor(_ => item.Nome) (@Html.DisplayFor(_ => item.Unidade))
     </option>
 }

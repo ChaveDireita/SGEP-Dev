@@ -8,9 +8,9 @@
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
                 <input asp-for="Descricao" placeholder="Descrição do material" class="form-control squareborder" />
@@ -18,21 +18,42 @@
             </div>
             <div class="form-group">
                 <label asp-for="Preco" class="control-label"></label>
-                <input asp-for="Preco" type="number" placeholder = "Preço unitário do material" step="0.01" class="form-control squareborder" />
+                <input asp-for="Preco" type="number" placeholder="Preço unitário do material" step="0.01" class="form-control squareborder" />
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" type="number" placeholder = "Quantidade do material por unidade" class="form-control squareborder" />
+                <input asp-for="Quantidade" type="number" placeholder="Quantidade do material por unidade" class="form-control squareborder" />
                 <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Unidade" class="control-label"></label>
                 <!--<input asp-for="Unidade" class="form-control squareborder" />
     -->
-                <select asp-for="Unidade" class="browser-default form-control mb-4 squareborder">
-                    @await Html.PartialAsync("ListarUnidades.cshtml", ViewData["funcionarios"], ViewData)
+                <select asp-for="Unidade" id="uniselect" class="browser-default form-control mb-4 squareborder">
+                    @await Html.PartialAsync("~/Views/Unidade/ListarUnidades.cshtml", ViewData["unidades"], ViewData)
+                    <option id="outro" value="other">Outro...</option>
                 </select>
+                <script>
+                    var e = document.getElementById("uniselect");
+                    var option = e.options[e.selectedIndex].value;
+                    if (option.value == "other") {
+
+                    }
+                </script>
+
+                <input type="text" id="campo_nome_unidade" placeholder="Nome da unidade" />
+                <input type="text" id="campo_abbr_unidade" placeholder="Tipo da unidade" />
+                <input type="button" value="Adicionar unidade" onclick="addUnidadade()" />
+                <script>
+                    function addUnidadade() {
+                        const op = document.createElement("option");
+                        op.value = document.getElementById("campo_abbr_unidade").value;
+                        op.innerHTML = document.getElementById("campo_nome_unidade").value;
+                        document.getElementById("uniselect").add(op, 0);
+                    }
+                </script>
+
             </div>
             <div class="form-group">
                 <a asp-action="Index"> <input type="button" value="Cancelar" class="btn btn-danger squareborder" /></a>

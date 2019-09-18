@@ -5,37 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190910011652_Migracao.cs" />
-    <Compile Remove="Migrations\20190910011652_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190916164124_Migracao.cs" />
-    <Compile Remove="Migrations\20190916164124_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190916170233_Migracao.cs" />
-    <Compile Remove="Migrations\20190916170233_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190916170724_Migracao.cs" />
-    <Compile Remove="Migrations\20190916170724_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190916170845_Migracao.cs" />
-    <Compile Remove="Migrations\20190916170845_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190916171113_Migracao.cs" />
-    <Compile Remove="Migrations\20190916171113_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190916171235_Migracao.cs" />
-    <Compile Remove="Migrations\20190916171235_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190917193155_Migracao.cs" />
-    <Compile Remove="Migrations\20190917193155_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190917193523_Migracao.cs" />
-    <Compile Remove="Migrations\20190917193523_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190917193658_Migracao.cs" />
-    <Compile Remove="Migrations\20190917193658_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190917193943_Migracao.cs" />
-    <Compile Remove="Migrations\20190917193943_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190917194218_Migracao.cs" />
-    <Compile Remove="Migrations\20190917194218_Migracao.Designer.cs" />
-    <Compile Remove="Migrations\20190917194459_Migracao.cs" />
-    <Compile Remove="Migrations\20190917194459_Migracao.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
   </ItemGroup>
 
