@@ -1,0 +1,32 @@
+﻿body {
+    margin-top: 0%;
+    margin-left: 0%;
+}
+
+nav {
+    background-color: #000059;
+    padding: 0;
+}
+
+.nav-a:hover {
+    text-decoration: none;
+}
+
+.nav-li-a 
+{
+    transition: text-shadow 0.25s;
+}
+
+.nav-li-a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px #FFFFFFD0;
+}
+
+ul li {
+    font-size: 22px;
+    padding: 10px;
+}
+
+nav div {
+    padding-left: 10px;
+}

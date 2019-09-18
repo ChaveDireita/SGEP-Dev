@@ -12,19 +12,22 @@ namespace SGEP.Models
         public ulong Id { get; set; }
         public string Nome {get; set;}
         [DataType(DataType.Date)]
-        [Display(Name = "Data de início")]
+        [Display(Name = "Data de inÃ­cio")]
         public DateTime DataInicio {get; set;}
         [DataType(DataType.Date)]
         [Display(Name = "Data final estimada")]
         public DateTime PrazoEstimado {get; set;}
         [DataType(DataType.Date)]
-        [Display(Name = "Data de Término")]
+        [Display(Name = "Data de TÃ©rmino")]
         public DateTime? DataFim { get; set; } 
         public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
 
         public bool Validar() => !string.IsNullOrEmpty(Nome) && PrazoEstimado >= DataInicio && 
                                  (DataFim == null       && Estado == EstadoProjeto.Andamento || 
                                   DataFim >= DataInicio && Estado == EstadoProjeto.Finalizado);
+
+        public virtual ICollection<ParticipaProjeto> Participacoes { get; set; }
+        public virtual ICollection<AlocacaoPossui> Alocacoes {get; set; }
 
         //public Dictionary <Material,double> Materiais {get; set;}
 

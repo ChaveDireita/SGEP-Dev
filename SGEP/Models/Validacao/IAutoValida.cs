@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SGEP.Models.Validacao
 {
-    interface IAutoValida
+    public interface IAutoValida
     {
         bool Validar();
     }
