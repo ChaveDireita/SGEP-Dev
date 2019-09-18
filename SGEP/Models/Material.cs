@@ -13,7 +13,7 @@ namespace SGEP.Models
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         public decimal Quantidade { get; set; } = 0;
         [Display(Name = "Descrição")]
-        public string Nome { get; set; }
+        public string Descricao { get; set; }
         public string Unidade { get; set; }
 
         public virtual ICollection<AlocacaoPossui> Alocacoes {get; set; }
@@ -35,7 +35,7 @@ namespace SGEP.Models
             }
         }
 
-        public bool Validar() => Preco >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Unidade);
+        public bool Validar() => Preco >= 0 && Quantidade >= 0 && !string.IsNullOrEmpty(Descricao) && !string.IsNullOrEmpty(Unidade);
 
         //public void RemoverMaterial(double quantidade)
         //{

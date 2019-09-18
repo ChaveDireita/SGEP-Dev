@@ -51,7 +51,7 @@ namespace SGEP.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Descricao");
 
                     b.Property<decimal>("Preco")
                         .HasColumnType("decimal(27, 2)");
@@ -97,6 +97,20 @@ namespace SGEP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Projeto");
+                });
+
+            modelBuilder.Entity("SGEP.Models.Unidades", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Unidade");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Unidades");
                 });
 
             modelBuilder.Entity("SGEP.Models.AlocacaoPossui", b =>

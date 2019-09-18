@@ -29,7 +29,7 @@ namespace SGEP.Migrations
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Quantidade = table.Column<decimal>(nullable: false),
-                    Nome = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: true),
                     Unidade = table.Column<string>(nullable: true),
                     Preco = table.Column<decimal>(type: "decimal(27, 2)", nullable: false)
                 },
@@ -53,6 +53,20 @@ namespace SGEP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Projeto", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Unidades",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: true),
+                    Unidade = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Unidades", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -114,6 +128,9 @@ namespace SGEP.Migrations
 
             migrationBuilder.DropTable(
                 name: "ParticipaProjeto");
+
+            migrationBuilder.DropTable(
+                name: "Unidades");
 
             migrationBuilder.DropTable(
                 name: "Material");

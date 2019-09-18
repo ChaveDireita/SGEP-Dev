@@ -32,11 +32,11 @@ namespace SGEP.Controllers
         }
 
         // GET: Materials/Create
-        public IActionResult Create()
-	{
-		ViewData["unidades"] = await _context.Unidades.ToListAsync();
-		return View();
-	} 
+        public async Task<IActionResult> Create()
+	    {
+		    ViewData["unidades"] = await _context.Unidades.ToListAsync();
+		    return View();
+	    } 
         
 
         // POST: Materials/Create
