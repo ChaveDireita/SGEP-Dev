@@ -1,0 +1,12 @@
+SGEP
+Gerenciar Funcionário (crud, Vincular FuncProje)
+Gerenciar Material
+Gerenciar Projeto****
+Gerenciar Relatório
+
+Gerenciamento de Teste(interno):Andrei
+Testador (externo):Paulo
+Data para outra equipe atuar: 14/11
+
+
+ 
