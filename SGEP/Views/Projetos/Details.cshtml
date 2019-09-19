@@ -53,8 +53,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="scrollbar modal-body" id="modal_add">
-                    @await Html.PartialAsync("AddFuncionario.cshtml", null, ViewData)
+                <div class="modal-body">
+                    <h5>Pesquisa</h5>
+                    <input class="form-control squareborder" type="text" placeholder="Escreva o nome funcionário..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+                    <hr />
+                    <div class="scrollbar" id="modal_add">
+                        @await Html.PartialAsync("AddFuncionario.cshtml", null, ViewData) 
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,4 +75,6 @@
     <a id="linkFuncionario"><input type="button" data-toggle="modal" data-target="#addfuncionario" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
 </div>
 @await Html.PartialAsync("ListFun.cshtml", funcionariosDentro, ViewData)
+
+<script type="text/javascript" src="~/js/search_system.js"></script>
 

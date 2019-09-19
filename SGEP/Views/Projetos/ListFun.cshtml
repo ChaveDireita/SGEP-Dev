@@ -38,12 +38,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Nome)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Cargo)
-                </th>
-                <!--<th>
-                    Html.DisplayNameFor(model => model.Projeto)
-                </th>-->
             </tr>
         </thead>
         <tbody id="lista">
@@ -56,19 +50,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cargo)
-                    </td>
-                    <!--<td>
-                        //if (item.Projeto=="")
-                        {
-                            Html.Display("Nenhum projeto associado");
-                        }
-                        else
-                        {
-                            Html.DisplayFor(modelItem => item.Projeto);
-                        }
-                    </td>-->
                 </tr>
             }
         </tbody>

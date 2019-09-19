@@ -23,6 +23,29 @@ namespace SGEP.Controllers
         // GET: Funcionarios/Details/5
         public async Task<IActionResult> Details(ulong? id)
         {
+            var projetos = from f in await _context.Funcionario.ToListAsync() select f;
+            var participas = from pp in await _context.ParticipaProjeto.ToListAsync() select pp;
+
+            var idProjetosDentro = from pp in participas
+                                   from p in projetos
+                                   where p.Id == pp.CodProjeto && pp.CodFuncionario == id
+                                   select pp.CodProjeto;
+
+            var idProjetosFora = from p in projetos
+                                 where !idProjetosDentro.Contains(p.Id)
+                                 select p.Id;
+
+            ViewData["projetos"] = projetos;
+            ViewData["projetosDentro"] = from p in projetos
+                                         from fid in idProjetosDentro
+                                         where p.Id == fid
+                                         select p;
+            ViewData["projetosFora"] = (from p in projetos
+                                        from fid in idProjetosFora
+                                        where p.Id == fid
+                                        select p).Distinct();
+
+
             Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);
             return (funcionario == null) ? (IActionResult) NotFound() : View(funcionario);
         }

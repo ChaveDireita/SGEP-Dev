@@ -29,7 +29,6 @@ namespace SGEP.Controllers
         {
             Projeto projeto = await _a.ChecarPeloId(id, _context.Projeto);
 	        var funcionarios = from f in await _context.Funcionario.ToListAsync() select f;
-            var projetos = from p in await _context.Projeto.ToListAsync() select p;
             var participas = from pp in await _context.ParticipaProjeto.ToListAsync() select pp;
 
             var idFuncionariosDentro = from pp in participas
