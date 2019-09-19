@@ -30,16 +30,10 @@ namespace SGEP.Banco
                    .HasConversion(e => e.ToString(), s => (EstadoProjeto)Enum.Parse(typeof(EstadoProjeto), s));
 
             builder.Entity<AlocacaoPossui>()
-                   .HasKey(ap => ap.CodMaterial);
-
-            builder.Entity<AlocacaoPossui>()
-                   .HasKey(ap => ap.CodProjeto);
+                   .HasKey(ap => new { ap.CodMaterial, ap.CodProjeto });
 
             builder.Entity<ParticipaProjeto>()
-                   .HasKey(ap => ap.CodFuncionario);
-
-            builder.Entity<ParticipaProjeto>()
-                   .HasKey(ap => ap.CodProjeto);
+                   .HasKey(ap => new { ap.CodFuncionario, ap.CodProjeto });
                    
         }
         ///<summary>

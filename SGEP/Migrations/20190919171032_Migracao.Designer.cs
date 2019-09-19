@@ -9,7 +9,7 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20190918162226_Migracao")]
+    [Migration("20190919171032_Migracao")]
     partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,15 +21,15 @@ namespace SGEP.Migrations
 
             modelBuilder.Entity("SGEP.Models.AlocacaoPossui", b =>
                 {
-                    b.Property<ulong>("CodProjeto");
-
                     b.Property<ulong>("CodMaterial");
+
+                    b.Property<ulong>("CodProjeto");
 
                     b.Property<ulong>("Quantidade");
 
-                    b.HasKey("CodProjeto");
+                    b.HasKey("CodMaterial", "CodProjeto");
 
-                    b.HasAlternateKey("CodMaterial");
+                    b.HasIndex("CodProjeto");
 
                     b.ToTable("AlocacaoPossui");
                 });
@@ -69,13 +69,13 @@ namespace SGEP.Migrations
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
                 {
-                    b.Property<ulong>("CodProjeto");
-
                     b.Property<ulong>("CodFuncionario");
 
-                    b.HasKey("CodProjeto");
+                    b.Property<ulong>("CodProjeto");
 
-                    b.HasAlternateKey("CodFuncionario");
+                    b.HasKey("CodFuncionario", "CodProjeto");
+
+                    b.HasIndex("CodProjeto");
 
                     b.ToTable("ParticipaProjeto");
                 });

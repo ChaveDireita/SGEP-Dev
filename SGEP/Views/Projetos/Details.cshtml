@@ -3,8 +3,7 @@
 @{
     ViewData["Title"] = "Detalhes";
     ViewData["idProjeto"] = Model.Id;
-    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>) ViewData["funcionarios"];
-    IEnumerable<ParticipaProjeto> participaProjetos = (IEnumerable<ParticipaProjeto>)ViewData["participaProjetos"];
+    IEnumerable<Funcionario> funcionariosDentro = (IEnumerable<Funcionario>)ViewData["funcionariosDentro"];
     /*ViewData["funcionariosDentro"] = from f in funcionarios 
                                      join pp in participaProjetos*/
 }
@@ -54,7 +53,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="scrollbar modal-body" id="modal_add">
                     @await Html.PartialAsync("AddFuncionario.cshtml", null, ViewData)
                 </div>
                 <div class="modal-footer">
@@ -70,5 +69,5 @@
     <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
     <a id="linkFuncionario"><input type="button" data-toggle="modal" data-target="#addfuncionario" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
 </div>
-@await Html.PartialAsync("ListFun.cshtml", ViewData["funcionarios"], ViewData)
+@await Html.PartialAsync("ListFun.cshtml", funcionariosDentro, ViewData)
 

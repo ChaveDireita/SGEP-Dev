@@ -79,8 +79,7 @@ namespace SGEP.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AlocacaoPossui", x => x.CodProjeto);
-                    table.UniqueConstraint("AK_AlocacaoPossui_CodMaterial", x => x.CodMaterial);
+                    table.PrimaryKey("PK_AlocacaoPossui", x => new { x.CodMaterial, x.CodProjeto });
                     table.ForeignKey(
                         name: "FK_AlocacaoPossui_Material_CodMaterial",
                         column: x => x.CodMaterial,
@@ -104,8 +103,7 @@ namespace SGEP.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ParticipaProjeto", x => x.CodProjeto);
-                    table.UniqueConstraint("AK_ParticipaProjeto_CodFuncionario", x => x.CodFuncionario);
+                    table.PrimaryKey("PK_ParticipaProjeto", x => new { x.CodFuncionario, x.CodProjeto });
                     table.ForeignKey(
                         name: "FK_ParticipaProjeto_Funcionario_CodFuncionario",
                         column: x => x.CodFuncionario,
@@ -119,6 +117,16 @@ namespace SGEP.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AlocacaoPossui_CodProjeto",
+                table: "AlocacaoPossui",
+                column: "CodProjeto");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParticipaProjeto_CodProjeto",
+                table: "ParticipaProjeto",
+                column: "CodProjeto");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

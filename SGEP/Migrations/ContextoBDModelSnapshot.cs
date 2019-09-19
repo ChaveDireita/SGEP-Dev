@@ -19,15 +19,15 @@ namespace SGEP.Migrations
 
             modelBuilder.Entity("SGEP.Models.AlocacaoPossui", b =>
                 {
-                    b.Property<ulong>("CodProjeto");
-
                     b.Property<ulong>("CodMaterial");
+
+                    b.Property<ulong>("CodProjeto");
 
                     b.Property<ulong>("Quantidade");
 
-                    b.HasKey("CodProjeto");
+                    b.HasKey("CodMaterial", "CodProjeto");
 
-                    b.HasAlternateKey("CodMaterial");
+                    b.HasIndex("CodProjeto");
 
                     b.ToTable("AlocacaoPossui");
                 });
@@ -67,13 +67,13 @@ namespace SGEP.Migrations
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
                 {
-                    b.Property<ulong>("CodProjeto");
-
                     b.Property<ulong>("CodFuncionario");
 
-                    b.HasKey("CodProjeto");
+                    b.Property<ulong>("CodProjeto");
 
-                    b.HasAlternateKey("CodFuncionario");
+                    b.HasKey("CodFuncionario", "CodProjeto");
+
+                    b.HasIndex("CodProjeto");
 
                     b.ToTable("ParticipaProjeto");
                 });

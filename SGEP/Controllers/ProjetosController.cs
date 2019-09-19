@@ -32,12 +32,24 @@ namespace SGEP.Controllers
             var projetos = from p in await _context.Projeto.ToListAsync() select p;
             var participas = from pp in await _context.ParticipaProjeto.ToListAsync() select pp;
 
-            ViewData["funcionarios"] = funcionarios;
-            ViewData["idFuncionariosDentro"] = from pp in participas
-                                            from f in funcionarios
-                                            where f.Id == pp.CodFuncionario && pp.CodProjeto == id
-                                            select pp.CodFuncionario;
+            var idFuncionariosDentro = from pp in participas
+                                       from f in funcionarios
+                                       where f.Id == pp.CodFuncionario && pp.CodProjeto == id
+                                       select pp.CodFuncionario;
 
+            var idFuncionariosFora = from f in funcionarios
+                                     where !idFuncionariosDentro.Contains(f.Id)
+                                     select f.Id;
+
+            ViewData["funcionarios"] = funcionarios;
+            ViewData["funcionariosDentro"] = from f in funcionarios
+                                             from fid in idFuncionariosDentro
+                                             where f.Id == fid
+                                             select f;
+            ViewData["funcionariosFora"] = (from f in funcionarios
+                                           from fid in idFuncionariosFora
+                                           where f.Id == fid
+                                           select f).Distinct();
             return (projeto == null) ? (IActionResult)NotFound() : View(projeto);
         }
 

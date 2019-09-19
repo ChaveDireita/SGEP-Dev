@@ -1,48 +1,19 @@
 ﻿@model SGEP.Models.ParticipaProjeto
 
 @{
-    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionarios"];
-    IEnumerable<ulong> participandoId = (IEnumerable<ulong>)ViewData["idFuncionariosDentro"];
     /*ViewBag.funcionariosFora = from f in funcionarios
                                from ppfId in participandoId
                                where f.Id != ppfId
                                select f;*/
-    ViewData["funcionariosFora"] = from f in funcionarios
-                                   from ppfId in participandoId
-                                   where f.Id != ppfId
-                                   select f;
+    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionariosFora"];
 } 
-
-<h4>ParticipaProjeto</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddFuncionario">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CodFuncionario" class="control-label"></label>
-                <select asp-for="CodFuncionario" class ="form-control">
-                    @foreach(Funcionario fun in (IEnumerable<Funcionario>) ViewData["funcionariosFora"])
-                    {
-                        <option value="@fun.Id">@fun.Nome</option>
-                    }
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="CodProjeto" class="control-label"></label>
-                <!--select asp-for="CodProjeto" class ="form-control" asp-items="ViewBag.CodProjeto"></!--select-->
-                <input asp-for="CodProjeto" type="hidden" value="@ViewData["idProjeto"]" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<script>
+    for (let i = 0; i < 30; i++) {
+        var elemt = document.createElement("h1");
+        elemt.innerText = i;
+        document.getElementById("modal_add").appendChild(elemt);
+    }
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

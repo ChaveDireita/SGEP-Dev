@@ -1,3 +1,8 @@
 ﻿.squareborder{
     border-radius:0;
 }
+
+.scrollbar {
+    overflow-y: scroll;
+    max-height: 500px;
+}
