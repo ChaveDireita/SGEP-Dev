@@ -37,12 +37,12 @@ namespace SGEP.Controllers
 
             ViewData["projetos"] = projetos;
             ViewData["projetosDentro"] = from p in projetos
-                                         from fid in idProjetosDentro
-                                         where p.Id == fid
+                                         from pid in idProjetosDentro
+                                         where p.Id == pid
                                          select p;
             ViewData["projetosFora"] = (from p in projetos
-                                        from fid in idProjetosFora
-                                        where p.Id == fid
+                                        from pid in idProjetosFora
+                                        where p.Id == pid
                                         select p).Distinct();
 
 

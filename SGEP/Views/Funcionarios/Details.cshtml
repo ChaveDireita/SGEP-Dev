@@ -5,22 +5,22 @@
 }
 
 <h1 class="mt-2 mb-5 text-center">Funcionário</h1>
-    <div class="shadow-regular mt-5">
-        <table class="table table-bordered shadow-regular">
-            <tr>
-                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Id)</td>
-                <td>FUN-@Html.DisplayFor(model => model.Id)</td>
-            </tr>
-            <tr>
-                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Nome)</td>
-                <td>@Html.DisplayFor(model => model.Nome)</td>
-            </tr>
-            <tr>
-                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Cargo)</td>
-                <td>@Html.DisplayFor(model => model.Cargo)</td>
-            </tr>
-        </table>
-    </div>
+<div class="shadow-regular mt-5">
+    <table class="table table-bordered shadow-regular">
+        <tr>
+            <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Id)</td>
+            <td>FUN-@Html.DisplayFor(model => model.Id)</td>
+        </tr>
+        <tr>
+            <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Nome)</td>
+            <td>@Html.DisplayFor(model => model.Nome)</td>
+        </tr>
+        <tr>
+            <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Cargo)</td>
+            <td>@Html.DisplayFor(model => model.Cargo)</td>
+        </tr>
+    </table>
+</div>
 <hr />
 <h2>Projetos associados</h2>
 Insira a lista de funcionários aqui
@@ -30,3 +30,4 @@ Insira a lista de funcionários aqui
     <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
     <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
 </div>
+@await Html.PartialAsync("ListFun.cshtml", ViewData["projetosDentro"], ViewData)

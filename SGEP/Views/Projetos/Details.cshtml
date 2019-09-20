@@ -74,7 +74,7 @@
     <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
     <a id="linkFuncionario"><input type="button" data-toggle="modal" data-target="#addfuncionario" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
 </div>
-@await Html.PartialAsync("ListFun.cshtml", funcionariosDentro, ViewData)
+@await Html.PartialAsync("ListFun.cshtml", ViewData["funcionariosDentro"], ViewData)
 
 <script type="text/javascript" src="~/js/search_system.js"></script>
 
