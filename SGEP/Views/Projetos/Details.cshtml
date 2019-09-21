@@ -4,8 +4,6 @@
     ViewData["Title"] = "Detalhes";
     ViewData["idProjeto"] = Model.Id;
     IEnumerable<Funcionario> funcionariosDentro = (IEnumerable<Funcionario>)ViewData["funcionariosDentro"];
-    /*ViewData["funcionariosDentro"] = from f in funcionarios 
-                                     join pp in participaProjetos*/
 }
 
 <h5 class="display-4 mt-2 mb-5 text-center">@Html.DisplayFor(model => model.Nome)</h5>
@@ -58,7 +56,9 @@
                     <input class="form-control squareborder" type="text" placeholder="Escreva o nome funcionário..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
                     <hr />
                     <div class="scrollbar" id="modal_add">
-                        @await Html.PartialAsync("AddFuncionario.cshtml", null, ViewData) 
+                        @*O primeiro argumento é o caminho da ViewParcial, o segundo é o model e o terceiro o ViewData.
+                         *No caso, o modelo é null porque a view parcial é de cadastro e a ViewData é o mesmo que desta view*@
+                        @await Html.PartialAsync("AddFuncionario.cshtml", null, ViewData)
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -74,6 +74,8 @@
     <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
     <a id="linkFuncionario"><input type="button" data-toggle="modal" data-target="#addfuncionario" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
 </div>
+@*O primeiro argumento é o caminho da ViewParcial, o segundo é o model e o terceiro o ViewData.
+ *No caso, o modelo é uma IEnumerable de funcionários que foram selecionados no controller e a ViewData é o mesmo que desta view*@
 @await Html.PartialAsync("ListFun.cshtml", ViewData["funcionariosDentro"], ViewData)
 
 <script type="text/javascript" src="~/js/search_system.js"></script>

@@ -9,6 +9,9 @@ using SGEP.Models;
 
 namespace SGEP.Controllers
 {
+    /// <summary>
+    /// Controller da página inicial
+    /// </summary>
     public class InicioController : Controller
     {
         public IActionResult Index()
@@ -16,7 +19,7 @@ namespace SGEP.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy()//Não ultilizado, mas temo tirá-lo.
         {
             return View();
         }

@@ -30,4 +30,4 @@ Insira a lista de funcionários aqui
     <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
     <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
 </div>
-@await Html.PartialAsync("ListFun.cshtml", ViewData["projetosDentro"], ViewData)
+@await Html.PartialAsync("_ListarProj.cshtml", ViewData["projetosDentro"], ViewData)

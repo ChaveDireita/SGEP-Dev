@@ -24,7 +24,7 @@ namespace SGEP.Controllers
         // GET: Materials
         public async Task<IActionResult> Index() => View("ManagementView", await _context.Material.ToListAsync());
 
-        // GET: Materials/Details/5
+        // GET: Materials/Details/{id}
         public async Task<IActionResult> Details(ulong? id)
         {
             Material material = await _a.ChecarPeloId(id, _context.Material);
@@ -40,32 +40,28 @@ namespace SGEP.Controllers
 
 
         // POST: Materials/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind(nameof(Material.Id) + "," + nameof(Material.Quantidade) + "," + nameof(Material.Descricao) + "," + nameof(Material.Unidade) + "," + nameof(Material.Preco))] Material material)
         {
             if (material.Validar())
             {
-                await _a.SalvarModelo(material, _context);
+                await _a.SalvarModelo(material, _context);//Esse método é do AcoesComunsDosControllers.
                 return RedirectToAction(nameof(Index));
             }
             return View(material);
         }
 
-        // GET: Materials/Edit/5
+        // GET: Materials/Edit/{id]
         public async Task<IActionResult> Edit(ulong? id)
         {
-            Material material = await _a.ChecarPeloId(id, _context.Material);
+            Material material = await _a.ChecarPeloId(id, _context.Material);//Esse método é do AcoesComunsDosControllers.
             return (material == null) ? (IActionResult)NotFound() : View(material);
         }
 
         // POST: Materials/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]//No controller dos funcionários explica isso.
+        [ValidateAntiForgeryToken]//No controller dos funcionários explica isso.
         public async Task<IActionResult> Edit(ulong id, [Bind(nameof(Material.Id) + "," + nameof(Material.Quantidade) + "," + nameof(Material.Descricao) + "," + nameof(Material.Unidade) + "," + nameof(Material.Preco))] Material material)
         {
             if (id != material.Id)
@@ -75,7 +71,7 @@ namespace SGEP.Controllers
             {
                 try
                 {
-                    await _a.AtualizarModelo(material, _context);
+                    await _a.AtualizarModelo(material, _context);//Esse método é do AcoesComunsDosControllers.
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -88,7 +84,6 @@ namespace SGEP.Controllers
             }
             return View(material);
         }
-
         private bool MaterialExists(ulong id) => _context.Material.Any(e => e.Id == id);
         
     }

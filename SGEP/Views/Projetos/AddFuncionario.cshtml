@@ -1,11 +1,7 @@
 ﻿@model SGEP.Models.ParticipaProjeto
 
 @{
-    /*ViewBag.funcionariosFora = from f in funcionarios
-                               from ppfId in participandoId
-                               where f.Id != ppfId
-                               select f;*/
-    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionariosFora"];
+    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionariosFora"];//Faz o cast da lista de funcionários
 } 
     <table class="table table-hover">
         <thead>

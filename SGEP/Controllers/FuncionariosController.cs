@@ -8,61 +8,62 @@ using Microsoft.EntityFrameworkCore;
 using SGEP.Banco;
 using SGEP.Models;
 
-using _a = SGEP.Controllers.AcoesComunsDosControllers;
+using _a = SGEP.Controllers.AcoesComunsDosControllers;//Dei um alias (apelido) pra classe AcoesComunsDosControllers pra não ficar um nome gigante só pra chamar um método bobo.
 
 namespace SGEP.Controllers
 {
     public class FuncionariosController : Controller
     {
+        /// <summary>
+        /// É uma referência ao contexto do banco de dados. É obtido através de injeção de dependência no construtor.
+        /// </summary>
         private readonly ContextoBD _context;
         public FuncionariosController(ContextoBD context) => _context = context;
 
         // GET: Funcionarios
         public async Task<IActionResult> Index() => View(await _context.Funcionario.ToListAsync());
 
-        // GET: Funcionarios/Details/5
-        public async Task<IActionResult> Details(ulong? id)
+        // GET: Funcionarios/Details/{id}
+        public async Task<IActionResult> Details(ulong? id)//Tô usando var abaixo por preguiça de escrever o tipo completo. Mas o compilador consegue inferir sozinho
         {
-            var projetos = from f in await _context.Funcionario.ToListAsync() select f;
-            var participas = from pp in await _context.ParticipaProjeto.ToListAsync() select pp;
+            var projetos = await _context.Projeto.ToListAsync();//Converte o DbSet Projeto do ContextoBD numa lista.
+            var participas = await _context.ParticipaProjeto.ToListAsync();//^^^^
 
             var idProjetosDentro = from pp in participas
                                    from p in projetos
                                    where p.Id == pp.CodProjeto && pp.CodFuncionario == id
-                                   select pp.CodProjeto;
+                                   select pp.CodProjeto;//Equivale a SELECT pp.CodProjeto FROM participas AS pp, projetos AS p WHERE p.Id=pp.CodProjeto && pp.CodFuncionario=id;(este último id é o parâmetro passado na função)
 
             var idProjetosFora = from p in projetos
                                  where !idProjetosDentro.Contains(p.Id)
-                                 select p.Id;
+                                 select p.Id;//Equivale a SELECT DISTINCT p.Id FROM idProjetosDentro AS pp, projetos AS p WHERE p.Id!=pp.CodProjeto;
 
             ViewData["projetos"] = projetos;
             ViewData["projetosDentro"] = from p in projetos
                                          from pid in idProjetosDentro
                                          where p.Id == pid
-                                         select p;
+                                         select p;//Equivale a SELECT p FROM projetos AS p, idProjetosDentro as pid WHERE p.Id=pid;
             ViewData["projetosFora"] = (from p in projetos
                                         from pid in idProjetosFora
                                         where p.Id == pid
-                                        select p).Distinct();
+                                        select p).Distinct();//Equivale a SELECT DISTINCT p FROM projetos AS p, idProjetosFora as pid WHERE p.Id=pid;
 
 
-            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);
-            return (funcionario == null) ? (IActionResult) NotFound() : View(funcionario);
+            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);//Esse método é do AcoesComunsDosControllers.
+            return (funcionario == null) ? (IActionResult) NotFound() : View(funcionario);//O NotFound é aquele erro 404.
         }
 
         // GET: Funcionarios/Create
         public IActionResult Create() => View();
 
         // POST: Funcionarios/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]//É pra dizer que é um método post (Coisa do protocolo HTTP. É um verbo que permite alterar os dados do servidor).
+        [ValidateAntiForgeryToken]//Isso é pra impedir que indivíduos mal intencionados ataquem o servidor fazendo cadastros em excesso.
         public async Task<IActionResult> Create([Bind("Id,Nome,Cargo")] Funcionario funcionario)
         {
             if (funcionario.Validar())
             {
-                await _a.SalvarModelo(funcionario, _context);
+                await _a.SalvarModelo(funcionario, _context);//Esse método é do AcoesComunsDosControllers.
                 return RedirectToAction(nameof(Index));
             }
             return View(funcionario);
@@ -71,14 +72,12 @@ namespace SGEP.Controllers
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
         {
-            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);
+            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);//Esse método é do AcoesComunsDosControllers.
 
             return (funcionario == null) ? (IActionResult)NotFound() : View(funcionario);
         }
 
-        // POST: Funcionarios/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Funcionarios/Edit/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ulong id, [Bind("Id,Nome,Cargo")] Funcionario funcionario)
@@ -103,9 +102,6 @@ namespace SGEP.Controllers
             }
             return View(funcionario);
         }
-
-        // GET: Funcionarios/Delete/5
-
-        private bool FuncionarioExists(ulong id) => _context.Funcionario.Any(e => e.Id == id);
+        private bool FuncionarioExists(ulong id) => _context.Funcionario.Any(e => e.Id == id);//Gerado pelo scaffolding. Checar se o funcionário existe no banco.
     }
 }
