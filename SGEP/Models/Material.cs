@@ -17,7 +17,7 @@ namespace SGEP.Models
         public string Descricao { get; set; }
         public string Unidade { get; set; }
 
-        public virtual ICollection<AlocacaoPossui> Alocacoes { get; set; }
+        public virtual ICollection<Transacao> Alocacoes { get; set; }
 
         private decimal _preco;
         [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]

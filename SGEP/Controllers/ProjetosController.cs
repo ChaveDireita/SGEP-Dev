@@ -132,6 +132,22 @@ namespace SGEP.Controllers
         }
         private bool ProjetoExists(ulong id) => _context.Projeto.Any(e => e.Id == id);
 
+        public async Task<IActionResult> AdicionarFuncionario(ulong? id, ulong[] fids)
+        {
+            var deveSerVazio = from pp in _context.ParticipaProjeto
+                               from fid in fids
+                               where pp.CodProjeto == id && (pp.CodFuncionario == fid)
+                               select fid;
+
+            if (deveSerVazio.Count() > 0)
+                return BadRequest();
+
+            fids.Select(fid => _context.Add(new ParticipaProjeto() { CodProjeto = id.GetValueOrDefault(), CodFuncionario = fid }));
+
+            await _context.SaveChangesAsync();            
+
+            return View(nameof(Details), new { id });
+        }
 
         /// <summary>
         /// Valida as datas do projeto. Obviamente, a data inicial deve ser maior que a final real ou estimada.

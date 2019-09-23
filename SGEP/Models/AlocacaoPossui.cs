@@ -9,14 +9,14 @@ using SGEP.Models.Validacao;
 
 namespace SGEP.Models
 {
-    public class AlocacaoPossui : IAutoValida
+    public class Transacao : IAutoValida
     {
         public ulong Quantidade { get; set; }
         [ForeignKey("Material")]
         public ulong CodMaterial { get; set; }
         [ForeignKey("Projeto")]
         public ulong CodProjeto { get; set; }
-        
+        public DateTime Data { get; set; }
         public virtual Material Material { get; set; }
         public virtual Projeto Projeto { get; set; }
 

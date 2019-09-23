@@ -36,6 +36,6 @@ namespace SGEP.Models
                                  (DataFim == null       && Estado == EstadoProjeto.Andamento || 
                                   DataFim >= DataInicio && Estado == EstadoProjeto.Finalizado);
         public virtual ICollection<ParticipaProjeto> Participacoes { get; set; }
-        public virtual ICollection<AlocacaoPossui> Alocacoes {get; set; }
+        public virtual ICollection<Transacao> Alocacoes {get; set; }
     }
 }

@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label asp-for="Unidade" class="control-label"></label>
                 <select asp-for="Unidade" id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder">
-                    <option selected="selected">Selecionar unidade...</option>
+                    <option value="" disabled selected>Selecionar unidade...</option>
                     @await Html.PartialAsync("~/Views/Unidade/ListarUnidades.cshtml", ViewData["unidades"], ViewData)
                     <option id="outro" value="other">Outro...</option>
                 </select>

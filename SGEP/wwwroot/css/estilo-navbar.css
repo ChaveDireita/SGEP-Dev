@@ -6,6 +6,8 @@
 nav {
     background-color: #000059;
     padding: 0;
+    position: sticky;
+    top: 0;
 }
 
 .nav-a:hover {
@@ -31,3 +33,8 @@ nav div {
     padding-left: 10px;
 }
 
+.pos-sticky 
+{
+    position: sticky;
+    top: 0;
+}

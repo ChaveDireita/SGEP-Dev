@@ -7,17 +7,17 @@
         <thead>
             <tr>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Id)*@Código do funcionário
+                    Código do funcionário
                 </th>
                 <th>
-                    @*@Html.DisplayNameFor(model => model.Nome)*@Nome
+                    Nome
                 </th>
             </tr>
         </thead>
-        <tbody data-style="bg-white rounded-pill" id="lista" multiple>
+        <tbody data-style="bg-white rounded-pill" class="selectpicker" id="lista" multiple>
             @foreach (var item in funcionarios)
             {
-                <tr onclick="liberarClick(@item.Id)" data-toggle="list">
+                <tr onclick="selecionar('item_fun_@item.Id')" id="item_fun_@item.Id" data-toggle="list">
                     <td>
                         FUN-@Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -28,7 +28,25 @@
             }
         </tbody>
     </table>
+    
+    @*<ul>
+        <li>Código  |   Nome</li>
+        @foreach (Funcionario f in funcionarios)
+        {
+            <li>@f.Id   | @f.Nome</li>
+        }
+    </ul>*@
+    
+    <script>
+        const selecionados = new Array();
 
+        function selecionar(id)
+        {
+            const item = document.getElementById(id);
+            const texto = item.innerHTML;
+
+        }
+    </script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

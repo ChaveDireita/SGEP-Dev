@@ -29,7 +29,7 @@ namespace SGEP.Banco
                    .Property(p => p.Estado)
                    .HasConversion(e => e.ToString(), s => (EstadoProjeto)Enum.Parse(typeof(EstadoProjeto), s));//Converte o EstadoProjeto pra string a ser colocada no banco e vice-versa
 
-            builder.Entity<AlocacaoPossui>()
+            builder.Entity<Transacao>()
                    .HasKey(ap => new { ap.CodMaterial, ap.CodProjeto });//Define a chave primária da tabela AlocacaoPossui como uma composta pela chave das tablas Material e Projeto
 
             builder.Entity<ParticipaProjeto>()
