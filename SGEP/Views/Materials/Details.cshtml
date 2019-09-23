@@ -8,9 +8,8 @@
     ViewData["Title"] = "Detalhes do Material";
 }
 
-<h3 class="display-4 mt-5 mb-5 text-center">Detalhes</h3>
+<h1 class="mt-2 mb-5 text-center">Detalhes do material</h1>
 <hr />
-<h4>Material</h4>
 <div class="shadow-regular">
     <table class="table table-bordered shadow-regular">
         <tr>
@@ -55,6 +54,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
     <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar material" /></a>
+    <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
 </div>

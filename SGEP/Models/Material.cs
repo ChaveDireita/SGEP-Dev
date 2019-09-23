@@ -9,6 +9,7 @@ namespace SGEP.Models
     public class Material : IAutoValida
     {
         [Key]
+        [Display(Name ="Código do material")]
         public ulong Id { get; set; }
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         public decimal Quantidade { get; set; } = 0;

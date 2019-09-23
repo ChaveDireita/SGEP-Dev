@@ -4,7 +4,7 @@
     ViewData["Title"] = "Editar Material";
 }
 
-<h3 class="display-4 mt-5 mb-5 text-center">Editar Material</h3>
+<h2 style="text-align:center; padding-top:30px">Editar Material</h2>
 
 <hr />
 <div class="row justify-content-center">
@@ -20,8 +20,19 @@
             </div>
             <div class="form-group">
                 <label asp-for="Unidade" class="control-label"></label>
-                <input asp-for="Unidade" class="form-control" />
-                <span asp-validation-for="Unidade" class="text-danger"></span>
+                <select asp-for="Unidade" id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder">
+                    <option selected="selected">Selecionar unidade...</option>
+                    
+                    <option id="outro" value="other">Outro...</option>
+                </select>
+
+                <div class="col-lg-6" id="addunidade" style="margin-top:0" hidden>
+                    <label class="control-label">Nome da unidade</label>
+                    <input type="text" class="form-control squareborder" id="campo_nome_unidade" placeholder="Nome da unidade" />
+                    <label class="control-label">Tipo da unidade</label>
+                    <input type="text" class="form-control squareborder" id="campo_abbr_unidade" placeholder="Tipo da unidade" />
+                    <input type="button" class="btn btn-success squareborder" value="Adicionar unidade" onclick="addUnidadade()" />
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Preco" class="control-label"></label>
@@ -39,3 +50,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script type="text/javascript" src="~/js/scripts.js"></script>

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Criar";
 }
 
-<h3 class="display-4 mt-5 mb-5 text-center">Criar Projeto</h3>
+<h2 style="text-align:center; padding-top:30px">Adicionar Projeto</h2>
 
 <hr />
 <div class="row justify-content-center">
@@ -30,8 +30,8 @@
                 <span asp-validation-for="PrazoEstimado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Salvar" class="btn btn-success" />
-                <a class="btn btn-danger" role="button" asp-action="Index">Voltar</a>
+                <a asp-action="Index"> <input type="button" value="Cancelar" class="btn btn-danger squareborder" /></a>
+                <input type="submit" value="Adicionar" class="btn btn-success squareborder" />
             </div>
         </form>
     </div>

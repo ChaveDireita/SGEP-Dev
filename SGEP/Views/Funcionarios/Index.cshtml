@@ -51,7 +51,7 @@
             </th>-->
         </tr>
     </thead>
-    <tbody id ="lista">
+    <tbody id ="lista" class="scrollbar">
         @foreach (var item in Model)
         {
             <tr onclick="liberarClick(@item.Id)">
@@ -78,4 +78,4 @@
         }
     </tbody>
 </table>
-<script type="text/javascript" src="~/js/search_system.js"></script>
+<script type="text/javascript" src="~/js/scripts.js"></script>

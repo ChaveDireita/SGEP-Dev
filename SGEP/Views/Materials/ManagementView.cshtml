@@ -42,6 +42,9 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Descricao)
                 </th>
                 <th>
@@ -56,10 +59,13 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody id="lista">
+        <tbody class="scrollbar" id="lista">
             @foreach (var item in Model)
             {
             <tr onclick="liberarClick(@item.Id)">
+                <td>
+                    MAT-@Html.DisplayFor(modelItem => item.Id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
@@ -79,4 +85,4 @@
             }
         </tbody>
     </table>
-    <script type="text/javascript" src="~/js/search_system.js"></script>
+    <script type="text/javascript" src="~/js/scripts.js"></script>

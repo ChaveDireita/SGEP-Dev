@@ -4,10 +4,10 @@
     ViewData["Title"] = "Cadastrar Material";
 }
 
-<h2 style="text-align:center; padding-top:30px">Cadastrar Material</h2>
+<h2 style="text-align:center; padding-top:30px">Adicionar Material</h2>
 <hr />
 <div class="row justify-content-center">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -23,43 +23,42 @@
             </div>
             <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" type="number" placeholder="Quantidade do material por unidade" class="form-control squareborder" />
+                <input asp-for="Quantidade" id="quantidade" type="number" placeholder="Quantidade do material por unidade" class="form-control squareborder" />
                 <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Unidade" class="control-label"></label>
-                <!--<input asp-for="Unidade" class="form-control squareborder" />
-    -->
-                <select asp-for="Unidade" id="uniselect" class="browser-default form-control mb-4 squareborder">
+                <select asp-for="Unidade" id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder">
+                    <option selected="selected">Selecionar unidade...</option>
                     @await Html.PartialAsync("~/Views/Unidade/ListarUnidades.cshtml", ViewData["unidades"], ViewData)
                     <option id="outro" value="other">Outro...</option>
                 </select>
-                <script>
-                    var e = document.getElementById("uniselect");
-                    var option = e.options[e.selectedIndex].value;
-                    if (option.value == "other") {
 
-                    }
-                </script>
+                <div class="col-lg-6" id="addunidade" style="margin-top:0" hidden>
+                    <label class="control-label">Nome da unidade</label>
+                    <input type="text" class="form-control squareborder" id="campo_nome_unidade" placeholder="Nome da unidade" />
+                    <label class="control-label">Tipo da unidade</label>
+                    <input type="text" class="form-control squareborder" id="campo_abbr_unidade" placeholder="Tipo da unidade" />
+                    <input type="button" class="btn btn-success squareborder" value="Adicionar unidade" onclick="addUnidadade()" />
+                </div>
 
-                <input type="text" id="campo_nome_unidade" placeholder="Nome da unidade" />
-                <input type="text" id="campo_abbr_unidade" placeholder="Tipo da unidade" />
-                <input type="button" value="Adicionar unidade" onclick="addUnidadade()" />
                 <script>
                     function addUnidadade() {
                         const op = document.createElement("option");
                         op.value = document.getElementById("campo_abbr_unidade").value;
                         op.innerHTML = document.getElementById("campo_nome_unidade").value;
                         document.getElementById("uniselect").add(op, 0);
+                        document.getElementById("addunidade").hidden = true;
                     }
                 </script>
 
             </div>
             <div class="form-group">
                 <a asp-action="Index"> <input type="button" value="Cancelar" class="btn btn-danger squareborder" /></a>
-                <input type="submit" value="Adicionar material" class="btn btn-success squareborder" />
+                <input type="submit" value="Adicionar" class="btn btn-success squareborder" />
             </div>
         </form>
     </div>
 </div>
+<script type="text/javascript" src="~/js/scripts.js"></script>
 

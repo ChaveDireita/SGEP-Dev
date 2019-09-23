@@ -14,7 +14,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody id="lista">
+        <tbody data-style="bg-white rounded-pill" id="lista" multiple>
             @foreach (var item in funcionarios)
             {
                 <tr onclick="liberarClick(@item.Id)" data-toggle="list">
