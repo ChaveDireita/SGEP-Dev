@@ -17,7 +17,7 @@
         <tbody data-style="bg-white rounded-pill" class="selectpicker" id="lista" multiple>
             @foreach (var item in funcionarios)
             {
-                <tr onclick="selecionar('item_fun_@item.Id')" id="item_fun_@item.Id" data-toggle="list">
+                <tr onclick="" id="item_fun_@item.Id" data-toggle="list">
                     <td>
                         FUN-@Html.DisplayFor(modelItem => item.Id)
                     </td>

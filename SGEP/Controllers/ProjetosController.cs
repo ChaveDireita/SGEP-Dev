@@ -131,7 +131,8 @@ namespace SGEP.Controllers
             return RedirectToAction(nameof(Edit), new { id = projeto.Id});
         }
         private bool ProjetoExists(ulong id) => _context.Projeto.Any(e => e.Id == id);
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdicionarFuncionario(ulong? id, ulong[] fids)
         {
             var deveSerVazio = from pp in _context.ParticipaProjeto
