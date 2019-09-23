@@ -16,43 +16,36 @@ namespace SGEP.Banco
     ///</summary>
     public class ContextoBD : DbContext
     {
-
         public ContextoBD(DbContextOptions<ContextoBD> options) : base(options) { }
         ///<summary>
         ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
         ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
         ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
+        ///automaticamente.
+        ///</summary
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Projeto>()
                    .Property(p => p.Estado)
-                   .HasConversion(e => e.ToString(), s => (EstadoProjeto)Enum.Parse(typeof(EstadoProjeto), s));
-        }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
-        public DbSet<SGEP.Models.Funcionario> Funcionario { get; set; }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
-        public DbSet<SGEP.Models.Material> Material { get; set; }
-        ///<summary>
-        ///Configura o mapeamento das propriedades nas classes do c# para o banco de dados
-        ///para seus atributos correlatos nas tabelas do banco de dados. Nem todos os atributos
-        ///precisam ser especificados, a saber, tipos primitivos geralmente são mapeados 
-        ///automaticamente
-        ///</summary>
-        public DbSet<SGEP.Models.Projeto> Projeto { get; set; }
+                   .HasConversion(e => e.ToString(), s => (EstadoProjeto)Enum.Parse(typeof(EstadoProjeto), s));//Converte o EstadoProjeto pra string a ser colocada no banco e vice-versa
 
-        
+            builder.Entity<AlocacaoPossui>()
+                   .HasKey(ap => new { ap.CodMaterial, ap.CodProjeto });//Define a chave primária da tabela AlocacaoPossui como uma composta pela chave das tablas Material e Projeto
+
+            builder.Entity<ParticipaProjeto>()
+                   .HasKey(ap => new { ap.CodFuncionario, ap.CodProjeto });//Mesma lógica que a de cima, só que pra ParicipaProjeto
+                   
+        }
+        /// <summary>
+        /// As propriedades abaixo são objetos que representam as tabelas do banco.
+        /// </summary>
+        public DbSet<Funcionario> Funcionario { get; set; }
+        public DbSet<Material> Material { get; set; }
+        public DbSet<Projeto> Projeto { get; set; }
+	    public DbSet<Unidades> Unidades { get; set; }
+        //public DbSet<AlocacaoPossui> AlocacaoPossuis { get; set; }
+        public DbSet<ParticipaProjeto> ParticipaProjeto { get; set; }
+
     }
 
 

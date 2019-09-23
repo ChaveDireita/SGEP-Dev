@@ -43,7 +43,7 @@ namespace SGEP
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<ContextoBD>(o => o.UseMySql(Configuration.GetConnectionString("SGEP_BANCO"),
-                                              mysqlo => mysqlo.ServerVersion(new Version(8, 0, 16), ServerType.MySql)));
+                                              mysqlo => mysqlo.ServerVersion(new Version(8, 0, 16), ServerType.MySql)));/**/
             //services.AddDbContext<ContextoBD>(o => o.UseSqlServer(Configuration.GetConnectionString("SGEP_LOCAL")));
         }
 

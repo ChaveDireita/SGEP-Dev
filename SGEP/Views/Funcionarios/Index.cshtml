@@ -1,14 +1,39 @@
 ﻿@model IEnumerable<SGEP.Models.Funcionario>
-
 @{
     ViewData["Title"] = "Funcionários";
 }
-
-<h3 class="display-4 mt-5 mb-5 text-center">Funcionários</h3>
-
+<br />
+<h2>Funcionários</h2>
+<br />
+<h5>Pesquisar:</h5>
 <p>
-    <a class="btn btn-success" role="button" asp-action="Create">Cadastrar</a>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text squareborder">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+
+        <input class="form-control squareborder" type="text" placeholder="Pesquisar projeto..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+    </div>
 </p>
+<p>
+    <a asp-action="Create"><input type="button" value="Adicionar funcionário" class="btn btn-success squareborder"></a>
+    <a asp-action="Edit" id="linkEdit"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar fucionário" /></a>
+    <a asp-action="Details" id="linkDetails"><input type="button" id="detailsButton" class="btn btn-primary squareborder" value="Detalhes" /></a>
+    <script>
+        document.getElementById("editButton").disabled = true;
+        document.getElementById("detailsButton").disabled = true;
+
+        function liberarClick(ID) {
+            document.getElementById("editButton").disabled = false;
+            document.getElementById("detailsButton").disabled = false;
+            $('#linkEdit').prop("href", "/Funcionarios/Edit/" + ID);
+            $('#linkDetails').prop("href", "/Funcionarios/Details/" + ID);
+
+        }
+    </script>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -21,25 +46,36 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cargo)
             </th>
-            <th></th>
+            <!--<th>
+                Html.DisplayNameFor(model => model.Projeto)
+            </th>-->
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cargo)
-            </td>
-            <td>
-                <a class="btn btn-secondary float-right" role="button" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-            </td>
-        </tr>
-}
+    <tbody id ="lista" class="scrollbar">
+        @foreach (var item in Model)
+        {
+            <tr onclick="liberarClick(@item.Id)">
+                <td>
+                    FUN-@Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cargo)
+                </td>
+                <!--<td>
+                    //if (item.Projeto=="")
+                    {
+                        Html.Display("Nenhum projeto associado");
+                    }
+                    else
+                    {
+                        Html.DisplayFor(modelItem => item.Projeto);
+                    }
+                </td>-->
+            </tr>
+        }
     </tbody>
 </table>
+<script type="text/javascript" src="~/js/scripts.js"></script>

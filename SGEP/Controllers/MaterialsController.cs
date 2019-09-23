@@ -9,147 +9,82 @@ using Microsoft.EntityFrameworkCore;
 using SGEP.Banco;
 using SGEP.Models;
 
+using _a = SGEP.Controllers.AcoesComunsDosControllers;
+
 namespace SGEP.Controllers
 {
     public class MaterialsController : Controller
     {
+        /// <summary>
+        /// Uma referência ao contexto do banco de dados.
+        /// </summary>
         private readonly ContextoBD _context;
-
-        public MaterialsController(ContextoBD context)
-        {
-            _context = context;
-        }
+        public MaterialsController(ContextoBD context) => _context = context;
 
         // GET: Materials
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Material.ToListAsync());
-        }
+        public async Task<IActionResult> Index() => View("ManagementView", await _context.Material.ToListAsync());
 
-        // GET: Materials/Details/5
+        // GET: Materials/Details/{id}
         public async Task<IActionResult> Details(ulong? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var material = await _context.Material
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (material == null)
-            {
-                return NotFound();
-            }
-
-            return View(material);
+            Material material = await _a.ChecarPeloId(id, _context.Material);
+            return (material == null) ? (IActionResult)NotFound() : View(material);
         }
 
         // GET: Materials/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public async Task<IActionResult> Create()
+	    {
+		    ViewData["unidades"] = await _context.Unidades.ToListAsync();
+		    return View();
+	    }
+
 
         // POST: Materials/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
+        public async Task<IActionResult> Create([Bind(nameof(Material.Id) + "," + nameof(Material.Quantidade) + "," + nameof(Material.Descricao) + "," + nameof(Material.Unidade) + "," + nameof(Material.Preco))] Material material)
         {
             if (material.Validar())
             {
-                _context.Add(material);
-                await _context.SaveChangesAsync();
+                await _a.SalvarModelo(material, _context);//Esse método é do AcoesComunsDosControllers.
                 return RedirectToAction(nameof(Index));
             }
             return View(material);
         }
 
-        // GET: Materials/Edit/5
+        // GET: Materials/Edit/{id]
         public async Task<IActionResult> Edit(ulong? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var material = await _context.Material.FindAsync(id);
-            if (material == null)
-            {
-                return NotFound();
-            }
-            return View(material);
+            Material material = await _a.ChecarPeloId(id, _context.Material);//Esse método é do AcoesComunsDosControllers.
+            return (material == null) ? (IActionResult)NotFound() : View(material);
         }
 
         // POST: Materials/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(ulong id, [Bind("Id,Quantidade,Nome,Unidade,Preco")] Material material)
+        [HttpPost]//No controller dos funcionários explica isso.
+        [ValidateAntiForgeryToken]//No controller dos funcionários explica isso.
+        public async Task<IActionResult> Edit(ulong id, [Bind(nameof(Material.Id) + "," + nameof(Material.Quantidade) + "," + nameof(Material.Descricao) + "," + nameof(Material.Unidade) + "," + nameof(Material.Preco))] Material material)
         {
             if (id != material.Id)
-            {
                 return NotFound();
-            }
 
             if (material.Validar())
             {
                 try
                 {
-                    _context.Update(material);
-                    await _context.SaveChangesAsync();
+                    await _a.AtualizarModelo(material, _context);//Esse método é do AcoesComunsDosControllers.
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!MaterialExists(material.Id))
-                    {
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
             return View(material);
         }
-
-
-        // GET: Materials/Delete/5
-        public async Task<IActionResult> Delete(ulong? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var material = await _context.Material
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (material == null)
-            {
-                return NotFound();
-            }
-
-            return View(material);
-        }
-
-        // POST: Materials/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(ulong id)
-        {
-            var material = await _context.Material.FindAsync(id);
-            _context.Material.Remove(material);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool MaterialExists(ulong id)
-        {
-            return _context.Material.Any(e => e.Id == id);
-        }
+        private bool MaterialExists(ulong id) => _context.Material.Any(e => e.Id == id);
+        
     }
 }

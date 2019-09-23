@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Acho que essa classe pode ser removida.
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
