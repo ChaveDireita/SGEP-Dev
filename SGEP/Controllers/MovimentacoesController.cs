@@ -13,5 +13,6 @@ namespace SGEP.Controllers
         private readonly ContextoBD _contexto;
         public MovimentacoesController(ContextoBD contexto) => _contexto = contexto;
         public IActionResult Index() => View(_contexto.Movimentacoes);
+        public IA
     }
 }
