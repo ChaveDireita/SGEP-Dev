@@ -13,23 +13,23 @@ namespace SGEP.Models
         [Display(Name = "Código da movimentação")]
         public ulong Id { get; set; }
         [Display(Name = "Funcionário solicitante")]
-        public Funcionario solicitante { get; set; }
+        public Funcionario Solicitante { get; set; }
         [Display(Name = "Projeto associado")]
-        public Projeto projSolicitante { get; set; }
+        public Projeto ProjSolicitante { get; set; }
         [Display(Name = "Material")]
-        public Material materialMovimentado { get; set; }
+        public Material MaterialMovimentado { get; set; }
         [Display(Name = "Data da movimentação")]
-        public DateTime dataDeSolicitacao { get; set; }
+        public DateTime DataDeSolicitacao { get; set; }
         [Display(Name = "Quantidade movimentada")]
         //é bom printar isso ai acompanhado do tipo de unidade do material solicitado
-        public double quantidadeSolicitada { get; set; }
+        public decimal QuantidadeSolicitada { get; set; }
         //Vai ser limitada a 'retirada' ou 'inserção'(n sei o mlh nome pra isso ainda) de acordo com o valor do booleano
         [Display(Name = "Tipo de movimentação")]
-        public string tipoMovimentacao { get; set; }
+        public string TipoMovimentacao { get; set; }
 
         public bool Validar()
         {
-            return !(solicitante == null || projSolicitante == null || materialMovimentado == null);
+            return !(Solicitante == null || ProjSolicitante == null || MaterialMovimentado == null);
         }
     }
 }
