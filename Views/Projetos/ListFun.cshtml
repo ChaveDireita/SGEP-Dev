@@ -1,0 +1,57 @@
+﻿@model IEnumerable<SGEP.Models.Funcionario>
+@{
+    ViewData["Title"] = "Funcionários";
+}
+<hr />
+<h2 class="mt-5 mb-5">Funcionários Associados</h2>
+<h5>Pesquisar:</h5>
+<p>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text squareborder">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+
+        <input class="form-control squareborder" type="text" placeholder="Pesquisar projeto..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+    </div>
+</p>
+<p>
+    <a asp-action="Details" id="linkDetails"><input type="button" id="detailsButton" class="btn btn-primary squareborder" value="Verificar funcionário" /></a>
+    <script>
+        document.getElementById("detailsButton").disabled = true;
+
+        function liberarClick(ID) {
+            document.getElementById("editButton").disabled = false;
+            document.getElementById("detailsButton").disabled = false;
+            $('#linkDetails').prop("href", "/Funcionarios/Details/" + ID);
+
+        }
+    </script>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+            </tr>
+        </thead>
+        <tbody id="lista">
+            @foreach (var item in Model)
+            {
+                <tr onclick="liberarClick(@item.Id)" data-toggle="list" >
+                    <td>
+                        FUN-@Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript" src="~/js/search_system.js"></script>

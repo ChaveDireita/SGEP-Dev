@@ -1,0 +1,39 @@
+﻿@model SGEP.Models.ParticipaProjeto
+
+@{
+    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionariosFora"];//Faz o cast da lista de funcionários
+} 
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Id)*@Código do funcionário
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Nome)*@Nome
+                </th>
+            </tr>
+        </thead>
+        <tbody data-style="bg-white rounded-pill" id="lista" multiple="multiple">
+            @foreach (var item in funcionarios)
+            {
+                <tr onclick="liberarClick(@item.Id)" data-toggle="list">
+                    <td>
+                        FUN-@Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#selecao").multiselect();
+        });
+    </script>
