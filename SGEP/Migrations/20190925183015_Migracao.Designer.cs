@@ -9,7 +9,7 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20190919171032_Migracao")]
+    [Migration("20190925183015_Migracao")]
     partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -18,21 +18,6 @@ namespace SGEP.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("SGEP.Models.AlocacaoPossui", b =>
-                {
-                    b.Property<ulong>("CodMaterial");
-
-                    b.Property<ulong>("CodProjeto");
-
-                    b.Property<ulong>("Quantidade");
-
-                    b.HasKey("CodMaterial", "CodProjeto");
-
-                    b.HasIndex("CodProjeto");
-
-                    b.ToTable("AlocacaoPossui");
-                });
 
             modelBuilder.Entity("SGEP.Models.Funcionario", b =>
                 {
@@ -65,6 +50,34 @@ namespace SGEP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Material");
+                });
+
+            modelBuilder.Entity("SGEP.Models.Movimentacao", b =>
+                {
+                    b.Property<ulong>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("dataDeSolicitacao");
+
+                    b.Property<ulong?>("materialMovimentadoId");
+
+                    b.Property<ulong?>("projSolicitanteId");
+
+                    b.Property<double>("quantidadeSolicitada");
+
+                    b.Property<ulong?>("solicitanteId");
+
+                    b.Property<string>("tipoMovimentacao");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("materialMovimentadoId");
+
+                    b.HasIndex("projSolicitanteId");
+
+                    b.HasIndex("solicitanteId");
+
+                    b.ToTable("Movimentacoes");
                 });
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
@@ -101,6 +114,23 @@ namespace SGEP.Migrations
                     b.ToTable("Projeto");
                 });
 
+            modelBuilder.Entity("SGEP.Models.Transacao", b =>
+                {
+                    b.Property<ulong>("CodMaterial");
+
+                    b.Property<ulong>("CodProjeto");
+
+                    b.Property<DateTime>("Data");
+
+                    b.Property<ulong>("Quantidade");
+
+                    b.HasKey("CodMaterial", "CodProjeto");
+
+                    b.HasIndex("CodProjeto");
+
+                    b.ToTable("Transacao");
+                });
+
             modelBuilder.Entity("SGEP.Models.Unidades", b =>
                 {
                     b.Property<int>("Id")
@@ -115,17 +145,19 @@ namespace SGEP.Migrations
                     b.ToTable("Unidades");
                 });
 
-            modelBuilder.Entity("SGEP.Models.AlocacaoPossui", b =>
+            modelBuilder.Entity("SGEP.Models.Movimentacao", b =>
                 {
-                    b.HasOne("SGEP.Models.Material", "Material")
-                        .WithMany("Alocacoes")
-                        .HasForeignKey("CodMaterial")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("SGEP.Models.Material", "materialMovimentado")
+                        .WithMany()
+                        .HasForeignKey("materialMovimentadoId");
 
-                    b.HasOne("SGEP.Models.Projeto", "Projeto")
-                        .WithMany("Alocacoes")
-                        .HasForeignKey("CodProjeto")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("SGEP.Models.Projeto", "projSolicitante")
+                        .WithMany()
+                        .HasForeignKey("projSolicitanteId");
+
+                    b.HasOne("SGEP.Models.Funcionario", "solicitante")
+                        .WithMany()
+                        .HasForeignKey("solicitanteId");
                 });
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
@@ -137,6 +169,19 @@ namespace SGEP.Migrations
 
                     b.HasOne("SGEP.Models.Projeto", "Projeto")
                         .WithMany("Participacoes")
+                        .HasForeignKey("CodProjeto")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SGEP.Models.Transacao", b =>
+                {
+                    b.HasOne("SGEP.Models.Material", "Material")
+                        .WithMany("Alocacoes")
+                        .HasForeignKey("CodMaterial")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SGEP.Models.Projeto", "Projeto")
+                        .WithMany("Alocacoes")
                         .HasForeignKey("CodProjeto")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

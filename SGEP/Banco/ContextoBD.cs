@@ -44,6 +44,7 @@ namespace SGEP.Banco
         public DbSet<Projeto> Projeto { get; set; }
 	    public DbSet<Unidades> Unidades { get; set; }
         //public DbSet<AlocacaoPossui> AlocacaoPossuis { get; set; }
+        public DbSet<Movimentacao> Movimentacoes { get; set; }
         public DbSet<ParticipaProjeto> ParticipaProjeto { get; set; }
 
     }
