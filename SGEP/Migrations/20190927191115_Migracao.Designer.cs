@@ -9,7 +9,7 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20190925183015_Migracao")]
+    [Migration("20190927191115_Migracao")]
     partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,32 +52,52 @@ namespace SGEP.Migrations
                     b.ToTable("Material");
                 });
 
-            modelBuilder.Entity("SGEP.Models.Movimentacao", b =>
+            modelBuilder.Entity("SGEP.Models.MovimentacaoAlocacao", b =>
                 {
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("dataDeSolicitacao");
+                    b.Property<DateTime>("Data");
 
-                    b.Property<ulong?>("materialMovimentadoId");
+                    b.Property<ulong?>("MaterialMovimentadoId");
 
-                    b.Property<ulong?>("projSolicitanteId");
+                    b.Property<ulong?>("ProjSolicitanteId");
 
-                    b.Property<double>("quantidadeSolicitada");
+                    b.Property<decimal>("Quantidade");
 
-                    b.Property<ulong?>("solicitanteId");
+                    b.Property<ulong?>("SolicitanteId");
 
-                    b.Property<string>("tipoMovimentacao");
+                    b.Property<string>("TipoMovimentacao");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("materialMovimentadoId");
+                    b.HasIndex("MaterialMovimentadoId");
 
-                    b.HasIndex("projSolicitanteId");
+                    b.HasIndex("ProjSolicitanteId");
 
-                    b.HasIndex("solicitanteId");
+                    b.HasIndex("SolicitanteId");
 
-                    b.ToTable("Movimentacoes");
+                    b.ToTable("MovimentacaoAlocacoes");
+                });
+
+            modelBuilder.Entity("SGEP.Models.MovimentacaoCompra", b =>
+                {
+                    b.Property<ulong>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Data");
+
+                    b.Property<ulong?>("MaterialMovimentadoId");
+
+                    b.Property<decimal>("Quantidade");
+
+                    b.Property<string>("TipoMovimentacao");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialMovimentadoId");
+
+                    b.ToTable("MovimentacaoCompras");
                 });
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>
@@ -145,19 +165,26 @@ namespace SGEP.Migrations
                     b.ToTable("Unidades");
                 });
 
-            modelBuilder.Entity("SGEP.Models.Movimentacao", b =>
+            modelBuilder.Entity("SGEP.Models.MovimentacaoAlocacao", b =>
                 {
-                    b.HasOne("SGEP.Models.Material", "materialMovimentado")
+                    b.HasOne("SGEP.Models.Material", "MaterialMovimentado")
                         .WithMany()
-                        .HasForeignKey("materialMovimentadoId");
+                        .HasForeignKey("MaterialMovimentadoId");
 
-                    b.HasOne("SGEP.Models.Projeto", "projSolicitante")
+                    b.HasOne("SGEP.Models.Projeto", "ProjSolicitante")
                         .WithMany()
-                        .HasForeignKey("projSolicitanteId");
+                        .HasForeignKey("ProjSolicitanteId");
 
-                    b.HasOne("SGEP.Models.Funcionario", "solicitante")
+                    b.HasOne("SGEP.Models.Funcionario", "Solicitante")
                         .WithMany()
-                        .HasForeignKey("solicitanteId");
+                        .HasForeignKey("SolicitanteId");
+                });
+
+            modelBuilder.Entity("SGEP.Models.MovimentacaoCompra", b =>
+                {
+                    b.HasOne("SGEP.Models.Material", "MaterialMovimentado")
+                        .WithMany()
+                        .HasForeignKey("MaterialMovimentadoId");
                 });
 
             modelBuilder.Entity("SGEP.Models.ParticipaProjeto", b =>

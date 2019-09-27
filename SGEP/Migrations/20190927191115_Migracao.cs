@@ -70,36 +70,58 @@ namespace SGEP.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Movimentacoes",
+                name: "MovimentacaoCompras",
                 columns: table => new
                 {
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    solicitanteId = table.Column<ulong>(nullable: true),
-                    projSolicitanteId = table.Column<ulong>(nullable: true),
-                    materialMovimentadoId = table.Column<ulong>(nullable: true),
-                    dataDeSolicitacao = table.Column<DateTime>(nullable: false),
-                    quantidadeSolicitada = table.Column<double>(nullable: false),
-                    tipoMovimentacao = table.Column<string>(nullable: true)
+                    Data = table.Column<DateTime>(nullable: false),
+                    Quantidade = table.Column<decimal>(nullable: false),
+                    MaterialMovimentadoId = table.Column<ulong>(nullable: true),
+                    TipoMovimentacao = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Movimentacoes", x => x.Id);
+                    table.PrimaryKey("PK_MovimentacaoCompras", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Movimentacoes_Material_materialMovimentadoId",
-                        column: x => x.materialMovimentadoId,
+                        name: "FK_MovimentacaoCompras_Material_MaterialMovimentadoId",
+                        column: x => x.MaterialMovimentadoId,
+                        principalTable: "Material",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MovimentacaoAlocacoes",
+                columns: table => new
+                {
+                    Id = table.Column<ulong>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    SolicitanteId = table.Column<ulong>(nullable: true),
+                    ProjSolicitanteId = table.Column<ulong>(nullable: true),
+                    MaterialMovimentadoId = table.Column<ulong>(nullable: true),
+                    Data = table.Column<DateTime>(nullable: false),
+                    Quantidade = table.Column<decimal>(nullable: false),
+                    TipoMovimentacao = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MovimentacaoAlocacoes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MovimentacaoAlocacoes_Material_MaterialMovimentadoId",
+                        column: x => x.MaterialMovimentadoId,
                         principalTable: "Material",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Movimentacoes_Projeto_projSolicitanteId",
-                        column: x => x.projSolicitanteId,
+                        name: "FK_MovimentacaoAlocacoes_Projeto_ProjSolicitanteId",
+                        column: x => x.ProjSolicitanteId,
                         principalTable: "Projeto",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Movimentacoes_Funcionario_solicitanteId",
-                        column: x => x.solicitanteId,
+                        name: "FK_MovimentacaoAlocacoes_Funcionario_SolicitanteId",
+                        column: x => x.SolicitanteId,
                         principalTable: "Funcionario",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -156,19 +178,24 @@ namespace SGEP.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimentacoes_materialMovimentadoId",
-                table: "Movimentacoes",
-                column: "materialMovimentadoId");
+                name: "IX_MovimentacaoAlocacoes_MaterialMovimentadoId",
+                table: "MovimentacaoAlocacoes",
+                column: "MaterialMovimentadoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimentacoes_projSolicitanteId",
-                table: "Movimentacoes",
-                column: "projSolicitanteId");
+                name: "IX_MovimentacaoAlocacoes_ProjSolicitanteId",
+                table: "MovimentacaoAlocacoes",
+                column: "ProjSolicitanteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movimentacoes_solicitanteId",
-                table: "Movimentacoes",
-                column: "solicitanteId");
+                name: "IX_MovimentacaoAlocacoes_SolicitanteId",
+                table: "MovimentacaoAlocacoes",
+                column: "SolicitanteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MovimentacaoCompras_MaterialMovimentadoId",
+                table: "MovimentacaoCompras",
+                column: "MaterialMovimentadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ParticipaProjeto_CodProjeto",
@@ -184,7 +211,10 @@ namespace SGEP.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Movimentacoes");
+                name: "MovimentacaoAlocacoes");
+
+            migrationBuilder.DropTable(
+                name: "MovimentacaoCompras");
 
             migrationBuilder.DropTable(
                 name: "ParticipaProjeto");

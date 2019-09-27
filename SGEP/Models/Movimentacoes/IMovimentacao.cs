@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,9 +10,14 @@ namespace SGEP.Models.Movimentacoes
 {
     public interface IMovimentacao
     {
+        [Display(Name = "Código da movimentação")]
+        ulong Id { get; set; }
+        [Display(Name = "Data de realização")]
         DateTime Data { get; set; }
         decimal Quantidade { get; set; }
+        [Display(Name = "Material")]
         Material MaterialMovimentado { get; set; }
-
+        [Display(Name = "Tipo")]
+        string TipoMovimentacao { get; set; }
     }
 }

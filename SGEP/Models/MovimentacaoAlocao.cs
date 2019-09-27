@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+using SGEP.Models.Movimentacoes;
+
 namespace SGEP.Models
 {
-    public class Movimentacao : IAutoValida
+    public class MovimentacaoAlocacao : IAutoValida, IMovimentacao
     {
         [Key]
         [Display(Name = "Código da movimentação")]
@@ -18,13 +20,13 @@ namespace SGEP.Models
         public Projeto ProjSolicitante { get; set; }
         [Display(Name = "Material")]
         public Material MaterialMovimentado { get; set; }
-        [Display(Name = "Data da movimentação")]
-        public DateTime DataDeSolicitacao { get; set; }
-        [Display(Name = "Quantidade movimentada")]
+        [Display(Name = "Data de realização")]
+        public DateTime Data { get; set; }
+        [Display(Name = "Quantidade")]
         //é bom printar isso ai acompanhado do tipo de unidade do material solicitado
-        public decimal QuantidadeSolicitada { get; set; }
+        public decimal Quantidade { get; set; }
         //Vai ser limitada a 'retirada' ou 'inserção'(n sei o mlh nome pra isso ainda) de acordo com o valor do booleano
-        [Display(Name = "Tipo de movimentação")]
+        [Display(Name = "Tipo")]
         public string TipoMovimentacao { get; set; }
 
         public bool Validar()
