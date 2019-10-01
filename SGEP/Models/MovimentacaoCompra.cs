@@ -5,10 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using SGEP.Models.Movimentacoes;
+using SGEP.Models.Validacao;
 
 namespace SGEP.Models
 {
-    public class MovimentacaoCompra : IMovimentacao
+    public class MovimentacaoCompra : IMovimentacao, IAutoValida
     {
         [Key]
         [Display(Name ="Código da movimentação")]
@@ -20,5 +21,7 @@ namespace SGEP.Models
         public Material MaterialMovimentado { get; set; }
         [Display(Name = "Tipo")]
         public string TipoMovimentacao { get; set; }
+
+        public bool Validar() => !(MaterialMovimentado == null || Quantidade < 0);
     }
 }

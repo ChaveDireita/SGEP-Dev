@@ -3,7 +3,7 @@
 @{
     IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionariosFora"];//Faz o cast da lista de funcionários
 } 
-    <table class="table table-hover">
+    @*<table class="table table-hover">
         <thead>
             <tr>
                 <th>
@@ -14,7 +14,7 @@
                 </th>
             </tr>
         </thead>
-        <tbody data-style="bg-white rounded-pill" class="selectpicker" id="lista" multiple>
+        <tbody data-style="bg-white rounded-pill" id="lista" multiple="multiple">
             @foreach (var item in funcionarios)
             {
                 <tr onclick="" id="item_fun_@item.Id" data-toggle="list">
@@ -27,8 +27,15 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table>*@
     
+    <select id="lista" multiple>
+        @foreach (var item in funcionarios)
+        {
+            <option value="@item.Id">@item.Nome</option>
+        }
+    </select>
+
     @*<ul>
         <li>Código  |   Nome</li>
         @foreach (Funcionario f in funcionarios)
@@ -37,15 +44,10 @@
         }
     </ul>*@
     
-    <script>
-        const selecionados = new Array();
-
-        function selecionar(id)
-        {
-            const item = document.getElementById(id);
-            const texto = item.innerHTML;
-
-        }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#lista').multiselect();
+        });
     </script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

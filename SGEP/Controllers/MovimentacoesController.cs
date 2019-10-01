@@ -10,6 +10,8 @@ using SGEP.Models;
 using SGEP.Models.Movimentacoes;
 using SGEP.Banco;
 
+using _a = SGEP.Controllers.AcoesComunsDosControllers;
+
 namespace SGEP.Controllers
 {
     public class MovimentacoesController : Controller
@@ -28,16 +30,86 @@ namespace SGEP.Controllers
         {
             ViewData["materiais"] = await _contexto.Material.ToListAsync();
             ViewData["projetos"] = await _contexto.Projeto.ToListAsync();
+            ViewData["funcionarios"] = await _contexto.Funcionario.ToListAsync();
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult MoverMaterial(MovimentacaoAlocacao movimentacao)
+        public async Task<IActionResult> MoverMaterial(MovimentacaoAlocacao movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
+        public async Task<IActionResult> CompraMaterial()
         {
-            
-            return RedirectToAction(nameof(Index));
+            ViewData["materiais"] = await _contexto.Material.ToListAsync();
+            ViewData["projetos"] = await _contexto.Projeto.ToListAsync();
+
+            return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CompraMaterial(MovimentacaoCompra movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
+
+        public async Task<IActionResult> DetalhesAlocacao(ulong id) => await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoAlocacoes);
+
+        public async Task<IActionResult> DetalhesCompra(ulong id) => await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoCompras);
+
+        public async Task<IActionResult> EditarAlocacao(ulong id)
+        {
+            //Coloquei esses ViewDatas aqui pra caso você precise
+            ViewData["materiais"] = await _contexto.Material.ToListAsync();
+            ViewData["projetos"] = await _contexto.Projeto.ToListAsync();
+            ViewData["funcionarios"] = await _contexto.Funcionario.ToListAsync();
+
+            return await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoAlocacoes);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarAlocacao(MovimentacaoAlocacao movimentacao) => await EditarIMovimentacao(movimentacao, movimentacao.Validar());
+
+        public async Task<IActionResult> EditarCompra(ulong id)
+        {
+            //Coloquei esses ViewDatas aqui pra caso você precise
+            ViewData["materiais"] = await _contexto.Material.ToListAsync();
+            ViewData["projetos"] = await _contexto.Projeto.ToListAsync();
+            ViewData["funcionarios"] = await _contexto.Funcionario.ToListAsync();
+
+            return await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoCompras);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditarCompra(MovimentacaoCompra movimentacao) => await EditarIMovimentacao(movimentacao, movimentacao.Validar());
+
+
+        private async Task<IActionResult> RetorneAViewParaAMovimentacao<T>(ulong id, DbSet<T> tabela) where T : class, IMovimentacao
+        {
+            Task<T> movimentacao = _a.ChecarPeloId(id, tabela);
+            if (await movimentacao == null)
+                return BadRequest();
+            return View(movimentacao);
+        }
+
+        private async Task<IActionResult> CadastrarIMovimentacao<T>(T movimentacao, bool validacao) where T : class, IMovimentacao
+        {
+            if (validacao)
+            {
+                await _a.SalvarModelo<T>(movimentacao as T, _contexto);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movimentacao);
+        }
+
+        private async Task<IActionResult> EditarIMovimentacao<T>(T movimentacao, bool validacao) where T : class, IMovimentacao
+        {
+            if (validacao)
+            {
+                await _a.AtualizarModelo<T>(movimentacao as T, _contexto);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movimentacao);
+        }
+
     }
 }
