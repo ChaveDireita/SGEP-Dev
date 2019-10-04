@@ -50,13 +50,18 @@ namespace SGEP
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            IList<CultureInfo> culturaSuportada = new[] { new CultureInfo("pt-BR") };
+            CultureInfo culturaPT_BR = new CultureInfo("pt-BR");
+            culturaPT_BR.NumberFormat.NumberDecimalSeparator = ".";
+            culturaPT_BR.NumberFormat.CurrencyDecimalSeparator = ".";
+
+            IList<CultureInfo> culturaSuportada = new[] { culturaPT_BR };
             app.UseRequestLocalization(new RequestLocalizationOptions()
             {
-                DefaultRequestCulture = new RequestCulture("pt-BR", "pt-BR"),
+                DefaultRequestCulture = new RequestCulture(culturaPT_BR),
                 SupportedCultures = culturaSuportada,
                 SupportedUICultures = culturaSuportada
             });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
