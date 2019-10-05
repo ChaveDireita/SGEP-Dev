@@ -9,7 +9,9 @@ namespace SGEP.Models
     [Key]
     [Display(Name = "Código do funcionário")]
     public ulong Id { get; set; }
+    [Required(ErrorMessage = "Este campo é obrigatório")]
     public string Nome { get; set; }
+    [Required(ErrorMessage = "Este campo é obrigatório")]
     public string Cargo { get; set; }
 
     public bool Validar() => !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Cargo);

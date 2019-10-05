@@ -52,7 +52,7 @@ namespace SGEP.Controllers
         /// <param name="contexto">Objeto da classe de contexto do banco de dados <seealso cref="ContextoBD"/></param>
         public static async Task AtualizarModelo<T>(T modelo, ContextoBD contexto) where T : class
         {
-            contexto.Add(modelo);
+            contexto.Update(modelo);
             await contexto.SaveChangesAsync();
         }
 

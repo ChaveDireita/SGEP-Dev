@@ -13,7 +13,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control squareborder" readonly />
+                <input asp-for="Id"  class="form-control squareborder" type="hidden" />
+                <input placeholder= '@("FUN-" + Model.Id)'  class="form-control squareborder" readonly />
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>

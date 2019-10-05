@@ -51,6 +51,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form asp-action="AdicionarFuncionario" method="post">
+                <input type="hidden" value="@Model.Id" name="id">
                 <div class="modal-body">
                     <h5>Pesquisa</h5>
                     <input class="form-control squareborder" type="text" placeholder="Escreva o nome funcionário..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
@@ -63,8 +65,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary squareborder" data-dismiss="modal">Voltar</button>
-                    <button type="button" class="btn btn-primary squareborder">Adicionar funcionário(s)</button>
+                    <input type="submit" class="btn btn-primary squareborder" value="Adicionar funcionário(s)"/>
                 </div>
+                </form>
             </div>
         </div>
     </div>

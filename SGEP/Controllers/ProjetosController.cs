@@ -140,14 +140,15 @@ namespace SGEP.Controllers
                                where pp.CodProjeto == id && (pp.CodFuncionario == fid)
                                select fid;
 
-            if (deveSerVazio.Count() > 0)
+            if (deveSerVazio.Count() > 0 || id == null)
                 return BadRequest();
 
-            fids.Select(fid => _context.Add(new ParticipaProjeto() { CodProjeto = id.GetValueOrDefault(), CodFuncionario = fid }));
+            foreach (ulong fid in fids)
+                _context.Add(new ParticipaProjeto() { CodProjeto = id.GetValueOrDefault(), CodFuncionario = fid });
 
-            await _context.SaveChangesAsync();            
+            await _context.SaveChangesAsync();
 
-            return View(nameof(Details), new { id });
+            return RedirectToAction(nameof(Details), new { id = id });
         }
 
         /// <summary>

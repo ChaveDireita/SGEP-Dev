@@ -1,9 +1,7 @@
-﻿@model SGEP.Models.ParticipaProjeto
-
-@{
+﻿@{
     IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>)ViewData["funcionariosFora"];//Faz o cast da lista de funcionários
 } 
-    @*<table class="table table-hover">
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>
@@ -14,22 +12,25 @@
                 </th>
             </tr>
         </thead>
-        <tbody data-style="bg-white rounded-pill" id="lista" multiple="multiple">
-            @foreach (var item in funcionarios)
-            {
-                <tr onclick="" id="item_fun_@item.Id" data-toggle="list">
-                    <td>
-                        FUN-@Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nome)
-                    </td>
-                </tr>
-            }
+        <tbody data-style="bg-white rounded-pill" id="lista" multiple="multiple>
+                @foreach (var item in funcionarios)
+                {
+                    <tr onclick="" id="item_fun_@item.Id">
+                        <td>
+                            FUN-@Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            <input type="checkbox" value="@item.Id" name="fids" />
+                        </td>
+                    </tr>
+                }
         </tbody>
-    </table>*@
+    </table>
     
-    <select id="lista" multiple>
+    <select id="lista-add-funcionario" multiple>
         @foreach (var item in funcionarios)
         {
             <option value="@item.Id">@item.Nome</option>
@@ -43,12 +44,6 @@
             <li>@f.Id   | @f.Nome</li>
         }
     </ul>*@
-    
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#lista').multiselect();
-        });
-    </script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

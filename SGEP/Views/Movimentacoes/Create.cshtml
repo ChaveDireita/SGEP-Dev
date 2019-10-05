@@ -3,14 +3,18 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2 style="text-align:center; padding-top:30px">Adicionar Movimentação</h2>
+<hr />
 
-<div class="row">
-    <span>Placeholder do switch: </span>
-    <input type="checkbox" class="form-check-input" id="switch" onclick="trocarElementos('switch', 'aloca', 'compra')">
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="form-group">
+            <input type="checkbox" class="form-check-input" id="switch" onclick="trocarElementos('switch', 'aloca', 'compra')">
+            <span>Placeholder do switch: </span>
+        </div>
+        <div id="aloca">@await Component.InvokeAsync("CreateAlocacao")</div>
+        <div id="compra" hidden="hidden">@await Component.InvokeAsync("CreateCompra")</div>
+    </div>
 </div>
-
-<div id="aloca">@await Component.InvokeAsync("CreateAlocacao")</div>
-<div id="compra" hidden="hidden">@await Component.InvokeAsync("CreateCompra")</div>
 
 <script type="text/javascript" src="~/js/switch-toogle.js"></script>

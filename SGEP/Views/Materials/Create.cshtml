@@ -62,3 +62,6 @@
 </div>
 <script type="text/javascript" src="~/js/scripts.js"></script>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

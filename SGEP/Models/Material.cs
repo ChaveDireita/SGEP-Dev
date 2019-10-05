@@ -12,9 +12,12 @@ namespace SGEP.Models
         [Display(Name ="Código do material")]
         public ulong Id { get; set; }
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
+        [Required(ErrorMessage = "Este campo é obrigatório")]
         public decimal Quantidade { get; set; } = 0;
         [Display(Name = "Descrição")]
+        [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Descricao { get; set; }
+        [Required(ErrorMessage = "Este campo é obrigatório")]
         public string Unidade { get; set; }
 
         public virtual ICollection<Transacao> Alocacoes { get; set; }
@@ -23,6 +26,7 @@ namespace SGEP.Models
         [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]
         [Column(TypeName = "decimal(27, 2)")]
         [Display(Name = "Preço unitário")]
+        [Required(ErrorMessage = "Este campo é obrigatório")]
         public decimal Preco
         {
             get
