@@ -53,7 +53,7 @@ namespace SGEP.Controllers
         public async Task<IActionResult> DetalhesAlocacao(ulong id) => await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoAlocacoes);
 
         public async Task<IActionResult> DetalhesCompra(ulong id) => await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoCompras);
-
+        public IActionResult Create() => View();
         public async Task<IActionResult> EditarAlocacao(ulong id)
         {
             //Coloquei esses ViewDatas aqui pra caso você precise

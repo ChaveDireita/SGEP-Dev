@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20190918162226_Migracao.Designer.cs" />
     <Compile Remove="Migrations\20190919171032_Migracao.cs" />
     <Compile Remove="Migrations\20190919171032_Migracao.Designer.cs" />
+    <Compile Remove="Migrations\20190927191115_Migracao.cs" />
+    <Compile Remove="Migrations\20190927191115_Migracao.Designer.cs" />
+    <Compile Remove="Migrations\20191004234235_Migracao.cs" />
+    <Compile Remove="Migrations\20191004234235_Migracao.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +20,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Movimentacoes\Partial\" />
   </ItemGroup>
 
 </Project>
