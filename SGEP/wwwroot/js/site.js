@@ -3,9 +3,9 @@
 
 // Write your JavaScript code.
 
-if (document.getElementById("lista-add-funcionario") != null)
-{
-    $(document).ready(function () {
-        $('#lista-add-funcionario').multiselect();
+$(document).ready(function () {
+    $(".formulario").submit(function () {
+        $(".submit-btn").prop("disabled", true);
+        return true;
     });
-}
+});

@@ -8,9 +8,15 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <div class="form-group">
-            <input type="checkbox" class="form-check-input" id="switch" onclick="trocarElementos('switch', 'aloca', 'compra')">
-            <span>Placeholder do switch: </span>
+        <div>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary squareborder active">
+                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Entrada
+                </label>
+                <label class="btn btn-primary squareborder">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> Saída
+                </label>
+            </div>
         </div>
         <div id="aloca">@await Component.InvokeAsync("CreateAlocacao")</div>
         <div id="compra" hidden="hidden">@await Component.InvokeAsync("CreateCompra")</div>

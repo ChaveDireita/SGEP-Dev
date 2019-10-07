@@ -99,7 +99,8 @@ namespace SGEP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(projeto);
+            return Json("Este campo é obrigatório");
+            //return View(projeto);
         }
 
         // POST: Projetos/Finalizar/5

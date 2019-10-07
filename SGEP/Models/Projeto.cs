@@ -18,7 +18,6 @@ namespace SGEP.Models
         [Display(Name = "Data de início")]
         [Required(ErrorMessage = "Este campo é obrigatório")]
         //Remote serve pra direcionar a validação do campo de entrada para um método no servidor. No caso, ele valida as entradas com o método VerficarData no controller Projetos, passando por parâmetro a data inicial, o prazo estimado e a data final
-        [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado) + ", " + nameof(DataFim))]
         public DateTime DataInicio {get; set;}
 
         [DataType(DataType.Date)]
@@ -28,8 +27,8 @@ namespace SGEP.Models
         public DateTime PrazoEstimado {get; set;}
         [DataType(DataType.Date)]
         [Display(Name = "Data de Término")]
-        [Required(ErrorMessage = "Este campo é obrigatório")]
-        [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado) + ", " + nameof(DataFim))]
+        //[Required(ErrorMessage = "Este campo é obrigatório")]
+        [Remote(action: "VerificarData", controller: "Projetos", AdditionalFields = nameof(DataInicio) + ", " + nameof(PrazoEstimado) + ", " + nameof(DataFim) + ", " + nameof(DataFim))]
         public DateTime? DataFim { get; set; } 
         public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
         /// <summary>

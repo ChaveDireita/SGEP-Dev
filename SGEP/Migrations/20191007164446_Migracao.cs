@@ -14,8 +14,8 @@ namespace SGEP.Migrations
                 {
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(nullable: true),
-                    Cargo = table.Column<string>(nullable: true)
+                    Nome = table.Column<string>(nullable: false),
+                    Cargo = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -29,8 +29,8 @@ namespace SGEP.Migrations
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Quantidade = table.Column<decimal>(nullable: false),
-                    Descricao = table.Column<string>(nullable: true),
-                    Unidade = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: false),
+                    Unidade = table.Column<string>(nullable: false),
                     Preco = table.Column<decimal>(type: "decimal(27, 2)", nullable: false)
                 },
                 constraints: table =>
@@ -44,7 +44,7 @@ namespace SGEP.Migrations
                 {
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(nullable: false),
                     DataInicio = table.Column<DateTime>(nullable: false),
                     PrazoEstimado = table.Column<DateTime>(nullable: false),
                     DataFim = table.Column<DateTime>(nullable: true),
