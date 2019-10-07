@@ -17,17 +17,17 @@
 
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control squareborder" placeholder="Nome do projeto..." />
+                <input asp-for="Nome" class="form-control squareborder item-form" placeholder="Nome do projeto..." />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DataInicio" class="control-label"></label>
-                <input asp-for="DataInicio" class="form-control squareborder" placeholder="Data inicial do projeto"/>
+                <input asp-for="DataInicio" class="form-control squareborder item-form" placeholder="Data inicial do projeto"/>
                 <span asp-validation-for="DataInicio" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PrazoEstimado" class="control-label"></label>
-                <input asp-for="PrazoEstimado" class="form-control squareborder" placeholder="Data de finalização do projeto..." />
+                <input asp-for="PrazoEstimado" class="form-control squareborder item-form" placeholder="Data de finalização do projeto..." />
                 <span asp-validation-for="PrazoEstimado" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -41,3 +41,20 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+
+    /*const worker = new Worker('');
+
+    const entradas = document.getElementsByClassName("item-form");
+
+    do
+    {
+
+        var todosPreenchidos = true;
+        for (v in entradas)
+            todosPreenchidos = todosPreenchidos && v.value != '';
+    } while (!todosPreenchidos);
+
+    document.getElementById('cadastrar').disabled = false;*/
+</script>

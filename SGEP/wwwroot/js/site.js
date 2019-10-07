@@ -3,9 +3,9 @@
 
 // Write your JavaScript code.
 
-$(document).ready(function () {
+/*$(document).ready(function () {
     $(".formulario").submit(function () {
         $(".submit-btn").prop("disabled", true);
         return true;
     });
-});
+});*/
