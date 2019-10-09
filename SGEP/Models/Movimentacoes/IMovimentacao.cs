@@ -18,6 +18,6 @@ namespace SGEP.Models.Movimentacoes
         [Display(Name = "Material")]
         Material MaterialMovimentado { get; set; }
         [Display(Name = "Tipo")]
-        string TipoMovimentacao { get; set; }
+        string TipoMovimentacao { get; }
     }
 }

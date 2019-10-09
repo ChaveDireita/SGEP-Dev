@@ -12,15 +12,16 @@ namespace SGEP.Models
     public class MovimentacaoCompra : IMovimentacao, IAutoValida
     {
         [Key]
-        [Display(Name ="Código da movimentação")]
+        [Display(Name = "Código da movimentação")]
         public ulong Id { get; set; }
-        [Display(Name ="Data de realização")]
+        [Display(Name = "Data de realização")]
+        [DataType(DataType.Date)]
         public DateTime Data { get; set; }
         public decimal Quantidade { get; set; }
         [Display(Name ="Material")]
         public Material MaterialMovimentado { get; set; }
         [Display(Name = "Tipo")]
-        public string TipoMovimentacao { get; set; }
+        public string TipoMovimentacao { get => "Compra"; }
 
         public bool Validar() => !(MaterialMovimentado == null || Quantidade < 0);
     }

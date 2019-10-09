@@ -10,7 +10,7 @@
     });
 });*/
 
-$(".formulario").submit(function () {
+$("form").submit(function () {
     if ($(this).valid()) {
         $(this).submit(() => false);
         return true;

@@ -38,7 +38,7 @@ namespace SGEP.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> MoverMaterial(MovimentacaoAlocacao movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
-        public async Task<IActionResult> CompraMaterial()
+        public async Task<IActionResult> ComprarMaterial()
         {
             ViewData["materiais"] = await _contexto.Material.ToListAsync();
             ViewData["projetos"] = await _contexto.Projeto.ToListAsync();
@@ -48,7 +48,7 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CompraMaterial(MovimentacaoCompra movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
+        public async Task<IActionResult> ComprarMaterial(MovimentacaoCompra movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
 
         public async Task<IActionResult> DetalhesAlocacao(ulong id) => await RetorneAViewParaAMovimentacao(id, _contexto.MovimentacaoAlocacoes);
 

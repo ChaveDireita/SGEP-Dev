@@ -31,7 +31,7 @@
                 <span asp-validation-for="PrazoEstimado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" id="cadastrar" value="Adicionar" class="btn btn-success squareborder submit-btn" onclick="blockBtn('cadastrar')"/>
+                <input type="submit" id="cadastrar" value="Adicionar" class="btn btn-success squareborder" />
                 <a asp-action="Index"> <input type="button" value="Cancelar" class="btn btn-danger squareborder" /></a>
             </div>
         </form>
@@ -41,20 +41,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-<script>
-
-    /*const worker = new Worker('');
-
-    const entradas = document.getElementsByClassName("item-form");
-
-    do
-    {
-
-        var todosPreenchidos = true;
-        for (v in entradas)
-            todosPreenchidos = todosPreenchidos && v.value != '';
-    } while (!todosPreenchidos);
-
-    document.getElementById('cadastrar').disabled = false;*/
-</script>

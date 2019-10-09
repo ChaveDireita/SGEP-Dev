@@ -27,11 +27,11 @@ namespace SGEP.Models
         public decimal Quantidade { get; set; }
         //Vai ser limitada a 'retirada' ou 'inserção'(n sei o mlh nome pra isso ainda) de acordo com o valor do booleano
         [Display(Name = "Tipo")]
-        public string TipoMovimentacao { get; set; }
+        public string TipoMovimentacao { get => "Alocação"; }
 
         public bool Validar()
         {
-            return !(Solicitante == null || ProjSolicitante == null || MaterialMovimentado == null);
+            return true;// !(Solicitante == null || ProjSolicitante == null || MaterialMovimentado == null);
         }
     }
 }

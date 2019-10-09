@@ -25,7 +25,7 @@ namespace SGEP.Models
         private decimal _preco;
         [Range(0, double.PositiveInfinity, ErrorMessage = "O preço não pode ser menor que 0.")]
         [Column(TypeName = "decimal(27, 2)")]
-        [Display(Name = "Preço unitário")]
+        [Display(Name = "Preço unitário (R$)")]
         [Required(ErrorMessage = "Este campo é obrigatório")]
         public decimal Preco
         {

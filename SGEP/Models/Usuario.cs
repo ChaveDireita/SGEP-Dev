@@ -11,7 +11,8 @@ namespace SGEP.Models
         public string Nome { get; set; }
         public CargoUsuario Cargo { get; set; }
 
-        private string _telefone
+        private string _telefone;
+        public string Telefone
         {
           get
           {
@@ -20,10 +21,9 @@ namespace SGEP.Models
           set
           {
             if (ValidadorDeEntrada.VerificarTelefone (value))
-              Telefone = value;
+              _telefone = value;
           }
         }
-        public string Telefone { get; set; }
 
         private string _email;
         public string Email
