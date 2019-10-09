@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace SGEP.Models.Movimentacoes
         DateTime Data { get; set; }
         decimal Quantidade { get; set; }
         [Display(Name = "Material")]
-        Material MaterialMovimentado { get; set; }
+        ulong MaterialMovimentado { get; set; }
         [Display(Name = "Tipo")]
         string TipoMovimentacao { get; }
     }

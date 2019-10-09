@@ -34,7 +34,8 @@ namespace SGEP.Banco
 
             builder.Entity<ParticipaProjeto>()
                    .HasKey(ap => new { ap.CodFuncionario, ap.CodProjeto });//Mesma lógica que a de cima, só que pra ParicipaProjeto
-                   
+
+                               
         }
         /// <summary>
         /// As propriedades abaixo são objetos que representam as tabelas do banco.

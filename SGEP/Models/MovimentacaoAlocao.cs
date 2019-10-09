@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using SGEP.Models.Movimentacoes;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGEP.Models
 {
@@ -15,11 +16,14 @@ namespace SGEP.Models
         [Display(Name = "Código da movimentação")]
         public ulong Id { get; set; }
         [Display(Name = "Funcionário solicitante")]
-        public Funcionario Solicitante { get; set; }
+        [ForeignKey(nameof(Funcionario))]
+        public ulong Solicitante { get; set; }//id do funcionário
         [Display(Name = "Projeto associado")]
-        public Projeto ProjSolicitante { get; set; }
+        [ForeignKey(nameof(Projeto))]
+        public ulong ProjSolicitante { get; set; }//id do projeto
         [Display(Name = "Material")]
-        public Material MaterialMovimentado { get; set; }
+        [ForeignKey(nameof(Material))]
+        public ulong MaterialMovimentado { get; set; }//id do Material
         [Display(Name = "Data de realização")]
         public DateTime Data { get; set; }
         [Display(Name = "Quantidade")]

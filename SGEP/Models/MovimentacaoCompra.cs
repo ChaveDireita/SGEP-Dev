@@ -19,7 +19,8 @@ namespace SGEP.Models
         public DateTime Data { get; set; }
         public decimal Quantidade { get; set; }
         [Display(Name ="Material")]
-        public Material MaterialMovimentado { get; set; }
+        [ForeignKey(nameof(Material))]
+        public ulong MaterialMovimentado { get; set; }
         [Display(Name = "Tipo")]
         public string TipoMovimentacao { get => "Compra"; }
 
