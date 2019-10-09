@@ -9,3 +9,14 @@
         return true;
     });
 });*/
+
+$(".formulario").submit(function () {
+    if ($(this).valid()) {
+        $(this).submit(() => false);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+});

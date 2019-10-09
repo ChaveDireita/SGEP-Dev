@@ -1,23 +1,41 @@
 ﻿@model SGEP.Models.MovimentacaoAlocacao
 
+@{
+    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>) ViewData["funcionarios"];
+    IEnumerable<Material> materiais = (IEnumerable<Material>) ViewData["materiais"];
+    IEnumerable<Projeto> projetos = (IEnumerable<Projeto>) ViewData["projetos"];
+ }
+
     <form asp-action="Default">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label class="control-label">Material</label>
             <select id="uniselect" onchange="showunity()" class="selectpicker browser-default form-control mb-4 squareborder">
                 <option value="" disabled selected>Selecionar material...</option>
+                @foreach (Material m in materiais)
+                {
+                    <option value="@m.Id">@m.Descricao</option>
+                }
             </select>
         </div>
         <div class="form-group">
             <label class="control-label">Projeto</label>
             <select id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder">
                 <option value="" disabled selected>Selecionar projeto...</option>
+                @foreach (Projeto p in projetos) 
+                {
+                    <option value="@p.Id">@p.Nome</option>
+                }
             </select>
         </div>
         <div class="form-group">
             <label class="control-label">Funcionário</label>
             <select id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder">
                 <option value="" disabled selected>Selecionar funcionário...</option>
+                @foreach (Funcionario f in funcionarios)
+                {
+                    <option value="@f.Id">@f.Nome</option>
+                }
             </select>
         </div>
             <div class="form-group">
