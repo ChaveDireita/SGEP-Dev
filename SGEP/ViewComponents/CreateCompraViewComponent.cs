@@ -17,7 +17,7 @@ namespace SGEP.ViewComponents
         public CreateCompraViewComponent(ContextoBD contexto) => _contexto = contexto;
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            ViewData["materiais"] = await _contexto.Material.ToArrayAsync();
+            ViewData["materiais"] = await _contexto.Material.ToListAsync();
             return View();
         }
     }
