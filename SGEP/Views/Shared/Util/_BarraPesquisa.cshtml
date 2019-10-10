@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "_BarraPesquisa";
+    string placeholder = (string) ViewData[Chaves.PLACEHOLDER_PESQUISA];
+    placeholder = (placeholder == null) ? "Pesquisar..."
+                                        : placeholder;
+}
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text squareborder">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
+
+        <input class="form-control squareborder" type="text" placeholder="@placeholder" aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+    </div>

@@ -29,21 +29,7 @@
                 }
         </tbody>
     </table>
-    
-    <select id="lista-add-funcionario" multiple>
-        @foreach (var item in funcionarios)
-        {
-            <option value="@item.Id">@item.Nome</option>
-        }
-    </select>
 
-    @*<ul>
-        <li>Código  |   Nome</li>
-        @foreach (Funcionario f in funcionarios)
-        {
-            <li>@f.Id   | @f.Nome</li>
-        }
-    </ul>*@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

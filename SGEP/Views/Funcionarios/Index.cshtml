@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<SGEP.Models.Funcionario>
 @{
     ViewData["Title"] = "Funcionários";
+    ViewData[Chaves.PLACEHOLDER_PESQUISA] = "Pesquisar projeto...";
 }
 <br />
 <h2>Funcionários</h2>
 <br />
 <h5>Pesquisar:</h5>
 <p>
-    <div class="input-group">
+    <!--div class="input-group">
         <div class="input-group-prepend">
             <span class="input-group-text squareborder">
                 <i class="fas fa-search"></i>
@@ -15,7 +16,8 @@
         </div>
 
         <input class="form-control squareborder" type="text" placeholder="Pesquisar projeto..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
-    </div>
+    </div-->
+    @await Html.PartialAsync("Util/_BarraPesquisa", ViewData);
 </p>
 <p>
     <a asp-action="Create"><input type="button" value="Adicionar funcionário" class="btn btn-success squareborder"></a>

@@ -15,7 +15,9 @@ namespace SGEP.Models
         MATERIAIS = "materiais",
         
         BTN_SUBMIT = "btn-submit",
-        BTN_NOT_SUBMIT = "btn-not-submit";
+        BTN_NOT_SUBMIT = "btn-not-submit",
+        
+        PLACEHOLDER_PESQUISA = "placeholder-pesquisa";
 
     }
 }
