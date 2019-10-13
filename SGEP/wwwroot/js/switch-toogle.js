@@ -1,11 +1,8 @@
-﻿function trocarElementos(idSwitch, idEsquerda, idDireita)
+﻿function trocarElementos(idAparece, idEsconde)
 {
-    if ($('#' + idSwitch).prop('checked')) {
-        $('#' + idEsquerda).prop('hidden', true);
-        $('#' + idDireita).prop('hidden', false);
-    } else
-    {
-        $('#' + idEsquerda).prop('hidden', false);
-        $('#' + idDireita).prop('hidden', true);
-    }
+    console.log('aparece: ' + idAparece + " esconde " + idEsconde);
+   // if ($('#' + idRadio).prop('checked')) {
+    $('#' + idAparece).prop('hidden', false);
+    $('#' + idEsconde).prop('hidden', true);
+    //}
 }

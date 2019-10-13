@@ -13,7 +13,7 @@ namespace SGEP.Models
     public string Nome { get; set; }
     [Required(ErrorMessage = "Este campo é obrigatório")]
     public string Cargo { get; set; }
-
+    public bool Demitido { get; set; } = false;
     public bool Validar() => !string.IsNullOrEmpty(Nome) && !string.IsNullOrEmpty(Cargo);
 
     public virtual ICollection<ParticipaProjeto> Participacoes { get; set; }

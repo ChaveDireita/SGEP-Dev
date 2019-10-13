@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGEP.Migrations
 {
-    public partial class Miogracao : Migration
+    public partial class Migracao : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace SGEP.Migrations
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(nullable: false),
-                    Cargo = table.Column<string>(nullable: false)
+                    Cargo = table.Column<string>(nullable: false),
+                    Demitido = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

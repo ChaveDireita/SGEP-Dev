@@ -2,22 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
+    ViewData[Chaves.PLACEHOLDER_PESQUISA] = "Pesquisar...";
 }
 <br />
 <h2>Movimentações</h2>
 <br />
 <h5>Pesquisar:</h5>
-<p>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text squareborder">
-                <i class="fas fa-search"></i>
-            </span>
-        </div>
-
-        <input class="form-control squareborder" type="text" placeholder="Pesquisar movimentação..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
-    </div>
-</p>
+@await Html.PartialAsync(CaminhoPartialView.BARRA_PESQUISA, ViewData)
 <p>
     <a asp-action="Create"><input type="button" value="Adicionar movimentação" class="btn btn-success squareborder"></a>
     <a asp-action="Edit" id="linkEdit"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar movimentação" /></a>
@@ -29,8 +20,8 @@
         function liberarClick(ID) {
             document.getElementById("editButton").disabled = false;
             document.getElementById("detailsButton").disabled = false;
-            $('#linkEdit').prop("href", "/Movimentacoes/Edit/" + ID
-                $('#linkDetails').prop("href", "/Movimentacoes/Details/" + ID);
+            $('#linkEdit').prop("href", "/Movimentacoes/Edit/" + ID);
+            $('#linkDetails').prop("href", "/Movimentacoes/Details/" + ID);
 
         }
     </script>

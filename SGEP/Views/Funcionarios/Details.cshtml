@@ -3,8 +3,11 @@
 @{
     ViewData["Title"] = "Detalhes";
 }
-
-<h1 class="mt-2 mb-5 text-center">Funcionário</h1>
+@*Não sei se aqui é o melhor lugar pra identificar que o funcionário está demitido 
+  (Pra testarem invertam a condição abaixo, pq ainda n dá pra demitir).
+  Só coloquei porque não achei melhor lugar pra colocar, e também porque eu queria muito
+  usar as badges*@
+<h1 class="mt-2 mb-5 text-center">Funcionário @if (Model.Demitido) { <span class="badge badge-danger">DEMITIDO</span> }</h1>
 <div class="shadow-regular mt-5">
     <table class="table table-bordered shadow-regular">
         <tr>
@@ -28,5 +31,5 @@
 <hr />
 <h2>Projetos associados</h2>
 <br />
-@await Html.PartialAsync("Partial/_ListarProj.cshtml", ViewData["projetosDentro"], ViewData)
+@if (!Model.Demitido) { await Html.PartialAsync("Partial/_ListarProj.cshtml", ViewData["projetosDentro"], ViewData); }
 <a id="linkIndex"><input type="button" id="indexButton" class="btn btn-primary squareborder mt-4" value="Verificar projeto" /></a>

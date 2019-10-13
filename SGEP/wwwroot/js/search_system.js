@@ -10,9 +10,11 @@
         a = li[i].getElementsByTagName('td')[1];
         txtValue = a.textContent || a.innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
+            //li[i].style.display = "";
+            li[i].style.height = "auto";
         } else {
-            li[i].style.display = "none";
+            //li[i].style.display = "none";
+            li[i].style.height = "0";
         }
     }
 }

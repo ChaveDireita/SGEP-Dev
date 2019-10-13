@@ -6,3 +6,18 @@
     overflow-y: scroll;
     max-height: 300px;
 }
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+tr
+{
+    width: 100%;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

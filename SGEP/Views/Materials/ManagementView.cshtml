@@ -2,22 +2,13 @@
 @using SGEP.Models;
 @{
     ViewData["Title"] = "Materiais";
+    ViewData[Chaves.PLACEHOLDER_PESQUISA] = "Pesquisar material...";
 }
 <br />
 <h2>Materiais</h2>
 <br />
 <h5>Pesquisar:</h5>
-<p>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text squareborder">
-                <i class="fas fa-search"></i>
-            </span>
-        </div>
-        
-        <input class="form-control squareborder" type="text" placeholder="Pesquisar material..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
-    </div>
-</p>
+@await Html.PartialAsync(CaminhoPartialView.BARRA_PESQUISA, ViewData)
 <p>
     <a asp-action="Create"><input type="button" value="Adicionar material" class="btn btn-success squareborder" data-toggle="modal" data-target="#add-modal"></a>
     <a asp-action="Edit" id="linkEdit"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar material" /></a>
@@ -66,7 +57,7 @@
                 <td>
                     MAT-@Html.DisplayFor(modelItem => item.Id)
                 </td>
-                <td>
+                <td data-toggle="tooltip" data-placement="top" title="@Html.DisplayFor(modelItem => item.Descricao)">
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
                 <td>

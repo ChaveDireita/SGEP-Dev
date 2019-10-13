@@ -17,17 +17,17 @@ namespace SGEP.Controllers
         /// <summary>
         /// É uma referência ao contexto do banco de dados. É obtido através de injeção de dependência no construtor.
         /// </summary>
-        private readonly ContextoBD _context;
-        public FuncionariosController(ContextoBD context) => _context = context;
+        private readonly ContextoBD _contexto;
+        public FuncionariosController(ContextoBD context) => _contexto = context;
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index() => View(await _context.Funcionario.ToListAsync());
+        public async Task<IActionResult> Index() => View(await _contexto.Funcionario.ToListAsync());
 
         // GET: Funcionarios/Details/{id}
         public async Task<IActionResult> Details(ulong? id)//Tô usando var abaixo por preguiça de escrever o tipo completo. Mas o compilador consegue inferir sozinho
         {
-            var projetos = await _context.Projeto.ToListAsync();//Converte o DbSet Projeto do ContextoBD numa lista.
-            var participas = await _context.ParticipaProjeto.ToListAsync();//^^^^
+            var projetos = await _contexto.Projeto.ToListAsync();//Converte o DbSet Projeto do ContextoBD numa lista.
+            var participas = await _contexto.ParticipaProjeto.ToListAsync();//^^^^
 
             var idProjetosDentro = from pp in participas
                                    from p in projetos
@@ -49,7 +49,7 @@ namespace SGEP.Controllers
                                         select p).Distinct();//Equivale a SELECT DISTINCT p FROM projetos AS p, idProjetosFora as pid WHERE p.Id=pid;
 
 
-            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);//Esse método é do AcoesComunsDosControllers.
+            Funcionario funcionario = await _a.ChecarPeloId(id, _contexto.Funcionario);//Esse método é do AcoesComunsDosControllers.
             return (funcionario == null) ? (IActionResult) NotFound() : View(funcionario);//O NotFound é aquele erro 404.
         }
 
@@ -63,7 +63,7 @@ namespace SGEP.Controllers
         {
             if (funcionario.Validar())
             {
-                await _a.SalvarModelo(funcionario, _context);//Esse método é do AcoesComunsDosControllers.
+                await _a.SalvarModelo(funcionario, _contexto);//Esse método é do AcoesComunsDosControllers.
                 return RedirectToAction(nameof(Index));
             }
             return View(funcionario);
@@ -72,7 +72,7 @@ namespace SGEP.Controllers
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
         {
-            Funcionario funcionario = await _a.ChecarPeloId(id, _context.Funcionario);//Esse método é do AcoesComunsDosControllers.
+            Funcionario funcionario = await _a.ChecarPeloId(id, _contexto.Funcionario);//Esse método é do AcoesComunsDosControllers.
 
             return (funcionario == null) ? (IActionResult)NotFound() : View(funcionario);
         }
@@ -89,7 +89,7 @@ namespace SGEP.Controllers
             {
                 try
                 {
-                    await _a.AtualizarModelo(funcionario, _context);
+                    await _a.AtualizarModelo(funcionario, _contexto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -102,6 +102,19 @@ namespace SGEP.Controllers
             }
             return View(funcionario);
         }
-        private bool FuncionarioExists(ulong id) => _context.Funcionario.Any(e => e.Id == id);//Gerado pelo scaffolding. Checar se o funcionário existe no banco.
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Demitir([Bind(nameof(Funcionario.Id) + "," + 
+                                                       nameof(Funcionario.Nome) + "," + 
+                                                       nameof(Funcionario.Cargo) + "," + 
+                                                       nameof (Funcionario.Demitido))] Funcionario funcionario)
+        {
+            funcionario.Demitido = true;
+            await _a.AtualizarModelo(funcionario, _contexto);
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool FuncionarioExists(ulong id) => _contexto.Funcionario.Any(e => e.Id == id);//Gerado pelo scaffolding. Checar se o funcionário existe no banco.
     }
 }

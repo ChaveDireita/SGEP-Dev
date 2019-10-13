@@ -2,19 +2,21 @@
 
 @{
     ViewData["Title"] = "Editar Funcionário";
+    ViewData["classe-coluna"] = (!Model.Demitido) ? "col-md-4"
+                                                  : "col-md-6";
 }
 
 <h2 style="text-align:center; padding-top:30px">Editar Funcionário</h2>
 
 <hr />
 <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="@ViewData["classe-coluna"]">
         <form asp-action="Edit" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id"  class="form-control squareborder" type="hidden" />
-                <input placeholder= '@("FUN-" + Model.Id)'  class="form-control squareborder" readonly />
+                <input asp-for="Id" class="form-control squareborder" type="hidden" />
+                <input placeholder='@("FUN-" + Model.Id)' class="form-control squareborder" readonly />
             </div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -32,6 +34,22 @@
             </div>
         </form>
     </div>
+    @if (!Model.Demitido)
+    {
+        <div class="col-md-4 border-left">
+            <form asp-action="Demitir">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input asp-for="Nome" type="text" hidden />
+                <input asp-for="Cargo" type="text" hidden />
+                <input asp-for="Demitido" type="text" hidden />
+                <div class="form-group">
+                    <p class="text-danger">ATENÇÃO: Esta ação não poderá ser desfeita</p>
+                    <input type="submit" value="Demitir funcionário" class="btn btn-secondary squareborder" />
+                </div>
+            </form>
+        </div>
+    }
 </div>
 
 @section Scripts {

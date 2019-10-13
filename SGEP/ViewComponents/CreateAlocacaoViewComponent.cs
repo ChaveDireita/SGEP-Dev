@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
 using SGEP.Banco;
+using SGEP.Models;
 
 namespace SGEP.ViewComponents
 {
@@ -17,13 +18,13 @@ namespace SGEP.ViewComponents
         public CreateAlocacaoViewComponent(ContextoBD contexto) => _contexto = contexto;
         public async Task<IViewComponentResult> InvokeAsync() 
         {
-            ViewData["funcionarios"] = await _contexto.Funcionario.ToListAsync();
-            ViewData["projetos"] = from p in _contexto.Projeto
-                                   where p.Estado == Models.EstadoProjeto.Andamento
-                                   select p;
-            ViewData["materiais"] = from m in _contexto.Material
-                                    where m.Quantidade > 0
-                                    select m;
+            ViewData[Chaves.FUNCIONARIOS] = await _contexto.Funcionario.ToListAsync();
+            ViewData[Chaves.PROJETOS] = from p in _contexto.Projeto
+                                        where p.Estado == Models.EstadoProjeto.Andamento
+                                        select p;
+            ViewData[Chaves.MATERIAIS] = from m in _contexto.Material
+                                         where m.Quantidade > 0
+                                         select m;
             return View();
         }
     }

@@ -25,6 +25,8 @@ namespace SGEP.Migrations
                     b.Property<string>("Cargo")
                         .IsRequired();
 
+                    b.Property<bool>("Demitido");
+
                     b.Property<string>("Nome")
                         .IsRequired();
 

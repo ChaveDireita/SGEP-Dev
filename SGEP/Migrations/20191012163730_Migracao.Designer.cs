@@ -9,8 +9,8 @@ using SGEP.Banco;
 namespace SGEP.Migrations
 {
     [DbContext(typeof(ContextoBD))]
-    [Migration("20191009194958_Miogracao")]
-    partial class Miogracao
+    [Migration("20191012163730_Migracao")]
+    partial class Migracao
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,6 +26,8 @@ namespace SGEP.Migrations
 
                     b.Property<string>("Cargo")
                         .IsRequired();
+
+                    b.Property<bool>("Demitido");
 
                     b.Property<string>("Nome")
                         .IsRequired();

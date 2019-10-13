@@ -11,15 +11,15 @@
         <div>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-primary squareborder active">
-                    <input type="radio" name="options" id="option1" autocomplete="off" checked> Entrada
+                    <input type="radio" name="options" id="tipo-mov-entrada" autocomplete="off" checked> Entrada
                 </label>
                 <label class="btn btn-primary squareborder">
-                    <input type="radio" name="options" id="option3" autocomplete="off"> Saída
+                    <input type="radio" name="options" id="tipo-mov-saida" autocomplete="off"> Saída
                 </label>
             </div>
         </div>
-        <div id="aloca">@await Component.InvokeAsync("CreateAlocacao")</div>
-        <div id="compra" hidden="hidden">@await Component.InvokeAsync("CreateCompra")</div>
+        <div id="saida" hidden="hidden">@await Component.InvokeAsync("CreateAlocacao")</div>
+        <div id="entrada">@await Component.InvokeAsync("CreateCompra")</div>
     </div>
 </div>
 

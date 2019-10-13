@@ -47,7 +47,7 @@ namespace SGEP.Controllers
                                              select f;//Equivale +- a SELECT f.* FROM funcionarios AS f, idFuncionariosDentro AS fid WHERE f.Id=fid;
             ViewData["funcionariosFora"] = (from f in funcionarios
                                            from fid in idFuncionariosFora
-                                           where f.Id == fid
+                                           where f.Id == fid && !f.Demitido
                                            select f).Distinct();//Equivale a SELECT DISTINCT f FROM funcionarios AS f, idFuncionariosFora as fid WHERE f.Id=fid;
             return (projeto == null) ? (IActionResult)NotFound() : View(projeto);
         }

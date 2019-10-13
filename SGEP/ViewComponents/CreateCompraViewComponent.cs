@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
 using SGEP.Banco;
+using SGEP.Models;
 
 namespace SGEP.ViewComponents
 {
@@ -17,7 +18,7 @@ namespace SGEP.ViewComponents
         public CreateCompraViewComponent(ContextoBD contexto) => _contexto = contexto;
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            ViewData["materiais"] = await _contexto.Material.ToListAsync();
+            ViewData[Chaves.MATERIAIS] = await _contexto.Material.ToListAsync();
             return View();
         }
     }

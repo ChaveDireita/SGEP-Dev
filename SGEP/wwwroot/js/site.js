@@ -20,3 +20,15 @@ $("form").submit(function () {
         return false;
     }
 });
+
+$("input:radio[id^=tipo-mov-]").on('change', (e) => {
+    console.log(e.target.id);
+    if (e.target.id == 'tipo-mov-saida')
+        trocarElementos('saida', 'entrada');
+    else if (e.target.id == 'tipo-mov-entrada')
+        trocarElementos('entrada', 'saida');
+});
+
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip()
+});

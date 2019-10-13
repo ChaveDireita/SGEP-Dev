@@ -7,41 +7,42 @@
 }
 
 <h1 class="mt-2 mb-5 text-center">@Html.DisplayFor(model => model.Nome)</h1>
-    <div class="shadow-regular">
-        <table class="table table-bordered shadow-regular">
-            <tr>
-                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.DataInicio)</td>
-                <td>@Html.DisplayFor(model => model.DataInicio)</td>
-            </tr>
-            <tr>
-                <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Estado)</td>
-                <td>@Html.DisplayFor(model => model.Estado)</td>
-            </tr>
-            <tr>
-                <td class="table-dark alert-link" style="width:250px">
-                    @if (Model.Estado == EstadoProjeto.Finalizado)
-                    {
-                        @Html.DisplayNameFor(model => model.DataFim)
-                    }
-                    else
-                    {
-                        @Html.DisplayNameFor(model => model.PrazoEstimado)
-                    }
-                </td>
-                <td>
-                    @if (Model.Estado == EstadoProjeto.Finalizado)
-                    {
-                        @Html.DisplayFor(model => model.DataFim)    
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(model => model.PrazoEstimado)
-                    }
-                </td>
-            </tr>
-        </table>
-    </div>
-
+<div class="shadow-regular">
+    <table class="table table-bordered shadow-regular">
+        <tr>
+            <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.DataInicio)</td>
+            <td>@Html.DisplayFor(model => model.DataInicio)</td>
+        </tr>
+        <tr>
+            <td class="table-dark alert-link" style="width:250px">@Html.DisplayNameFor(model => model.Estado)</td>
+            <td>@Html.DisplayFor(model => model.Estado)</td>
+        </tr>
+        <tr>
+            <td class="table-dark alert-link" style="width:250px">
+                @if (Model.Estado == EstadoProjeto.Finalizado)
+                {
+                    @Html.DisplayNameFor(model => model.DataFim)
+                }
+                else
+                {
+                    @Html.DisplayNameFor(model => model.PrazoEstimado)
+                }
+            </td>
+            <td>
+                @if (Model.Estado == EstadoProjeto.Finalizado)
+                {
+                    @Html.DisplayFor(model => model.DataFim)
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.PrazoEstimado)
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+@if (Model.Estado == EstadoProjeto.Andamento)
+{
     <div class="modal fade" id="addfuncionario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog squareborder" role="document">
             <div class="modal-content squareborder">
@@ -52,34 +53,46 @@
                     </button>
                 </div>
                 <form asp-action="AdicionarFuncionario" method="post">
-                <input type="hidden" value="@Model.Id" name="id">
-                <div class="modal-body">
-                    <h5>Pesquisa</h5>
-                    <input class="form-control squareborder" type="text" placeholder="Escreva o nome funcionário..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
-                    <hr />
-                    <div class="scrollbar" id="modal_add">
-                        @*O primeiro argumento é o caminho da ViewParcial, o segundo é o model e o terceiro o ViewData.
-                         *No caso, o modelo é null porque a view parcial é de cadastro e a ViewData é o mesmo que desta view*@
-                        @await Html.PartialAsync("Partial/_AddFuncionario.cshtml", null, ViewData)
+                    <input type="hidden" value="@Model.Id" name="id">
+                    <div class="modal-body">
+                        <h5>Pesquisa</h5>
+                        <input class="form-control squareborder" type="text" placeholder="Escreva o nome funcionário..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+                        <hr />
+                        <div class="scrollbar" id="modal_add">
+                            @*O primeiro argumento é o caminho da ViewParcial, o segundo é o model e o terceiro o ViewData.
+                                *No caso, o modelo é null porque a view parcial é de cadastro e a ViewData é o mesmo que desta view*@
+                            @await Html.PartialAsync("Partial/_AddFuncionario.cshtml", null, ViewData)
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary squareborder" data-dismiss="modal">Voltar</button>
-                    <input type="submit" class="btn btn-primary squareborder" value="Adicionar funcionário(s)"/>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary squareborder" data-dismiss="modal">Voltar</button>
+                        <input type="submit" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" />
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 
-<div>
-    <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
-    <a id="linkFuncionario"><input type="button" data-toggle="modal" data-target="#addfuncionario" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
-    <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
-</div>
-@*O primeiro argumento é o caminho da ViewParcial, o segundo é o model e o terceiro o ViewData.
- *No caso, o modelo é uma IEnumerable de funcionários que foram selecionados no controller e a ViewData é o mesmo que desta view*@
-@await Html.PartialAsync("Partial/_ListFun.cshtml", ViewData["funcionariosDentro"], ViewData)
+    <div>
+        <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
+        <a id="linkFuncionario"><input type="button" data-toggle="modal" data-target="#addfuncionario" id="funcsButton" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" /></a>
+        <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
+    </div>
+    @*O primeiro argumento é o caminho da ViewParcial, o segundo é o model e o terceiro o ViewData.
+        *No caso, o modelo é uma IEnumerable de funcionários que foram selecionados no controller e a ViewData é o mesmo que desta view*@
+    @await Html.PartialAsync("Partial/_ListFun.cshtml", ViewData["funcionariosDentro"], ViewData)
 
-<script type="text/javascript" src="~/js/scripts.js"></script>
+    <script type="text/javascript" src="~/js/scripts.js"></script>
+}
+else
+{
+    <div>
+        <a asp-action="Edit" id="linkEdit" asp-route-id="@Model.Id"><input type="button" id="editButton" class="btn btn-secondary squareborder" value="Editar projeto" /></a>
+        <a asp-action="Index" id="linkIndex"><input type="button" id="indexButton" class="btn btn-danger squareborder" value="Voltar" /></a>
+    </div>
+
+    @await Html.PartialAsync("Partial/_ListFun.cshtml", ViewData["funcionariosDentro"], ViewData)
+
+    <script type="text/javascript" src="~/js/scripts.js"></script>
+}
 

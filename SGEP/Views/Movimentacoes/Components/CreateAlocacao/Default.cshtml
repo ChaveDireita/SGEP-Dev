@@ -1,42 +1,45 @@
 ﻿@model SGEP.Models.MovimentacaoAlocacao
 
 @{
-    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>) ViewData["funcionarios"];
-    IEnumerable<Material> materiais = (IEnumerable<Material>) ViewData["materiais"];
-    IEnumerable<Projeto> projetos = (IEnumerable<Projeto>) ViewData["projetos"];
+    IEnumerable<Funcionario> funcionarios = (IEnumerable<Funcionario>) ViewData[Chaves.FUNCIONARIOS];
+    IEnumerable<Material> materiais = (IEnumerable<Material>) ViewData[Chaves.MATERIAIS];
+    IEnumerable<Projeto> projetos = (IEnumerable<Projeto>) ViewData[Chaves.PROJETOS];
  }
 
     <form asp-action="MoverMaterial" asp-controller="Movimentacoes">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label class="control-label">Material</label>
-            <select id="uniselect" onchange="showunity()" class="selectpicker browser-default form-control mb-4 squareborder">
+            <select asp-for="MaterialMovimentado" class="selectpicker browser-default form-control mb-4 squareborder">
                 <option value="" disabled selected>Selecionar material...</option>
                 @foreach (Material m in materiais)
                 {
                     <option value="@m.Id">@m.Descricao</option>
                 }
             </select>
+            <span asp-validation-for="MaterialMovimentado" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label class="control-label">Projeto</label>
-            <select id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder">
+            <select asp-for="ProjSolicitante" class="browser-default form-control mb-4 squareborder">
                 <option value="" disabled selected>Selecionar projeto...</option>
                 @foreach (Projeto p in projetos) 
                 {
                     <option value="@p.Id">@p.Nome</option>
                 }
             </select>
+            <span asp-validation-for="ProjSolicitante" class="text-danger"></span>
         </div>
         <div class="form-group">
             <label class="control-label">Funcionário</label>
-            <select id="uniselect" onchange="showunity()" class="browser-default form-control mb-4 squareborder" >
+            <select asp-for="Solicitante" class="browser-default form-control mb-4 squareborder" >
                 <option value="" disabled selected>Selecionar funcionário...</option>
                 @foreach (Funcionario f in funcionarios)
                 {
                     <option value="@f.Id">@f.Nome</option>
                 }
             </select>
+            <span asp-validation-for="Solicitante" class="text-danger"></span>
         </div>
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>
@@ -52,11 +55,8 @@
                 <input type="submit" value="Adicionar" class="btn btn-success squareborder" />
                 <a asp-action="Index"><input type="button" value="Cancelar" class="btn btn-danger squareborder" /></a>
             </div-->
-            @await Html.PartialAsync("Util/_BotoesFormulario")
+            @await Html.PartialAsync(CaminhoPartialView.BOTOES_FORMULARIO)
     </form>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 <script>
 var today = new Date();
 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
