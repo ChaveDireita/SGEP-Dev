@@ -29,7 +29,7 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> MoverMaterial(MovimentacaoAlocacao movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
+        public async Task<IActionResult> MoverMaterial(MovimentacaoSaida movimentacao) => await CadastrarIMovimentacao(movimentacao, movimentacao.Validar());
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,7 +51,7 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditAlocacao(MovimentacaoAlocacao movimentacao) => await EditarIMovimentacao(movimentacao, movimentacao.Validar());
+        public async Task<IActionResult> EditAlocacao(MovimentacaoSaida movimentacao) => await EditarIMovimentacao(movimentacao, movimentacao.Validar());
 
         public async Task<IActionResult> EditCompra(ulong id)
         {

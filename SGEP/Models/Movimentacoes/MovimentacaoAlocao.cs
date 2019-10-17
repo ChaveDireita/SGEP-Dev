@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGEP.Models
 {
-    public class MovimentacaoAlocacao : IAutoValida, IMovimentacao
+    public class MovimentacaoSaida : IAutoValida, IMovimentacao
     {
         [Key]
         [Display(Name = "Código da movimentação")]

@@ -24,10 +24,32 @@ namespace SGEP.Models
         public DateTime Data { get; set; }
 
 
-
+        private decimal _preco;
         [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
         [Required(ErrorMessage = "Este campo é obrigatório")]
-        public decimal Quantidade { get; set; }
+        [Display(Name = "Preço")]
+        public decimal Preco
+        {
+            get => _preco;
+            set
+            {
+                if (value > 0)
+                    _preco = value;
+            }
+        }
+
+        private decimal _quantidade;
+        [Range(0, double.PositiveInfinity, ErrorMessage = "A quantidade não pode ser menor que 0.")]
+        [Required(ErrorMessage = "Este campo é obrigatório")]
+        public decimal Quantidade
+        {
+            get => _quantidade;
+            set
+            {
+                if (value > 0)
+                    _quantidade = value;
+            }
+        }
 
 
 
@@ -38,11 +60,12 @@ namespace SGEP.Models
 
 
 
+
         [Display(Name = "Tipo")]
-        public string TipoMovimentacao { get => "Compra"; }
+        public string TipoMovimentacao { get => "Entrada"; }
 
 
         
-        public bool Validar() => !(MaterialMovimentado == null || Quantidade < 0);
+        public bool Validar() => Quantidade > 0;
     }
 }
