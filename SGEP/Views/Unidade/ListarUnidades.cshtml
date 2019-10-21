@@ -1,8 +1,0 @@
-﻿@model IEnumerable<SGEP.Models.Unidades>
-
-@foreach (var item in Model)
-{
-    <option value="@Html.DisplayFor(_ => item.Unidade)">
-        @Html.DisplayFor(_ => item.Nome) (@Html.DisplayFor(_ => item.Unidade))
-    </option>
-}
