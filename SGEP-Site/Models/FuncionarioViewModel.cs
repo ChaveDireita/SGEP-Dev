@@ -10,6 +10,6 @@ namespace SGEP_Site.Models
         public ulong Id { get; set; }
         public string Nome { get; set; }
         public string Cargo { get; set; }
-        public bool Demitido { get; set; }
+        public string Demitido { get; set; }
     }
 }

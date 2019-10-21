@@ -112,7 +112,7 @@ namespace SGEP_Banco.Models
             Nome = projetoDB.Nome,
             DataInicio = projetoDB.DataInicio,
             PrazoEstimado = projetoDB.PrazoEstimado,
-            DataFim = null,
+            DataFim = projetoFinalizadoDB.DataFim,
             Estado = EstadoProjeto.Finalizado
         } : DBToDomain(projetoDB);
 

@@ -26,13 +26,16 @@
 </head>
 <body>
     <header class="pos-sticky">
-        <nav class="navbar navbar-expand-md">
-            <a asp-action="Index" asp-controller="Inicio" class="nav-a"><h1 style="color:white; padding-left:20px">SGEP</h1></a>
-            <div class="">
-                <ul class="navbar-nav mr-auto">
+        <nav class="navbar navbar-expand-lg">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Alterna navegação">
+                <span class="" style="background-color: white;">OK</span>
+            </button>
+            <a asp-action="Index" asp-controller="Inicio" class="nav-a navbar-brand"><h1 style="color:white; padding-left:20px">SGEP</h1></a>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 collapse navbar-collapse">
                     <li><a class="nav-li-a nav-link" asp-action="Index" asp-controller="Projetos" style="color:white">Projetos</a></li>
                     <li><a class="nav-li-a nav-link" asp-action="Index" asp-controller="Materials" style="color:white">Materiais</a></li>
-                    <li><a class="nav-li-a nav-link" asp-action="Index" asp-controller="Funcionarios" style="color:white">Funcionários</a></li>
+                    <li><a class="nav-li-a nav-link" asp-action="Index" asp-controller="Funcionario" style="color:white">Funcionários</a></li>
                     <li><a class="nav-li-a nav-link" asp-action="Index" asp-controller="Movimentacoes" style="color:white">Transações</a></li>
                     <li><a class="nav-li-a nav-link" asp-action="Index" asp-controller="Histogramas" style="color:white">Histogramas</a></li>
                 </ul>

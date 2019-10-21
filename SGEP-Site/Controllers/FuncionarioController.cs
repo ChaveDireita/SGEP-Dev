@@ -11,13 +11,13 @@ using SGEP_Site.Models;
 
 namespace SGEP.Controllers
 {
-    public class FuncionariosController : Controller
+    public class FuncionarioController : Controller
     {
         /// <summary>
         /// É uma referência ao contexto do banco de dados. É obtido através de injeção de dependência no construtor.
         /// </summary>
         private readonly IFuncionarioRepository _repo;
-        public FuncionariosController(IFuncionarioRepository repo) => _repo = repo;
+        public FuncionarioController(IFuncionarioRepository repo) => _repo = repo;
 
         // GET: Funcionarios
         public async Task<IActionResult> Index() => View(((List<Funcionario>)await _repo.GetAllAsync()).ConvertAll(f => ModelConverter.DomainToView(f)));

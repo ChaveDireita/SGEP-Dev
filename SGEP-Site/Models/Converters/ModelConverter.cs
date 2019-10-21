@@ -1,8 +1,4 @@
 ﻿using SGEP_Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SGEP_Site.Models
 {
@@ -15,7 +11,7 @@ namespace SGEP_Site.Models
             Id = funcionario.Id,
             Nome = funcionario.Nome,
             Cargo = funcionario.Cargo,
-            Demitido = funcionario.Demitido
+            Demitido = (funcionario.Demitido) ? "Sim" : "Não"
         };
 
         public static MaterialViewModel DomainToView(Material material) => new MaterialViewModel()
@@ -41,24 +37,26 @@ namespace SGEP_Site.Models
         /// 
         /// </summary>
         /// <param name="entrada"></param>
-        /// <param name="inutil">Necessário para diferenciar a assinatura deste método da criação do tipo especializado da movimentação</param>
+        /// <param name="action">Necessário para diferenciar a assinatura deste método da criação do tipo especializado da movimentação</param>
         /// <returns></returns>
-        public static MovimentacaoViewModel DomainToView(Entrada entrada, bool inutil) => new MovimentacaoViewModel()
+        public static MovimentacaoViewModel DomainToView(Entrada entrada, string action) => new MovimentacaoViewModel()
         {
             Id = entrada.Id,
             Data = entrada.Data,
             MaterialMovimentado = entrada.MaterialMovimentado.Descricao,
             Quantidade = entrada.Quantidade,
-            TipoMovimentacao = entrada.TipoMovimentacao
+            TipoMovimentacao = entrada.TipoMovimentacao,
+            Action = action
         };
 
-        public static MovimentacaoViewModel DomainToView(Saida s, bool inutil) => new MovimentacaoViewModel()
+        public static MovimentacaoViewModel DomainToView(Saida saida, string action) => new MovimentacaoViewModel()
         {
-            Id = s.Id,
-            Data = s.Data,
-            MaterialMovimentado = s.MaterialMovimentado.Descricao,
-            Quantidade = s.Quantidade,
-            TipoMovimentacao = s.TipoMovimentacao
+            Id = saida.Id,
+            Data = saida.Data,
+            MaterialMovimentado = saida.MaterialMovimentado.Descricao,
+            Quantidade = saida.Quantidade,
+            TipoMovimentacao = saida.TipoMovimentacao,
+            Action = action
         };
 
 
@@ -72,7 +70,7 @@ namespace SGEP_Site.Models
             Id = funcionario.Id,
             Nome = funcionario.Nome,
             Cargo = funcionario.Cargo,
-            Demitido = funcionario.Demitido
+            Demitido = (funcionario.Demitido.ToLower() == "sim") ? true : false
         };
 
         public static Material ViewToDomain(MaterialViewModel m) => new Material()

@@ -9,5 +9,6 @@ namespace SGEP_Site.Models
         public decimal Quantidade { get; set; }
         public string MaterialMovimentado { get; set; }
         public string TipoMovimentacao { get; set; }
+        public string Action { get; set; }
     }
 }
