@@ -1,0 +1,42 @@
+﻿body {
+    margin-top: 0%;
+    margin-left: 0%;
+}
+
+nav {
+    background-color: #000059;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 0px 16px #171717;
+}
+
+.nav-a:hover {
+    text-decoration: none;
+}
+
+.nav-li-a 
+{
+    transition: text-shadow 0.25s;
+}
+
+.nav-li-a:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px #FFFFFFD0;
+}
+
+ul li {
+    font-size: 22px;
+    padding: 10px;
+}
+
+nav div {
+    padding-left: 10px;
+}
+
+.pos-sticky 
+{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}

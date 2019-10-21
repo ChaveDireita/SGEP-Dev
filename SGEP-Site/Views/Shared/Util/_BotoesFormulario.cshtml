@@ -1,0 +1,18 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{ 
+    string btnSubmit = (string) ViewData[Chaves.BTN_SUBMIT];
+    btnSubmit = (btnSubmit == null) ? "Adicionar"
+                                    : btnSubmit;
+
+    string btnNotSubmit = (string) ViewData[Chaves.BTN_NOT_SUBMIT];
+    btnNotSubmit = (btnNotSubmit == null) ? "Cancelar"
+                                          : btnNotSubmit;
+}
+
+    <div class="form-group">
+        <input type="submit" value="@btnSubmit" class="btn btn-success squareborder" />
+        <a asp-action="Index"> <input type="button" value="@btnNotSubmit" class="btn btn-danger squareborder" /></a>
+    </div>
