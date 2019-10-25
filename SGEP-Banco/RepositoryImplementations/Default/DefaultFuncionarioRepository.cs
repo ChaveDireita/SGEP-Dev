@@ -57,5 +57,10 @@ namespace SGEP_Banco.RepositoryImplementations
             _db.Update(ModelConverter.DomainToDB(funcionario));
             await _db.SaveChangesAsync();
         }
+
+        public void Demitir (ulong id)
+        {
+            _db.Funcionario.FromSql ($"UPDATE demitido=true FROM funcionario WHERE id={id}");
+        }
     }
 }

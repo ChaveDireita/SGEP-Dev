@@ -60,8 +60,9 @@ namespace SGEP.Controllers
         // POST: Funcionarios/Create
         [HttpPost]//É pra dizer que é um método post (Coisa do protocolo HTTP. É um verbo que permite alterar os dados do servidor).
         [ValidateAntiForgeryToken]//Isso é pra impedir que indivíduos mal intencionados ataquem o servidor fazendo cadastros em excesso.
-        public async Task<IActionResult> Create([Bind("Id,Nome,Cargo")] Funcionario funcionario)
+        public async Task<IActionResult> Create([Bind("Nome,Cargo")] FuncionarioCreateViewModel funcionarioView)
         {
+            Funcionario funcionario = ModelConverter.ViewToDomain (funcionarioView);
             if (funcionario.Validar())
             {
                 await _repo.AddAsync(funcionario);//Esse método é do AcoesComunsDosControllers.
@@ -107,10 +108,7 @@ namespace SGEP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Demitir([Bind(nameof(Funcionario.Id) + "," + 
-                                                       nameof(Funcionario.Nome) + "," + 
-                                                       nameof(Funcionario.Cargo) + "," + 
-                                                       nameof (Funcionario.Demitido))] Funcionario funcionario)
+        public async Task<IActionResult> Demitir(ulong? id)
         {
             funcionario.Demitido = true;
             await _repo.UpdateAsync(funcionario);

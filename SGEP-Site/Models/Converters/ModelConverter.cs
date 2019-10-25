@@ -73,6 +73,13 @@ namespace SGEP_Site.Models
             Demitido = (funcionario.Demitido.ToLower() == "sim") ? true : false
         };
 
+        public static Funcionario ViewToDomain(FuncionarioCreateViewModel funcionario) => new Funcionario()
+        {
+            Nome = funcionario.Nome,
+            Cargo = funcionario.Cargo,
+            Demitido = false
+        };
+
         public static Material ViewToDomain(MaterialViewModel m) => new Material()
         {
             Id = m.Id,

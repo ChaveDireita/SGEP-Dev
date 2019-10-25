@@ -24,8 +24,7 @@ namespace Tests
         [Test]
         public void Test1()
         {
-            DefaultContext context = _provider.GetService<DefaultContext>();
-
+            DefaultContext context = _provider.GetService<DefaultContext> ();
             
 
             Assert.Pass();
