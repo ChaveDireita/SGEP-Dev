@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SGEP_MODEL.Validacao
+namespace SGEP_Model.Validacao
 {
     public interface IAutoValida
     {

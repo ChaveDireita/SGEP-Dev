@@ -1,4 +1,4 @@
-﻿using SGEP_MODEL.Validacao;
+﻿using SGEP_Model.Validacao;
 using System;
 
 namespace SGEP_Model.Models

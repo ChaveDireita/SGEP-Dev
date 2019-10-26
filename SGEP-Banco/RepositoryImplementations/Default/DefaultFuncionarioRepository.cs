@@ -60,7 +60,34 @@ namespace SGEP_Banco.RepositoryImplementations
 
         public void Demitir (ulong id)
         {
-            _db.Funcionario.FromSql ($"UPDATE demitido=true FROM funcionario WHERE id={id}");
+            FuncionarioDBModel funcionarioDB = _db.Funcionario.Find (id);
+            funcionarioDB.Demitido = true;
+            _db.Funcionario.Update (funcionarioDB);
+            _db.SaveChanges ();
+        }
+
+        public IEnumerable<Projeto> GetProjetos (ulong id)
+        {
+            IEnumerable<FuncionarioProjetoDBModel> funcionarioProjetoDBs = _db.FuncionarioProjeto.ToList ()
+                                                                                                 .Where (fp => fp.FuncionarioId == id);
+            IList<Projeto> projetos = new List<Projeto> ();
+            foreach (FuncionarioProjetoDBModel fpdb in funcionarioProjetoDBs) 
+                projetos.Add (ModelConverter.DBToDomain (_db.Projeto.Find (fpdb.ProjetoId)));
+
+            return projetos;
+        }
+
+        public async Task<IEnumerable<Projeto>> GetProjetosAsync (ulong id)
+        {
+            IEnumerable<FuncionarioProjetoDBModel> funcionarioProjetoDBs = (await _db.FuncionarioProjeto.ToListAsync ())
+                                                                                                        .Where (fp => fp.FuncionarioId == id);
+
+            IList<Projeto> projetos = new List<Projeto> ();
+
+            foreach (FuncionarioProjetoDBModel fpdb in funcionarioProjetoDBs)
+                projetos.Add (ModelConverter.DBToDomain (await _db.Projeto.FindAsync (fpdb.ProjetoId)));
+
+            return projetos;
         }
     }
 }

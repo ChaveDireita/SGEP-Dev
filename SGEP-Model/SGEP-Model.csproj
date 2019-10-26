@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <RootNamespace>SGEP_MODEL</RootNamespace>
+    <RootNamespace>SGEP_Model</RootNamespace>
   </PropertyGroup>
 
 </Project>

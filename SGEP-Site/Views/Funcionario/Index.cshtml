@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FuncionarioViewModel>
+﻿@model IEnumerable<FuncionarioIndexViewModel>
 @{
     ViewData["Title"] = "Funcionários";
     ViewData[Chaves.PLACEHOLDER_PESQUISA] = "Pesquisar funcionário...";
@@ -19,8 +19,8 @@
     function liberarClick(ID) {
         document.getElementById("editButton").disabled = false;
         document.getElementById("detailsButton").disabled = false;
-        $('#linkEdit').prop("href", "/Funcionarios/Edit/" + ID);
-        $('#linkDetails').prop("href", "/Funcionarios/Details/" + ID);
+        $('#linkEdit').prop("href", "/Funcionario/Edit/" + ID);
+        $('#linkDetails').prop("href", "/Funcionario/Details/" + ID);
 
     }
 </script>

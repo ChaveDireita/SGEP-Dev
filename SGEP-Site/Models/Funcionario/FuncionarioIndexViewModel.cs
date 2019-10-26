@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGEP_Site.Models
 {
-    public struct FuncionarioViewModel
+    public struct FuncionarioIndexViewModel
     {
         [Display(Name = "Código")]
         public ulong Id { get; set; }

@@ -20,38 +20,15 @@ namespace SGEP.Controllers
         public FuncionarioController(IFuncionarioRepository repo) => _repo = repo;
 
         // GET: Funcionarios
-        public async Task<IActionResult> Index() => View(((List<Funcionario>)await _repo.GetAllAsync()).ConvertAll(f => ModelConverter.DomainToView(f)));
+        public async Task<IActionResult> Index() => View(((List<Funcionario>)await _repo.GetAllAsync()).ConvertAll(f => ModelConverterFuncionario.DomainToIndexView(f)));
 
         // GET: Funcionarios/Details/{id}
-        public async Task<IActionResult> Details(ulong? id)//Tô usando var abaixo por preguiça de escrever o tipo completo. Mas o compilador consegue inferir sozinho
+        public async Task<IActionResult> Details(ulong? id)
         {
-            //Removido temporariamente
-            /*var projetos = await _repo.Projeto.ToListAsync();//Converte o DbSet Projeto do ContextoBD numa lista.
-            var participas = await _repo.ParticipaProjeto.ToListAsync();//^^^^
-
-            var idProjetosDentro = from pp in participas
-                                   from p in projetos
-                                   where p.Id == pp.CodProjeto && pp.CodFuncionario == id
-                                   select pp.CodProjeto;//Equivale a SELECT pp.CodProjeto FROM participas AS pp, projetos AS p WHERE p.Id=pp.CodProjeto && pp.CodFuncionario=id;(este último id é o parâmetro passado na função)
-
-            var idProjetosFora = from p in projetos
-                                 where !idProjetosDentro.Contains(p.Id)
-                                 select p.Id;//Equivale a SELECT DISTINCT p.Id FROM idProjetosDentro AS pp, projetos AS p WHERE p.Id!=pp.CodProjeto;
-
-            ViewData["projetos"] = projetos;
-            ViewData["projetosDentro"] = from p in projetos
-                                         from pid in idProjetosDentro
-                                         where p.Id == pid
-                                         select p;//Equivale a SELECT p FROM projetos AS p, idProjetosDentro as pid WHERE p.Id=pid;
-            ViewData["projetosFora"] = (from p in projetos
-                                        from pid in idProjetosFora
-                                        where p.Id == pid
-                                        select p).Distinct();//Equivale a SELECT DISTINCT p FROM projetos AS p, idProjetosFora as pid WHERE p.Id=pid;*/
-
             if (id == null)
                 return BadRequest();
-            Funcionario funcionario = _repo.Get(id.GetValueOrDefault());//Esse método é do AcoesComunsDosControllers.
-            return (funcionario == null) ? (IActionResult) NotFound() : View(ModelConverter.DomainToView(funcionario));//O NotFound é aquele erro 404.
+            FuncionarioDetailsViewModel funcionario = _repo.Get(id.GetValueOrDefault());//Esse método é do AcoesComunsDosControllers.
+            return (funcionario == null) ? (IActionResult) NotFound() : View(ModelConverterFuncionario.DomainToIndexView(funcionario));//O NotFound é aquele erro 404.
         }
 
         // GET: Funcionarios/Create
@@ -62,22 +39,24 @@ namespace SGEP.Controllers
         [ValidateAntiForgeryToken]//Isso é pra impedir que indivíduos mal intencionados ataquem o servidor fazendo cadastros em excesso.
         public async Task<IActionResult> Create([Bind("Nome,Cargo")] FuncionarioCreateViewModel funcionarioView)
         {
-            Funcionario funcionario = ModelConverter.ViewToDomain (funcionarioView);
+            Funcionario funcionario = ModelConverterFuncionario.ViewToDomain (funcionarioView);
             if (funcionario.Validar())
             {
                 await _repo.AddAsync(funcionario);//Esse método é do AcoesComunsDosControllers.
                 return RedirectToAction(nameof(Index));
             }
-            return View(ModelConverter.DomainToView(funcionario));
+            return View(ModelConverterFuncionario.DomainToIndexView(funcionario));
         }
 
         // GET: Funcionarios/Edit/5
         public async Task<IActionResult> Edit(ulong? id)
         {
+            if (id == null)
+                return NotFound ();
 
-            Funcionario funcionario = _repo.Get(id.Value);//Esse método é do AcoesComunsDosControllers.
+            Funcionario funcionario = _repo.Get(id.GetValueOrDefault());
 
-            return (funcionario == null || id == null) ? (IActionResult)NotFound() : View(ModelConverter.DomainToView(funcionario));
+            return View(ModelConverterFuncionario.DomainToEditView(funcionario));
         }
 
         // POST: Funcionarios/Edit/{id}
@@ -103,15 +82,17 @@ namespace SGEP.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(ModelConverter.DomainToView(funcionario));
+            return View(ModelConverterFuncionario.DomainToIndexView(funcionario));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Demitir(ulong? id)
+        public async Task<IActionResult> Demitir (ulong? Id)
         {
-            funcionario.Demitido = true;
-            await _repo.UpdateAsync(funcionario);
+            if (null == Id)
+                return BadRequest ();
+            _repo.Demitir (Id.GetValueOrDefault ());
+
             return RedirectToAction(nameof(Index));
         }
 
