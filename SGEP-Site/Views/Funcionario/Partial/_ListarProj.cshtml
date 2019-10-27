@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProjetoIndexViewModel>
+
+@if  (Model != null && Model.Count() > 0) 
+{
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PrazoEstimado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DataFim)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Estado)
+                    </th>
+                    <!--th></th-->
+                </tr>
+            </thead>
+            <tbody class="scrollbar">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataInicio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrazoEstimado)
+                        </td>
+                        <td>
+                            @if (item.DataFim != null)
+                            {
+                                Html.DisplayFor (modelItem => item.DataFim);
+                            }
+                            else 
+                            {
+                                <span>--</span>
+                            } 
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </td>
+                        <!--td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td-->
+                    </tr>
+                }
+            </tbody>
+        </table>
+}
+else 
+{
+    <p class="display-4 text-center">Não está em nenhum projeto</p>
+}

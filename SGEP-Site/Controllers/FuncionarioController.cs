@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 using SGEP_Model.Models;
 using SGEP_Services.Repository;
 using SGEP_Site.Models;
@@ -27,16 +27,20 @@ namespace SGEP.Controllers
         {
             if (id == null)
                 return BadRequest();
-            FuncionarioDetailsViewModel funcionario = _repo.Get(id.GetValueOrDefault());//Esse método é do AcoesComunsDosControllers.
-            return (funcionario == null) ? (IActionResult) NotFound() : View(ModelConverterFuncionario.DomainToIndexView(funcionario));//O NotFound é aquele erro 404.
+
+            IEnumerable<ProjetoIndexViewModel> projetos = ((List<Projeto>) await _repo.GetProjetosAsync (id.GetValueOrDefault()))
+                                                                                      .ConvertAll(p => ModelConverterProjeto.DomainToIndexView(p));
+
+            FuncionarioDetailsViewModel funcionario = ModelConverterFuncionario.DomainToDetailsView (_repo.Get(id.GetValueOrDefault()), projetos);
+            return (funcionario == null) ? (IActionResult) NotFound() : View(funcionario);
         }
 
         // GET: Funcionarios/Create
         public IActionResult Create() => View();
 
         // POST: Funcionarios/Create
-        [HttpPost]//É pra dizer que é um método post (Coisa do protocolo HTTP. É um verbo que permite alterar os dados do servidor).
-        [ValidateAntiForgeryToken]//Isso é pra impedir que indivíduos mal intencionados ataquem o servidor fazendo cadastros em excesso.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Nome,Cargo")] FuncionarioCreateViewModel funcionarioView)
         {
             Funcionario funcionario = ModelConverterFuncionario.ViewToDomain (funcionarioView);

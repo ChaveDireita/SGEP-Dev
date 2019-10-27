@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SGEP_Site.View.Constantes
+namespace SGEP_Site.Views.Constantes
 {
     public sealed class Chaves
     {

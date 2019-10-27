@@ -53,4 +53,11 @@
     <ProjectReference Include="..\SGEP-Services\SGEP-Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\Material\" />
+    <Folder Include="Models\Movimentação\Entrada\" />
+    <Folder Include="Models\Movimentação\Saída\" />
+    <Folder Include="Views\Material\" />
+  </ItemGroup>
+
 </Project>

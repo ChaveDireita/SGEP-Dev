@@ -1,11 +1,10 @@
-﻿using System;
+﻿using SGEP_Model.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SGEP_Site.Models
 {
-    public struct ProjetoViewModel
+    public class ProjetoDetailsViewModel
     {
         public ulong Id { get; set; }
         public string Nome { get; set; }
@@ -13,5 +12,6 @@ namespace SGEP_Site.Models
         public DateTime PrazoEstimado { get; set; }
         public DateTime? DataFim { get; set; }
         public string Estado { get; set; }
+        public IEnumerable<Funcionario> Funcionarios { get; set; }
     }
 }

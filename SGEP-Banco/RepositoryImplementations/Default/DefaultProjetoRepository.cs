@@ -53,39 +53,50 @@ namespace SGEP_Banco.RepositoryImplementations
 
         public IEnumerable<Projeto> GetAll() 
         {
-            IEnumerable<Projeto> projetos = (from p in _db.Projeto
-                                             from pf in _db.ProjetoFinalizado
-                                             where p.Id == pf.Id
-                                             select ModelConverter.DBToDomain(p, pf))
-                                             .Distinct();
-            IEnumerable<Projeto> aux = (from p in _db.Projeto
-                                        from pf in _db.ProjetoFinalizado
-                                        where p.Id != pf.Id
-                                        select ModelConverter.DBToDomain(p, pf))
-                                        .Distinct();
+            List<ProjetoDBModel> projetoDBs = _db.Projeto.ToList ();
+            List<ProjetoFinalizadoDBModel> projetoFinalizadoDBs = _db.ProjetoFinalizado.ToList ();
+
+            List<Projeto> projetos = (from p in projetoDBs
+                                      from pf in projetoFinalizadoDBs
+                                      where p.Id == pf.Id
+                                      select ModelConverter.DBToDomain (p, pf))
+                                     .Distinct ()
+                                     .ToList ();
+
+            projetoDBs = projetoDBs.Where (pdb => !projetoFinalizadoDBs.ConvertAll (pf => pf.Id)
+                                                                       .Contains (pdb.Id))
+                                                                       .ToList ();
+
+            IEnumerable<Projeto> aux = from p in projetoDBs
+                                       select ModelConverter.DBToDomain (p);
+
             foreach (Projeto p in aux)
-                projetos.Append(p);
+                projetos.Add (p);
 
             return projetos;
         }
 
         public async Task<IEnumerable<Projeto>> GetAllAsync()
         {
-            IList<ProjetoDBModel> projetoDBs = await _db.Projeto.ToListAsync();
-            IList<ProjetoFinalizadoDBModel> projetoFinalizadoDBs = await _db.ProjetoFinalizado.ToListAsync();
+            List<ProjetoDBModel> projetoDBs = await _db.Projeto.ToListAsync();
+            List<ProjetoFinalizadoDBModel> projetoFinalizadoDBs = await _db.ProjetoFinalizado.ToListAsync();
 
-            IEnumerable<Projeto> projetos = (from p in projetoDBs
-                                             from pf in projetoFinalizadoDBs
-                                             where p.Id == pf.Id
-                                             select ModelConverter.DBToDomain(p, pf))
-                                             .Distinct();
-            IEnumerable<Projeto> aux = (from p in projetoDBs
-                                        from pf in projetoFinalizadoDBs
-                                        where p.Id != pf.Id
-                                        select ModelConverter.DBToDomain(p, pf))
-                                        .Distinct();
+            List<Projeto> projetos = (from p in projetoDBs
+                                     from pf in projetoFinalizadoDBs
+                                     where p.Id == pf.Id
+                                     select ModelConverter.DBToDomain(p, pf))
+                                     .Distinct()
+                                     .ToList();
+
+            projetoDBs = projetoDBs.Where (pdb => !projetoFinalizadoDBs.ConvertAll (pf => pf.Id)
+                                                                       .Contains (pdb.Id))
+                                                                       .ToList();
+
+            IEnumerable<Projeto> aux = from p in projetoDBs
+                                       select ModelConverter.DBToDomain (p);
+
             foreach (Projeto p in aux)
-                projetos.Append(p);
+                projetos.Add(p);
 
             return projetos;
         }

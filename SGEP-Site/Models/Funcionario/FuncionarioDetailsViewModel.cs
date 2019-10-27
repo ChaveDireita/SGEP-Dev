@@ -13,6 +13,6 @@ namespace SGEP_Site.Models
         public string Nome { get; set; }
         public string Cargo { get; set; }
         public string Demitido { get; set; }
-        public IEnumerable<ProjetoViewModel> Projetos { get; set; }
+        public IEnumerable<ProjetoIndexViewModel> Projetos { get; set; }
     }
 }

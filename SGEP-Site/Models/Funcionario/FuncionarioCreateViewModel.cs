@@ -13,6 +13,7 @@ namespace SGEP_Site.Models
         [Display(Name = "Nome completo")]
         public string Nome { get; set; }
         [Required(ErrorMessage = "Este campo é obrigatório.")]
+        [RegularExpression("[A-z ÁÁÄáàäÉÈËéèëÍÌÏíìïÓÒÖóòöÚÙÜúùü]+", ErrorMessage = "Apenas letras são permitidas no campo \"Cargo.\"")]
         public string Cargo { get; set; }
     }
 }

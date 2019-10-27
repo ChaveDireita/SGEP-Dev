@@ -24,7 +24,7 @@ namespace SGEP_Site.Models
             Demitido = (funcionario.Demitido) ? "Demitido" : ""
         };
 
-        public static FuncionarioDetailsViewModel DomainToDetailsView (Funcionario funcionario, IEnumerable<ProjetoViewModel> projetos) => new FuncionarioDetailsViewModel ()
+        public static FuncionarioDetailsViewModel DomainToDetailsView (Funcionario funcionario, IEnumerable<ProjetoIndexViewModel> projetos) => new FuncionarioDetailsViewModel ()
         {
             Id = funcionario.Id,
             Nome = funcionario.Nome,
