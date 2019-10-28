@@ -149,8 +149,11 @@ namespace SGEP_Banco.RepositoryImplementations
         {
             (ProjetoDBModel pDB, ProjetoFinalizadoDBModel pfDB) projetoDB = ModelConverter.DomainToDB(projeto);
             _db.Update(projetoDB.pDB);
-            if (projetoDB.pfDB != null)
-                _db.Update(projetoDB.pfDB);
+            if (projetoDB.pfDB != null) 
+                if (_db.ProjetoFinalizado.Any(pf => pf.Id == projetoDB.pfDB.Id))
+                    _db.Update (projetoDB.pfDB);
+                else
+                    _db.Add (projetoDB.pfDB);
             _db.SaveChanges();
         }
 
@@ -159,7 +162,10 @@ namespace SGEP_Banco.RepositoryImplementations
             (ProjetoDBModel pDB, ProjetoFinalizadoDBModel pfDB) projetoDB = ModelConverter.DomainToDB(projeto);
             _db.Update(projetoDB.pDB);
             if (projetoDB.pfDB != null)
-                _db.Update(projetoDB.pfDB);
+                if (await _db.ProjetoFinalizado.AnyAsync (pf => pf.Id == projetoDB.pfDB.Id))
+                    _db.Update (projetoDB.pfDB);
+                else
+                    await _db.AddAsync (projetoDB.pfDB);
             await _db.SaveChangesAsync();
         }
     }

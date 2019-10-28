@@ -106,7 +106,7 @@ namespace SGEP_Banco.Models
         };
 
         public static Projeto DBToDomain(ProjetoDBModel projetoDB, ProjetoFinalizadoDBModel projetoFinalizadoDB) 
-            => (projetoDB.Id == projetoFinalizadoDB.Id) ? new Projeto()
+            => (projetoFinalizadoDB != null && projetoDB.Id == projetoFinalizadoDB.Id) ? new Projeto()
         {
             Id = projetoDB.Id,
             Nome = projetoDB.Nome,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace SGEP_Site.Models
 {
     public struct ProjetoIndexViewModel
     {
+        [Display (Name = "Código")]
         public ulong Id { get; set; }
         public string Nome { get; set; }
         public DateTime DataInicio { get; set; }

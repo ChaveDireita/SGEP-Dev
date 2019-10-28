@@ -14,6 +14,14 @@ namespace SGEP_Model.Models
         public DateTime? DataFim { get; set; }
         public EstadoProjeto Estado { get; set; } = EstadoProjeto.Andamento;
 
+        public void Finalizar (DateTime fim) 
+        {
+            if (fim < DataInicio)
+                throw new ArgumentOutOfRangeException ("A data final deve ser maior que a data inicial");
+            DataFim = fim;
+            Estado = EstadoProjeto.Finalizado;
+        }
+
         public bool Validar() => true;
     }
 }

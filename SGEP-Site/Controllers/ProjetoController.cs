@@ -72,24 +72,27 @@ namespace SGEP_Site.Controllers
         {
             if (null == id)
                 return BadRequest ();
+
             Projeto projeto = _repo.Get (id.GetValueOrDefault());
-            return (projeto == null) ? (IActionResult) NotFound () : View (projeto);
+            
+            return (projeto == null) ? (IActionResult) NotFound () : View (ModelConverterProjeto.DomainToEditView (projeto));
         }
 
         // POST: Projetos/Edit/5
-        /*[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit (ulong id, [Bind ("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Edit (ulong id, [Bind ("Id,Nome,DataInicio,PrazoEstimado,DataFim")] ProjetoEditViewModel projetoView)
         {
-            if (id != projeto.Id)
+            if (id != projetoView.Id)
                 return NotFound ();
 
+            Projeto projeto = ModelConverterProjeto.EditViewToDomain (projetoView);
 
             if (projeto.Validar ())
             {
                 try
                 {
-                    await _a.AtualizarModelo (projeto, _repo);//Esse método é do AcoesComunsDosControllers.
+                    await _repo.UpdateAsync (projeto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -100,15 +103,17 @@ namespace SGEP_Site.Controllers
                 }
                 return RedirectToAction (nameof (Index));
             }
-            return Json ("Este campo é obrigatório");
-            //return View(projeto);
-        }*/
+            
+            return View(projeto);
+        }
 
         // POST: Projetos/Finalizar/5
-        /*[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Finalizar (ulong id, [Bind ("Id,Nome,DataInicio,PrazoEstimado,DataFim,Estado")] Projeto projeto)
+        public async Task<IActionResult> Finalizar (ulong id, [Bind ("Id,Nome,DataInicio,PrazoEstimado,DataFim")] ProjetoEditViewModel projetoView)
         {
+            Projeto projeto = ModelConverterProjeto.EditViewToDomain (projetoView);
+
             projeto.Estado = EstadoProjeto.Finalizado;
 
             if (id != projeto.Id)
@@ -118,7 +123,7 @@ namespace SGEP_Site.Controllers
             {
                 try
                 {
-                    await _a.AtualizarModelo (projeto, _repo);//Esse método é do AcoesComunsDosControllers.
+                    await _repo.UpdateAsync (projeto);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -131,8 +136,8 @@ namespace SGEP_Site.Controllers
             }
             projeto.Estado = EstadoProjeto.Andamento;
             return RedirectToAction (nameof (Edit), new { id = projeto.Id });
-        }*/
-        //private bool ProjetoExists (ulong id) => _repo.Projeto.Any (e => e.Id == id);
+        }
+        private bool ProjetoExists (ulong id) => _repo.Get (id) != null;
         /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdicionarFuncionario (ulong? id, ulong[] fids)
@@ -151,7 +156,7 @@ namespace SGEP_Site.Controllers
             await _repo.SaveChangesAsync ();
 
             return RedirectToAction (nameof (Details), new { id = id });
-        }
+        }*/
 
         /// <summary>
         /// Valida as datas do projeto. Obviamente, a data inicial deve ser maior que a final real ou estimada.
@@ -168,6 +173,6 @@ namespace SGEP_Site.Controllers
             if (dataFim != null && dataInicio > dataFim)
                 return Json ("A data final não pode ser menor que a data inicial");
             return Json (true);
-        }*/
+        }
     }
 }

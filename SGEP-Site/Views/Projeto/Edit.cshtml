@@ -1,0 +1,102 @@
+﻿@model ProjetoEditViewModel
+
+@{
+    bool andamento = Model.DataFim == null;
+
+    ViewData["Title"] = "Editar Projeto";
+    ViewData["classe-coluna"] = (andamento) ? "col-md-4"
+                                            : "col-md-6";
+}
+
+<h2 style="text-align:center; padding-top:30px">Editar Projeto</h2>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="@ViewData["classe-coluna"]">
+        <form asp-action="Edit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control squareborder" />
+                <span asp-validation-for="Nome" class="text-danger squareborder"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataInicio" class="control-label"></label>
+                <input asp-for="DataInicio" id="data_init" class="form-control squareborder" />
+                <span asp-validation-for="DataInicio" class="text-danger"></span>
+            </div>
+            @if (andamento)
+            {
+                <div class="form-group">
+                    <label asp-for="PrazoEstimado" class="control-label"></label>
+                    <input asp-for="PrazoEstimado" id="data_est" class="form-control squareborder" />
+                    <span asp-validation-for="PrazoEstimado" class="text-danger"></span>
+                </div>
+            }
+            else
+            {
+                <input asp-for="PrazoEstimado" class="form-control squareborder" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="DataFim" class="control-label"></label>
+                    <input asp-for="DataFim" id="data_est" class="form-control squareborder" />
+                    <span asp-validation-for="DataFim" class="text-danger"></span>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-success squareborder" />
+                <a asp-action="Index"><input type="button" value="Voltar" class="btn btn-danger squareborder" /></a>
+            </div>
+        </form>
+        <script type="text/javascript">
+            const init = document.getElementById("data_init");
+            const est = document.getElementById("data_est");
+
+            est.min = init.value;
+            init.max = est.value;
+
+            init.addEventListener('input', setMin);
+            est.addEventListener('input', setMax);
+
+            function setMin()
+            {
+                est.min = init.value;
+            }
+
+            function setMax()
+            {
+                init.max = est.value;
+            }
+
+        </script>
+    </div>
+    @if (andamento)
+    {
+        <div class="col-md-4 border-left">
+            <form asp-action="Finalizar">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input asp-for="Nome" type="text" hidden />
+                <input asp-for="DataInicio" type="date" hidden />
+                <input asp-for="PrazoEstimado" type="hidden" />
+                <div class="form-group">
+                    <label asp-for="DataFim" class="control-label"></label>
+                    <input asp-for="DataFim" id="data_end" class="form-control squareborder" />
+                    <span asp-validation-for="DataFim" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Finalizar Projeto" class="btn btn-secondary squareborder" />
+                </div>
+            </form>
+            <script type="text/javascript">
+                const end = document.getElementById('data_end');
+
+                end.min = init.value;
+            </script>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync ("_ValidationScriptsPartial");}
+}

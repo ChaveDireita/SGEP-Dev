@@ -34,19 +34,19 @@
             <script type="text/javascript">
 
                 const init = document.getElementById("data_init");
-                const end = document.getElementById("data_est");
+                const est = document.getElementById("data_est");
 
                 init.addEventListener('input', setMin);
-                end.addEventListener('input', setMax);
+                est.addEventListener('input', setMax);
 
                 function setMin()
                 {
-                    end.min = init.value;
+                    est.min = init.value;
                 }
 
                 function setMax()
                 {
-                    init.max = end.value;
+                    init.max = est.value;
                 }
 
             </script>

@@ -19,6 +19,18 @@ namespace SGEP_Site.Models
             Estado = (projeto.DataFim == null) ? nameof(EstadoProjeto.Andamento)
                                                : nameof(EstadoProjeto.Finalizado)
         };
+        
+        public static ProjetoEditViewModel DomainToEditView (Projeto projeto) => new ProjetoEditViewModel ()
+        {
+            Id = projeto.Id,
+            Nome = projeto.Nome,
+            DataInicio = projeto.DataInicio,
+            PrazoEstimado = projeto.PrazoEstimado,
+            DataFim = projeto.DataFim
+        };
+
+
+
 
         public static Projeto CreateViewToDomain (ProjetoCreateViewModel projeto) => new Projeto ()
         {
@@ -31,6 +43,7 @@ namespace SGEP_Site.Models
 
         public static Projeto EditViewToDomain (ProjetoEditViewModel projeto) => new Projeto ()
         {
+            Id = projeto.Id,
             Nome = projeto.Nome,
             DataInicio = projeto.DataInicio,
             PrazoEstimado = projeto.PrazoEstimado,

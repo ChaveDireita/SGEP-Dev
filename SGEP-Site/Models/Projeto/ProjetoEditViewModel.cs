@@ -8,6 +8,8 @@ namespace SGEP_Site.Models
 {
     public class ProjetoEditViewModel
     {
+        [Display (Name = "Código")]
+        public ulong Id { get; set; }
         public string Nome { get; set; }
         [Display (Name = "Data de início")]
         [DataType (DataType.Date)]
@@ -15,7 +17,7 @@ namespace SGEP_Site.Models
         [Display (Name = "Prazo estimado")]
         [DataType (DataType.Date)]
         public DateTime PrazoEstimado { get; set; }
-        [Display (Name = "Data final")]
+        [Display (Name = "Data de término")]
         [DataType (DataType.Date)]
         public DateTime? DataFim { get; set; }
     }
