@@ -17,7 +17,10 @@ namespace SGEP_Site.Views.Constantes
         BTN_SUBMIT = "btn-submit",
         BTN_NOT_SUBMIT = "btn-not-submit",
         
-        PLACEHOLDER_PESQUISA = "placeholder-pesquisa";
+        PLACEHOLDER_PESQUISA = "placeholder-pesquisa",
+
+        PROJETO_ID = "projeto-id"
+        ;
 
     }
 }

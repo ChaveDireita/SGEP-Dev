@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SGEP_Model.Models.Funcionario>
+
+<form asp-action="AdicionarFuncionario" method="post">
+    <input type="hidden" value="@ViewData[Chaves.PROJETO_ID]" name="id">
+    <div class="modal-body">
+        <h5>Pesquisa</h5>
+        <input class="form-control squareborder" type="text" placeholder="Escreva o nome funcionário..." aria-label="Search" id="searchbar" onkeyup="SearchSystem(document.getElementById('searchbar'))">
+        <hr />
+        <div class="scrollbar" id="modal_add">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Código do funcionário
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-style="bg-white rounded-pill" id="lista">
+                    @foreach (var item in Model)
+                    {
+                        <tr onclick="" id="item_fun_@item.Id">
+                            <td>
+                                FUN-@Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nome)
+                            </td>
+                            <td>
+                                <input type="checkbox" value="@item.Id" name="fids" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary squareborder" data-dismiss="modal">Voltar</button>
+        <input type="submit" class="btn btn-primary squareborder" value="Adicionar funcionário(s)" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync ("_ValidationScriptsPartial");}
+}

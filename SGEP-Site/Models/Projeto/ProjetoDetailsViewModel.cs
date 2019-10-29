@@ -17,6 +17,8 @@ namespace SGEP_Site.Models
         [Display (Name = "Data de término")]
         public DateTime? DataFim { get; set; }
         public string Estado { get; set; }
+        public bool Andamento { get; set; }
         public IEnumerable<Funcionario> Funcionarios { get; set; }
+        public IEnumerable<Funcionario> FuncionariosFora { get; set; }
     }
 }

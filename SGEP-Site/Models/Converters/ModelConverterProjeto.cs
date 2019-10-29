@@ -29,6 +29,19 @@ namespace SGEP_Site.Models
             DataFim = projeto.DataFim
         };
 
+        public static ProjetoDetailsViewModel DomainToDetailsView (Projeto projeto, IEnumerable<Funcionario> funcionarios, IEnumerable<Funcionario> funcionariosFora) => new ProjetoDetailsViewModel ()
+        {
+            Id = projeto.Id,
+            Nome = projeto.Nome,
+            DataInicio = projeto.DataInicio,
+            PrazoEstimado = projeto.PrazoEstimado,
+            DataFim = projeto.DataFim,
+            Estado = (projeto.DataFim == null) ? nameof (EstadoProjeto.Andamento)
+                                               : nameof (EstadoProjeto.Finalizado),
+            Andamento = projeto.DataFim == null,
+            Funcionarios = funcionarios,
+            FuncionariosFora = funcionariosFora
+        };
 
 
 

@@ -21,34 +21,24 @@ namespace SGEP_Site.Controllers
                                                                        .ToList ()
                                                                        .ConvertAll (p => ModelConverterProjeto.DomainToIndexView (p)));
         
-
         // GET: Projetos/Details/{id}
-        /*public async Task<IActionResult> Details (ulong? id)
+        public async Task<IActionResult> Details (ulong? id)
         {
-            Projeto projeto = await _a.ChecarPeloId (id, _repo.Projeto);
-            var funcionarios = await _repo.Funcionario.ToListAsync ();
-            var participas = await _repo.ParticipaProjeto.ToListAsync ();
+            if (id == null)
+                return NotFound ();
 
-            var idFuncionariosDentro = from pp in participas
-                                       from f in funcionarios
-                                       where f.Id == pp.CodFuncionario && pp.CodProjeto == id
-                                       select pp.CodFuncionario;//Equivale a SELECT pp.CodFuncionario FROM participas AS pp, funcionarios AS f WHERE f.Id=pp.CodFuncionario && pp.CodProjeto=id;(este último id é o parâmetro passado na função)
+            Projeto projeto = _repo.Get (id.GetValueOrDefault());
 
-            var idFuncionariosFora = from f in funcionarios
-                                     where !idFuncionariosDentro.Contains (f.Id)
-                                     select f.Id;//Equivale a SELECT DISTINCT f.Id FROM idFuncionariosDentro AS ff, funcionarios AS f WHERE f.Id!=ff.CodFuncionario;
+            if (projeto == null)
+                return NotFound ();
 
-            ViewData["funcionarios"] = funcionarios;
-            ViewData["funcionariosDentro"] = from f in funcionarios
-                                             from fid in idFuncionariosDentro
-                                             where f.Id == fid
-                                             select f;//Equivale +- a SELECT f.* FROM funcionarios AS f, idFuncionariosDentro AS fid WHERE f.Id=fid;
-            ViewData["funcionariosFora"] = (from f in funcionarios
-                                            from fid in idFuncionariosFora
-                                            where f.Id == fid && !f.Demitido
-                                            select f).Distinct ();//Equivale a SELECT DISTINCT f FROM funcionarios AS f, idFuncionariosFora as fid WHERE f.Id=fid;
-            return (projeto == null) ? (IActionResult) NotFound () : View (projeto);
-        }*/
+            IEnumerable<Funcionario> funcionarios = await _repo.GetFuncionariosAsync (id.GetValueOrDefault ());
+            IEnumerable<Funcionario> funcionariosFora = await _repo.GetFuncionariosForaAsync (id.GetValueOrDefault ());
+
+            ProjetoDetailsViewModel projetoDetails = ModelConverterProjeto.DomainToDetailsView (projeto, funcionarios, funcionariosFora);
+            
+            return View (projetoDetails);
+        }
 
         // GET: Projetos/Create
         public IActionResult Create () => View ();
@@ -142,10 +132,12 @@ namespace SGEP_Site.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdicionarFuncionario (ulong? id, ulong[] fids)
         {
-            var deveSerVazio = from pp in _repo.ParticipaProjeto
-                               from fid in fids
-                               where pp.CodProjeto == id && (pp.CodFuncionario == fid)
-                               select fid;
+            if (id == null)
+                return BadRequest ();
+
+            IEnumerable<Funcionario> funcionariosDentro = await _repo.GetFuncionariosAsync (id.GetValueOrDefault ());
+
+            //fids = fids.Where(fid => funcionariosDentro)
 
             if (deveSerVazio.Count () > 0 || id == null)
                 return BadRequest ();
