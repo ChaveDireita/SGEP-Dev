@@ -125,7 +125,9 @@ namespace SGEP_Banco.RepositoryImplementations
 
         public IEnumerable<Funcionario> GetFuncionariosFora(ulong id)
         {
-            IEnumerable<FuncionarioProjetoDBModel> funcionarioProjetos = _db.FuncionarioProjeto.ToList().Where(fp => fp.ProjetoId != id);
+            IEnumerable<FuncionarioProjetoDBModel> funcionarioProjetos = _db.FuncionarioProjeto.ToList()
+                                                                                               .Except(_db.FuncionarioProjeto.ToList ()
+                                                                                                                             .Where(fp => fp.ProjetoId == id));
             IList<Funcionario> funcionarios = new List<Funcionario>();
 
             foreach (FuncionarioProjetoDBModel fp in funcionarioProjetos)
@@ -136,8 +138,14 @@ namespace SGEP_Banco.RepositoryImplementations
 
         public async Task<IEnumerable<Funcionario>> GetFuncionariosForaAsync(ulong id)
         {
-            IEnumerable<FuncionarioProjetoDBModel> funcionarioProjetos = (await _db.FuncionarioProjeto.ToListAsync()).Where(fp => fp.ProjetoId != id);
-            IList<Funcionario> funcionarios = new List<Funcionario>();
+            IEnumerable<FuncionarioProjetoDBModel> funcionarioProjetos = (await _db.FuncionarioProjeto.ToListAsync ())
+                                                                                                      .Where (fp => fp.ProjetoId == id);
+
+            IEnumerable<FuncionarioDBModel> funcionarioDBs = (await _db.Funcionario.ToListAsync ())
+                                                                                   .Except (funcionarioProjetos.ToList ()
+                                                                                                               .ConvertAll (fp => _db.Funcionario.Find (fp.FuncionarioId)));
+
+            IList<Funcionario> funcionarios = new List<Funcionario> ();
 
             foreach (FuncionarioProjetoDBModel fp in funcionarioProjetos)
                 funcionarios.Add(ModelConverter.DBToDomain(await _db.Funcionario.FindAsync(fp.FuncionarioId)));

@@ -11,6 +11,5 @@ namespace SGEP_Banco.Models
         public ulong FuncionarioId { get; set; }
         [ForeignKey(nameof(ProjetoDBModel))]
         public ulong ProjetoId { get; set; }
-
     }
 }

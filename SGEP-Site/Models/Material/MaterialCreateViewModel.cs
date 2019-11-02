@@ -8,10 +8,10 @@ namespace SGEP_Site.Models
 {
     public class MaterialCreateViewModel
     {
-        [RegularExpression("[0-9]+", ErrorMessage = "Apenas números são permitidos nesse campo \"Id.\"")]
-        [Required(ErrorMessage = "Esse campo é obrigatório")]
-        [Display(Name = "Código")]
-        public ulong Id { get; set; }
+//        [RegularExpression("[0-9]+", ErrorMessage = "Apenas números são permitidos nesse campo \"Id.\"")]
+//        [Required(ErrorMessage = "Esse campo é obrigatório")]
+//        [Display(Name = "Código")]
+//        public ulong Id { get; set; }
         [RegularExpression("[0-9]+", ErrorMessage = "Apenas números são permitidos nesse campo \"Quantidade.\"")]
         [Required(ErrorMessage = "Esse campo é obrigatório")]
         public decimal Quantidade { get; set; }
