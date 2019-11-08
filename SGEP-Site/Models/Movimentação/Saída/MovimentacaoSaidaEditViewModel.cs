@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace SGEP_Site.Models
+{
+    public class MovimentacaoSaidaEditViewModel
+    {
+        //Precisa Movimentação
+        //Precisa ID de IEstoque(Origem)
+        //Precisa ID de funcionarios(se precisar)
+        //Precisa ID de IEstoque(Destino)
+    }
+}
