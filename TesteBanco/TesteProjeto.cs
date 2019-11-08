@@ -1,0 +1,7 @@
+﻿namespace TesteBanco
+{
+    class TesteProjeto
+    {
+
+    }
+}

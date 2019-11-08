@@ -10,6 +10,7 @@ namespace SGEP_Site.Models
     {
         [Display (Name = "Código")]
         public ulong Id { get; set; }
+        //[RegularExpression ("^-\\s", ErrorMessage = "Insira um nome para o projeto")]
         public string Nome { get; set; }
         [Display (Name = "Data de início")]
         [DataType (DataType.Date)]

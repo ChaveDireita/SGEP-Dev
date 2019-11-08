@@ -7,6 +7,6 @@ namespace SGEP_Services.Repository
 {
     public interface IEntradaRepository : IRepository<Entrada>
     {
-
+        
     }
 }

@@ -33,7 +33,7 @@ namespace SGEP_Site.Controllers
                 return NotFound ();
 
             IEnumerable<Funcionario> funcionarios = await _repo.GetFuncionariosAsync (id.GetValueOrDefault ());
-            IEnumerable<Funcionario> funcionariosFora = await _repo.GetFuncionariosForaAsync (id.GetValueOrDefault ());
+            IEnumerable<Funcionario> funcionariosFora = _repo.GetFuncionariosFora (id.GetValueOrDefault ());
 
             ProjetoDetailsViewModel projetoDetails = ModelConverterProjeto.DomainToDetailsView (projeto, funcionarios, funcionariosFora);
             
@@ -128,27 +128,29 @@ namespace SGEP_Site.Controllers
             return RedirectToAction (nameof (Edit), new { id = projeto.Id });
         }
         private bool ProjetoExists (ulong id) => _repo.Get (id) != null;
-        /*[HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AdicionarFuncionario (ulong? id, ulong[] fids)
+        public async Task<IActionResult> AdicionarFuncionario (ulong? id, ulong[] fids, [FromServices] IFuncionarioRepository funcionarioRepo)
         {
             if (id == null)
                 return BadRequest ();
 
             IEnumerable<Funcionario> funcionariosDentro = await _repo.GetFuncionariosAsync (id.GetValueOrDefault ());
 
-            //fids = fids.Where(fid => funcionariosDentro)
+            var deveSerVazio = funcionariosDentro.ToList ()
+                                                 .ConvertAll (fd => fd.Id)
+                                                 .Intersect (fids);
 
-            if (deveSerVazio.Count () > 0 || id == null)
+            if (deveSerVazio.Count () > 0)
                 return BadRequest ();
 
-            foreach (ulong fid in fids)
-                _repo.Add (new ParticipaProjeto () { CodProjeto = id.GetValueOrDefault (), CodFuncionario = fid });
+            Projeto p = _repo.Get (id.GetValueOrDefault());
 
-            await _repo.SaveChangesAsync ();
+            foreach (ulong fid in fids)
+                await _repo.AddFuncionarioAsync (p, funcionarioRepo.Get(fid));
 
             return RedirectToAction (nameof (Details), new { id = id });
-        }*/
+        }
 
         /// <summary>
         /// Valida as datas do projeto. Obviamente, a data inicial deve ser maior que a final real ou estimada.

@@ -9,8 +9,8 @@ using SGEP_Banco.Contexts;
 namespace SGEP_Banco.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20191102014843_Migracao")]
-    partial class Migracao
+    [Migration("20191108162621_TesteProjeto")]
+    partial class TesteProjeto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
