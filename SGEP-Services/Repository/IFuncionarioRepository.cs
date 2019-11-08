@@ -12,6 +12,6 @@ namespace SGEP_Services.Repository
         Task<IEnumerable<Funcionario>> GetContratadosAsync();
         IEnumerable<Projeto> GetProjetos(ulong id);
         Task<IEnumerable<Projeto>> GetProjetosAsync(ulong id);
-        void Demitir (ulong id);
+        void Deletar (ulong id);
     }
 }

@@ -58,11 +58,11 @@ namespace SGEP_Banco.RepositoryImplementations
             await _db.SaveChangesAsync();
         }
 
-        public void Demitir (ulong id)
+        public void Deletar (ulong id)
         {
             FuncionarioDBModel funcionarioDB = _db.Funcionario.Find (id);
-            funcionarioDB.Demitido = true;
-            _db.Funcionario.Update (funcionarioDB);
+            funcionarioDB.Deletado = true;
+            _db.Funcionario.Remove (funcionarioDB);
             _db.SaveChanges ();
         }
 

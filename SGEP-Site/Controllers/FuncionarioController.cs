@@ -95,7 +95,7 @@ namespace SGEP.Controllers
         {
             if (null == Id)
                 return BadRequest ();
-            _repo.Demitir (Id.GetValueOrDefault ());
+            _repo.Deletar (Id.GetValueOrDefault ());
 
             return RedirectToAction(nameof(Index));
         }
