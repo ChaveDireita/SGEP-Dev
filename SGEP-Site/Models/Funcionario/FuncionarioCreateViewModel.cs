@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,8 @@ namespace SGEP_Site.Models
 {
     public class FuncionarioCreateViewModel
     {
-        [RegularExpression("[0-9]+", ErrorMessage = "Apenas números são permitidos nesse campo \"Id.\"")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [RegularExpression("[0-9]{4}", ErrorMessage = "Apenas números são permitidos nesse campo \"Id.\"")]
         [Required(ErrorMessage = "Esse campo é obrigatório")]
         [Display(Name = "Código")]
         public string Id { get; set; }
