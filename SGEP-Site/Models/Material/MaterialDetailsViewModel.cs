@@ -10,7 +10,6 @@ namespace SGEP_Site.Models
     {
         [Display(Name = "Código")]
         public ulong Id { get; set; }
-        public decimal Quantidade { get; set; }
         [Display(Name = "Descrição")]
         public string Descricao { get; set; }
         public string Unidade { get; set; }

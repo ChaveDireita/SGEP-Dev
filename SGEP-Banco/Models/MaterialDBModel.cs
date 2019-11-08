@@ -9,7 +9,6 @@ namespace SGEP_Banco.Models
         public ulong Id { get; set; }
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
-        public decimal Quantidade { get; set; }
         public string Unidade { get; set; }
     }
 }

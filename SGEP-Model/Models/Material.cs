@@ -22,19 +22,6 @@ namespace SGEP_Model.Models
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        private decimal _quantidade;
-        public decimal Quantidade 
-        {
-            get => _quantidade; 
-            set 
-            {
-                if (value > 0)
-                    _quantidade = value;
-                else
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
         public string Unidade { get; set; }
         public bool Validar() => true;
     }

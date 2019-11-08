@@ -12,9 +12,6 @@ namespace SGEP_Site.Models
 //        [Required(ErrorMessage = "Esse campo é obrigatório")]
 //        [Display(Name = "Código")]
 //        public ulong Id { get; set; }
-        [RegularExpression("[0-9]+", ErrorMessage = "Apenas números são permitidos nesse campo \"Quantidade.\"")]
-        [Required(ErrorMessage = "Esse campo é obrigatório")]
-        public decimal Quantidade { get; set; }
         [RegularExpression("[A-z ÁÁÄáàäÉÈËéèëÍÌÏíìïÓÒÖóòöÚÙÜúùü]+", ErrorMessage = "Apenas letras são permitidas no campo \"Descrição.\"")]
         [Required(ErrorMessage = "Este campo é obrigatório.")]
         [Display(Name = "Descrição")]
