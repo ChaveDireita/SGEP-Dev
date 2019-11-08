@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGEP_Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,9 @@ namespace SGEP_Site.Models
 {
     public class MovimentacaoSaidaCreateViewModel
     {
-        //Precisa Movimentação
+        public MovimentacaoSaidaViewModel Movimentacao { get; set; }
         //Precisa IEstoque(Destino)
         //Precisa IEstoque(Origem)
-        //Precisa ID Funcionario(se precisar)
+        public IEnumerable<Funcionario> NomeFuncionario { get; set; }
     }
 }

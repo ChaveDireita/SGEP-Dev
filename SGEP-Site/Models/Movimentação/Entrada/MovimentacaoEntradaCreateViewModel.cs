@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SGEP_Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +8,11 @@ namespace SGEP_Site.Models
 {
     public class MovimentacaoEntradaCreateViewModel
     {
-        //Precisa Movimentação
-        //Precisa ID de funcionarios(se precisar)
+        public MovimentacaoEntradaViewModel Movimentacao { get; set; }
         //Precisa ID de IEstoque(Destino)
-        //Precisa Preco(é bom criar esse campo no IEntrada, calculado pela quantidade dos materiais x preço do material por unidade)
+        public decimal Preco { get; set; }
+        public IEnumerable<Funcionario> NomeFuncionario { get; set; }
+        public IEnumerable<Material> NomeMaterial { get; set; }
+
     }
 }

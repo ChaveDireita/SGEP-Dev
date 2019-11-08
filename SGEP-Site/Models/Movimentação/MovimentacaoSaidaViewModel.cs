@@ -2,7 +2,7 @@
 
 namespace SGEP_Site.Models
 {
-    public struct MovimentacaoViewModel
+    public class MovimentacaoSaidaViewModel : IMovimentacao
     {
         public ulong Id { get; set; }
         public DateTime Data { get; set; }
@@ -10,5 +10,6 @@ namespace SGEP_Site.Models
         public string MaterialMovimentado { get; set; }
         public string TipoMovimentacao { get; set; }
         public string Action { get; set; }
+        public string FuncionarioNome { get; set; }
     }
 }
