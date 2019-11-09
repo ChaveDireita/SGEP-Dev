@@ -15,38 +15,51 @@ namespace SGEP_Banco.RepositoryImplementations
     {
 
         private readonly DefaultContext _db;
-        public DefaultProjetoRepository(DefaultContext db) => _db = db;
+        public DefaultProjetoRepository (DefaultContext db) => _db = db;
 
-        public void Add(Projeto projeto)
+        public void Add (Projeto projeto)
         {
-            (ProjetoDBModel pDB, ProjetoFinalizadoDBModel pfDB) projetoDB = ModelConverter.DomainToDB(projeto);
-            _db.Add(projetoDB.pDB);
+            (ProjetoDBModel pDB, ProjetoFinalizadoDBModel pfDB) projetoDB = ModelConverter.DomainToDB (projeto);
+            _db.Add (projetoDB.pDB);
             if (projetoDB.pfDB != null)
-                _db.Add(projetoDB.pfDB);
-            _db.SaveChanges();
+                _db.Add (projetoDB.pfDB);
+            _db.SaveChanges ();
         }
 
-        public async Task AddAsync(Projeto projeto)
+        public async Task AddAsync (Projeto projeto)
         {
-            (ProjetoDBModel pDB, ProjetoFinalizadoDBModel pfDB) projetoDB = ModelConverter.DomainToDB(projeto);
-            _db.Add(projetoDB.pDB);
+            (ProjetoDBModel pDB, ProjetoFinalizadoDBModel pfDB) projetoDB = ModelConverter.DomainToDB (projeto);
+            _db.Add (projetoDB.pDB);
             if (projetoDB.pfDB != null)
-                _db.Add(projetoDB.pfDB);
-            await _db.SaveChangesAsync();
+                _db.Add (projetoDB.pfDB);
+            await _db.SaveChangesAsync ();
         }
 
-        public void AddFuncionario(Projeto projeto, Funcionario funcionario)
+        public void AddFuncionario (Projeto projeto, Funcionario funcionario)
         {
-            FuncionarioProjetoDBModel funcionarioProjeto = ModelConverter.DomainToDB(funcionario, projeto);
-            _db.Add(funcionarioProjeto);
-            _db.SaveChanges();
+            FuncionarioProjetoDBModel funcionarioProjeto = ModelConverter.DomainToDB (funcionario, projeto);
+            _db.Add (funcionarioProjeto);
+            _db.SaveChanges ();
         }
 
-        public async Task AddFuncionarioAsync(Projeto projeto, Funcionario funcionario)
+        public async Task AddFuncionarioAsync (Projeto projeto, Funcionario funcionario)
         {
-            FuncionarioProjetoDBModel funcionarioProjeto = ModelConverter.DomainToDB(funcionario, projeto);
-            _db.Add(funcionarioProjeto);
-            await _db.SaveChangesAsync();
+            FuncionarioProjetoDBModel funcionarioProjeto = ModelConverter.DomainToDB (funcionario, projeto);
+            _db.Add (funcionarioProjeto);
+            await _db.SaveChangesAsync ();
+        }
+
+        public async Task RemoveFuncionario (ulong pid, ulong fid)
+        {
+            _db.Remove (_db.FuncionarioProjeto.Find (fid, pid));
+            await _db.SaveChangesAsync ();
+        }
+
+        public async Task RemoveFuncionarios (ulong pid)
+        {
+            foreach(var fp in _db.FuncionarioProjeto.Where (fp => fp.ProjetoId == pid))
+                _db.Remove(fp);
+            await _db.SaveChangesAsync ();
         }
 
         public Projeto Get(ulong id) => ModelConverter.DBToDomain(_db.Projeto.Find(id), _db.ProjetoFinalizado.Find(id));

@@ -113,6 +113,7 @@ namespace SGEP_Site.Controllers
             {
                 try
                 {
+                    await _repo.RemoveFuncionarios (id);
                     await _repo.UpdateAsync (projeto);
                 }
                 catch (DbUpdateConcurrencyException)
@@ -150,6 +151,13 @@ namespace SGEP_Site.Controllers
                 await _repo.AddFuncionarioAsync (p, funcionarioRepo.Get(fid));
 
             return RedirectToAction (nameof (Details), new { id = id });
+        }
+
+        [HttpPost("/Projeto/RemoverFuncionario/{pid}/{fid}")]
+        public async Task<IActionResult> RemoverFuncionario (ulong pid, ulong fid) 
+        {
+            await _repo.RemoveFuncionario (pid, fid);
+            return RedirectToAction (nameof (Details), new { id = pid });
         }
 
         /// <summary>

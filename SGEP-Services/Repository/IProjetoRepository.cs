@@ -14,5 +14,7 @@ namespace SGEP_Services.Repository
         Task<IEnumerable<Funcionario>> GetFuncionariosForaAsync(ulong id);
         void AddFuncionario(Projeto projeto, Funcionario funcionario);
         Task AddFuncionarioAsync(Projeto projeto, Funcionario funcionario);
+        Task RemoveFuncionario (ulong pid, ulong fid);
+        Task RemoveFuncionarios (ulong pid);
     }
 }
