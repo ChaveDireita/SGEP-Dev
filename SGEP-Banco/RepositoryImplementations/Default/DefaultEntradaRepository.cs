@@ -3,10 +3,8 @@ using SGEP_Banco.Contexts;
 using SGEP_Banco.Models;
 using SGEP_Model.Models;
 using SGEP_Services.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SGEP_Banco.RepositoryImplementations
