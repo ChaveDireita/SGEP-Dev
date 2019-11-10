@@ -3,11 +3,8 @@ using System;
 
 namespace SGEP_Model.Models
 {
-    public class Entrada : IMovimentacao, IAutoValida
+    public class Entrada : Movimentacao, IAutoValida
     {
-        public ulong Id { get; set; }
-        public DateTime Data { get; set; }
-
         private decimal _preco;
         public decimal Preco
         {
@@ -20,21 +17,6 @@ namespace SGEP_Model.Models
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        private decimal _quantidade;
-        public decimal Quantidade
-        {
-            get => _quantidade;
-            set
-            {
-                if (value > 0)
-                    _quantidade = value;
-                else
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        public Material MaterialMovimentado { get; set; }
         public string TipoMovimentacao => "Entrada";
         public bool Validar() => true;
     }
