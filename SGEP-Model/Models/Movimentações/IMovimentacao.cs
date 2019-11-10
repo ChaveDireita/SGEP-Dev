@@ -10,6 +10,7 @@ namespace SGEP_Model.Models
         DateTime Data { get; set; }
         decimal Quantidade { get; set; }
         Material MaterialMovimentado { get; set; }
+        IEstoca Destino { get; set; }
         string TipoMovimentacao { get; }
     }
 }

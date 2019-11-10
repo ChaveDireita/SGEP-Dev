@@ -20,7 +20,8 @@ namespace SGEP_Model.Models
             }
         }
         public Material MaterialMovimentado { get; set; }
-        public Projeto ProjetoSolicitante { get; set; }
+        public IEstoca Origem { get; set; }
+        public IEstoca Destino { get; set; }
         public Funcionario Solicitante { get; set; }
         public string TipoMovimentacao => "Saída";
         public bool Validar() => true;

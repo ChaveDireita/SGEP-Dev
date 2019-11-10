@@ -63,7 +63,7 @@ namespace SGEP_Banco.Models
         {
             Id = e.Id,
             MaterialID = e.MaterialMovimentado.Id,
-            ProjetoID = e.ProjetoSolicitante.Id,
+            //ProjetoID = e.ProjetoSolicitante.Id, Isso aqui tem que mudar
             FuncionarioID = e.Solicitante.Id,
             Quantidade = e.Quantidade,
             Data = e.Data
@@ -132,7 +132,7 @@ namespace SGEP_Banco.Models
             {
                 Id = saidaDB.Id,
                 MaterialMovimentado = DBToDomain(materialDB),
-                ProjetoSolicitante = DBToDomain(projetoDB),
+                //ProjetoSolicitante = DBToDomain(projetoDB), Isso aqui tem que mudar
                 Solicitante = DBToDomain(funcionarioDB),
                 Data = saidaDB.Data,
                 Quantidade = saidaDB.Quantidade
@@ -146,7 +146,7 @@ namespace SGEP_Banco.Models
                 {
                     Id = saidaDB.Id,
                     MaterialMovimentado = DBToDomain(materialDB),
-                    ProjetoSolicitante = DBToDomain(projetoDB, projetoFinalizadoDB),
+                    //ProjetoSolicitante = DBToDomain(projetoDB, projetoFinalizadoDB), Isso aqui tem que mudar
                     Solicitante = DBToDomain(funcionarioDB),
                     Data = saidaDB.Data,
                     Quantidade = saidaDB.Quantidade
