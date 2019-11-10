@@ -18,6 +18,7 @@ namespace SGEP_Model.Models
             }
         }
         public string TipoMovimentacao => "Entrada";
+        public IEstoca Destino { get; set; }
         public bool Validar() => true;
     }
 }
