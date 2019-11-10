@@ -30,8 +30,7 @@ namespace SGEP_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create ([Bind (nameof (MaterialCreateViewModel.Quantidade) + "," + 
-                                                        nameof (MaterialCreateViewModel.Descricao) + "," + 
+        public async Task<IActionResult> Create ([Bind (nameof (MaterialCreateViewModel.Descricao) + "," + 
                                                         nameof (MaterialCreateViewModel.Unidade) + "," + 
                                                         nameof (MaterialCreateViewModel.Preco))] MaterialCreateViewModel materialCreate)
         {
@@ -57,7 +56,6 @@ namespace SGEP_Site.Controllers
         [HttpPost]//No controller dos funcionários explica isso.
         [ValidateAntiForgeryToken]//No controller dos funcionários explica isso.
         public async Task<IActionResult> Edit (ulong id, [Bind (nameof (MaterialEditViewModel.Id) + "," + 
-                                                                nameof (MaterialEditViewModel.Quantidade) + "," + 
                                                                 nameof (MaterialEditViewModel.Descricao) + "," + 
                                                                 nameof (MaterialEditViewModel.Unidade) + "," + 
                                                                 nameof (MaterialEditViewModel.Preco))] MaterialEditViewModel materialEdit)

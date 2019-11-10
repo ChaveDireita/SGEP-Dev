@@ -21,7 +21,6 @@ namespace SGEP_Banco.Models
             Id = materialDomain.Id,
             Descricao = materialDomain.Descricao,
             Preco = materialDomain.Preco,
-            Quantidade = materialDomain.Quantidade,
             Unidade = materialDomain.Unidade
         };
 
@@ -91,7 +90,6 @@ namespace SGEP_Banco.Models
             Id = materialDB.Id,
             Descricao = materialDB.Descricao,
             Preco = materialDB.Preco,
-            Quantidade = materialDB.Quantidade,
             Unidade = materialDB.Unidade
         };
 

@@ -9,7 +9,6 @@ namespace SGEP_Site.Models
             Id = material.Id,
             Descricao = material.Descricao,
             Preco = material.Preco,
-            Quantidade = material.Preco,
             Unidade = material.Unidade
         };
 
@@ -17,7 +16,6 @@ namespace SGEP_Site.Models
         {
             Descricao = materialCreate.Descricao,
             Preco = materialCreate.Preco,
-            Quantidade = materialCreate.Quantidade,
             Unidade = materialCreate.Unidade
         };
         public static MaterialEditViewModel DomainToEditView (Material material) => new MaterialEditViewModel ()
@@ -25,7 +23,6 @@ namespace SGEP_Site.Models
             Id = material.Id,
             Descricao = material.Descricao,
             Preco = material.Preco,
-            Quantidade = material.Quantidade,
             Unidade = material.Unidade
         };
         public static Material EditViewToDomain (MaterialEditViewModel materialEdit) => new Material ()
@@ -33,7 +30,6 @@ namespace SGEP_Site.Models
             Id = materialEdit.Id,
             Descricao = materialEdit.Descricao,
             Preco = materialEdit.Preco,
-            Quantidade = materialEdit.Quantidade,
             Unidade = materialEdit.Unidade
         };
         public static MaterialDetailsViewModel DomainToDetailsView (Material material) => new MaterialDetailsViewModel ()
@@ -41,7 +37,6 @@ namespace SGEP_Site.Models
             Id = material.Id,
             Descricao = material.Descricao,
             Preco = material.Preco,
-            Quantidade = material.Quantidade,
             Unidade = material.Unidade
         };
     }
