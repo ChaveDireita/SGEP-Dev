@@ -141,5 +141,6 @@ namespace SGEP_Banco.Models
             Funcionario = saidaDB.Funcionario,
             MaterialMovimentado = saidaDB.Material
         };
+
     }
 }

@@ -22,6 +22,5 @@ namespace SGEP_Model.Models
         public string MaterialMovimentado { get; set; }
         public abstract string TipoMovimentacao { get; }
         public string AlmoxarifadoDestino { get; set; }
-
     }
 }
