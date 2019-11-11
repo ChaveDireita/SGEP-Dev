@@ -8,7 +8,7 @@ namespace SGEP_Site.Models
 {
     public class MovimentacaoSaidaCreateViewModel
     {
-        public MovimentacaoSaidaViewModel Movimentacao { get; set; }
+        //public MovimentacaoSaidaViewModel Movimentacao { get; set; }
         //Precisa IEstoque(Destino)
         //Precisa IEstoque(Origem)
         public IEnumerable<Funcionario> NomeFuncionario { get; set; }

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SGEP_Services.Repository;
 using SGEP_Site.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SGEP_Site.Controllers
 {
@@ -23,7 +20,17 @@ namespace SGEP_Site.Controllers
         // GET: Movimentacao
         public IActionResult Index()
         {
-            return View();
+            List<MovimentacaoIndexViewModel> movimentacoes = new List<MovimentacaoIndexViewModel> ();
+
+            foreach (var m in _repoIn.GetAll ())
+                movimentacoes.Add (ModelConverterMovimentacao.DomainToIndex(m));
+
+            foreach (var m in _repoOut.GetAll ())
+                movimentacoes.Add (ModelConverterMovimentacao.DomainToIndex (m));
+
+            movimentacoes.Sort ();
+
+            return View(movimentacoes);
         }
 
         // GET: Movimentacao/Details/5

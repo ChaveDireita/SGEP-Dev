@@ -9,7 +9,8 @@ namespace SGEP_Model.Models
         public ulong Id { get; set; }
         public DateTime Data { get; set; }
         private decimal _quantidade;
-        public decimal Quantidade {
+        public decimal Quantidade
+        {
             get => _quantidade;
             set
             {
@@ -19,7 +20,7 @@ namespace SGEP_Model.Models
                     throw new ArgumentOutOfRangeException();
             }
         }
-        public string MaterialMovimentado { get; set; }
+        public string Material { get; set; }
         public abstract string TipoMovimentacao { get; }
         public string AlmoxarifadoDestino { get; set; }
     }

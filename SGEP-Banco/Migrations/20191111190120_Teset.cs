@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGEP_Banco.Migrations
 {
-    public partial class testealmoxarife : Migration
+    public partial class Teset : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,8 @@ namespace SGEP_Banco.Migrations
                     Data = table.Column<DateTime>(nullable: false),
                     Preco = table.Column<decimal>(nullable: false),
                     Quantidade = table.Column<decimal>(nullable: false),
-                    MaterialID = table.Column<ulong>(nullable: false)
+                    Material = table.Column<string>(nullable: true),
+                    AlmoxarifadoDestino = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -129,9 +130,10 @@ namespace SGEP_Banco.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Data = table.Column<DateTime>(nullable: false),
                     Quantidade = table.Column<decimal>(nullable: false),
-                    MaterialID = table.Column<ulong>(nullable: false),
-                    ProjetoID = table.Column<ulong>(nullable: false),
-                    FuncionarioID = table.Column<ulong>(nullable: false)
+                    Material = table.Column<string>(nullable: true),
+                    AlmoxarifadoDestino = table.Column<string>(nullable: true),
+                    AlmoxarifadoOrigem = table.Column<string>(nullable: true),
+                    Funcionario = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

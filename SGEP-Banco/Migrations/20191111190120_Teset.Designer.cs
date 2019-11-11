@@ -9,8 +9,8 @@ using SGEP_Banco.Contexts;
 namespace SGEP_Banco.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20191111171218_testealmoxarife")]
-    partial class testealmoxarife
+    [Migration("20191111190120_Teset")]
+    partial class Teset
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,9 +47,11 @@ namespace SGEP_Banco.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AlmoxarifadoDestino");
+
                     b.Property<DateTime>("Data");
 
-                    b.Property<ulong>("MaterialID");
+                    b.Property<string>("Material");
 
                     b.Property<decimal>("Preco");
 
@@ -140,13 +142,15 @@ namespace SGEP_Banco.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AlmoxarifadoDestino");
+
+                    b.Property<string>("AlmoxarifadoOrigem");
+
                     b.Property<DateTime>("Data");
 
-                    b.Property<ulong>("FuncionarioID");
+                    b.Property<string>("Funcionario");
 
-                    b.Property<ulong>("MaterialID");
-
-                    b.Property<ulong>("ProjetoID");
+                    b.Property<string>("Material");
 
                     b.Property<decimal>("Quantidade");
 

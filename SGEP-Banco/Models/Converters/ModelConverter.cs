@@ -54,7 +54,7 @@ namespace SGEP_Banco.Models
         public static EntradaDBModel DomainToDB(Entrada e) => new EntradaDBModel()
         {
             Id = e.Id,
-            Material = e.MaterialMovimentado,
+            Material = e.Material,
             Preco = e.Preco,
             Quantidade = e.Quantidade,
             Data = e.Data,
@@ -64,7 +64,7 @@ namespace SGEP_Banco.Models
         public static SaidaDBModel DomainToDB(Saida e) => new SaidaDBModel()
         {
             Id = e.Id,
-            Material = e.MaterialMovimentado,
+            Material = e.Material,
             AlmoxarifadoDestino = e.AlmoxarifadoDestino,
             AlmoxarifadoOrigem = e.AlmoxaridadoOrigem,
             Funcionario = e.Funcionario,
@@ -127,7 +127,7 @@ namespace SGEP_Banco.Models
             Quantidade = entradaDB.Quantidade,
             AlmoxarifadoDestino = entradaDB.AlmoxarifadoDestino,
             Data = entradaDB.Data,
-            MaterialMovimentado = entradaDB.Material,
+            Material = entradaDB.Material,
             Preco = entradaDB.Preco
         };
 
@@ -139,7 +139,7 @@ namespace SGEP_Banco.Models
             AlmoxaridadoOrigem = saidaDB.AlmoxarifadoOrigem,
             AlmoxarifadoDestino = saidaDB.AlmoxarifadoDestino,
             Funcionario = saidaDB.Funcionario,
-            MaterialMovimentado = saidaDB.Material
+            Material = saidaDB.Material
         };
 
     }

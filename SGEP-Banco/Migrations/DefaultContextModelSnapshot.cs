@@ -45,9 +45,11 @@ namespace SGEP_Banco.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AlmoxarifadoDestino");
+
                     b.Property<DateTime>("Data");
 
-                    b.Property<ulong>("MaterialID");
+                    b.Property<string>("Material");
 
                     b.Property<decimal>("Preco");
 
@@ -138,13 +140,15 @@ namespace SGEP_Banco.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AlmoxarifadoDestino");
+
+                    b.Property<string>("AlmoxarifadoOrigem");
+
                     b.Property<DateTime>("Data");
 
-                    b.Property<ulong>("FuncionarioID");
+                    b.Property<string>("Funcionario");
 
-                    b.Property<ulong>("MaterialID");
-
-                    b.Property<ulong>("ProjetoID");
+                    b.Property<string>("Material");
 
                     b.Property<decimal>("Quantidade");
 
