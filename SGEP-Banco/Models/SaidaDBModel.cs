@@ -10,11 +10,9 @@ namespace SGEP_Banco.Models
         public ulong Id { get; set; }
         public DateTime Data { get; set; }
         public decimal Quantidade { get; set; }
-        [ForeignKey(nameof(MaterialDBModel))]
-        public ulong MaterialID { get; set; }
-        [ForeignKey(nameof(ProjetoDBModel))]
-        public ulong ProjetoID { get; set; }
-        [ForeignKey(nameof(FuncionarioDBModel))]
-        public ulong FuncionarioID { get; set; }
+        public string Material { get; set; }
+        public string AlmoxarifadoDestino { get; set; }
+        public string AlmoxarifadoOrigem { get; set; }
+        public string Funcionario { get; set; }
     }
 }

@@ -17,6 +17,29 @@ namespace SGEP_Banco.Migrations
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("SGEP_Banco.Models.AlmoxarifadoDBModel", b =>
+                {
+                    b.Property<ulong>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Almoxarifado");
+                });
+
+            modelBuilder.Entity("SGEP_Banco.Models.AlmoxarifadoMaterialDBModel", b =>
+                {
+                    b.Property<ulong>("AlmoxarifadoId");
+
+                    b.Property<ulong>("MaterialId");
+
+                    b.Property<decimal>("Quantidade");
+
+                    b.HasKey("AlmoxarifadoId", "MaterialId");
+
+                    b.ToTable("AlmoxarifadoMaterial");
+                });
+
             modelBuilder.Entity("SGEP_Banco.Models.EntradaDBModel", b =>
                 {
                     b.Property<ulong>("Id")
@@ -84,6 +107,8 @@ namespace SGEP_Banco.Migrations
                 {
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<ulong>("AlmoxarifadoId");
 
                     b.Property<DateTime>("DataInicio");
 

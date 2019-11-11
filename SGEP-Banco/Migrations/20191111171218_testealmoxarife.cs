@@ -4,10 +4,35 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGEP_Banco.Migrations
 {
-    public partial class Migracao : Migration
+    public partial class testealmoxarife : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Almoxarifado",
+                columns: table => new
+                {
+                    Id = table.Column<ulong>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Almoxarifado", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AlmoxarifadoMaterial",
+                columns: table => new
+                {
+                    AlmoxarifadoId = table.Column<ulong>(nullable: false),
+                    MaterialId = table.Column<ulong>(nullable: false),
+                    Quantidade = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlmoxarifadoMaterial", x => new { x.AlmoxarifadoId, x.MaterialId });
+                });
+
             migrationBuilder.CreateTable(
                 name: "Entrada",
                 columns: table => new
@@ -73,6 +98,7 @@ namespace SGEP_Banco.Migrations
                 {
                     Id = table.Column<ulong>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    AlmoxarifadoId = table.Column<ulong>(nullable: false),
                     Nome = table.Column<string>(nullable: true),
                     DataInicio = table.Column<DateTime>(nullable: false),
                     PrazoEstimado = table.Column<DateTime>(nullable: false)
@@ -115,6 +141,12 @@ namespace SGEP_Banco.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Almoxarifado");
+
+            migrationBuilder.DropTable(
+                name: "AlmoxarifadoMaterial");
+
             migrationBuilder.DropTable(
                 name: "Entrada");
 

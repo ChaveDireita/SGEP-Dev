@@ -20,9 +20,8 @@ namespace SGEP_Model.Models
             }
         }
         public string MaterialMovimentado { get; set; }
-        public string TipoMovimentacao { get; set; }
-        public string Action { get; set; }
-        public string FuncionarioNome { get; set; }
-        public Almoxarifado Destino { get; set; }
+        public abstract string TipoMovimentacao { get; }
+        public string AlmoxarifadoDestino { get; set; }
+
     }
 }

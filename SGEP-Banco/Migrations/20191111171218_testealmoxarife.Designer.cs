@@ -9,8 +9,8 @@ using SGEP_Banco.Contexts;
 namespace SGEP_Banco.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20191102014843_Migracao")]
-    partial class Migracao
+    [Migration("20191111171218_testealmoxarife")]
+    partial class testealmoxarife
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,6 +18,29 @@ namespace SGEP_Banco.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("SGEP_Banco.Models.AlmoxarifadoDBModel", b =>
+                {
+                    b.Property<ulong>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Almoxarifado");
+                });
+
+            modelBuilder.Entity("SGEP_Banco.Models.AlmoxarifadoMaterialDBModel", b =>
+                {
+                    b.Property<ulong>("AlmoxarifadoId");
+
+                    b.Property<ulong>("MaterialId");
+
+                    b.Property<decimal>("Quantidade");
+
+                    b.HasKey("AlmoxarifadoId", "MaterialId");
+
+                    b.ToTable("AlmoxarifadoMaterial");
+                });
 
             modelBuilder.Entity("SGEP_Banco.Models.EntradaDBModel", b =>
                 {
@@ -86,6 +109,8 @@ namespace SGEP_Banco.Migrations
                 {
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<ulong>("AlmoxarifadoId");
 
                     b.Property<DateTime>("DataInicio");
 

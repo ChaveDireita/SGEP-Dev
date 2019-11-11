@@ -16,8 +16,12 @@ namespace SGEP_Banco.Contexts
         {
             builder.Entity<FuncionarioProjetoDBModel>()
                    .HasKey(fp => new { fp.FuncionarioId, fp.ProjetoId });
-        }
 
+            builder.Entity<AlmoxarifadoMaterialDBModel> ()
+                   .HasKey (am => new { am.AlmoxarifadoId, am.MaterialId }); 
+        }
+        public DbSet<AlmoxarifadoMaterialDBModel> AlmoxarifadoMaterial { get; set; }
+        public DbSet<AlmoxarifadoDBModel> Almoxarifado { get; set; }
         public DbSet<FuncionarioDBModel> Funcionario { get; set; }
         public DbSet<MaterialDBModel> Material { get; set; }
         public DbSet<ProjetoDBModel> Projeto { get; set; }
@@ -25,6 +29,5 @@ namespace SGEP_Banco.Contexts
         public DbSet<FuncionarioProjetoDBModel> FuncionarioProjeto { get; set; }
         public DbSet<EntradaDBModel> Entrada { get; set; }
         public DbSet<SaidaDBModel> Saida { get; set; }
-
     }
 }

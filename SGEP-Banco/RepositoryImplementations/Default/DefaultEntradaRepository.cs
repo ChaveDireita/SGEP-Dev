@@ -29,7 +29,7 @@ namespace SGEP_Banco.RepositoryImplementations
         {
             EntradaDBModel entradaDB = _db.Entrada.Find(id);
             MaterialDBModel materialDB = _db.Material.Find(entradaDB.Id);
-            return ModelConverter.DBToDomain(entradaDB, materialDB);
+            return ModelConverter.DBToDomain(entradaDB);
         }
 
         public IEnumerable<Entrada> GetAll()
@@ -38,7 +38,7 @@ namespace SGEP_Banco.RepositoryImplementations
             IList<EntradaDBModel> entradaDBs = _db.Entrada.ToList();
 
             foreach (EntradaDBModel e in entradaDBs)
-                entradas.Add(ModelConverter.DBToDomain(e, _db.Material.Find(e.MaterialID)));
+                entradas.Add(ModelConverter.DBToDomain(e));
 
             return entradas;
         }
@@ -49,7 +49,7 @@ namespace SGEP_Banco.RepositoryImplementations
             IList<EntradaDBModel> entradaDBs = await _db.Entrada.ToListAsync();
 
             foreach (EntradaDBModel e in entradaDBs)
-                entradas.Add(ModelConverter.DBToDomain(e, await _db.Material.FindAsync(e.MaterialID)));
+                entradas.Add(ModelConverter.DBToDomain(e));
 
             return entradas;
         }

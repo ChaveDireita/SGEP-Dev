@@ -27,9 +27,10 @@ namespace SGEP_Banco.Models
 
         public static (ProjetoDBModel projeto, ProjetoFinalizadoDBModel projetoFinalizado) DomainToDB(Projeto projeto)
         {
-            ProjetoDBModel projetoDB = new ProjetoDBModel()
+            ProjetoDBModel projetoDB = new ProjetoDBModel ()
             {
                 Id = projeto.Id,
+                AlmoxarifadoId = projeto.AlmoxarifadoId,
                 Nome = projeto.Nome,
                 DataInicio = projeto.DataInicio,
                 PrazoEstimado = projeto.PrazoEstimado
@@ -53,18 +54,20 @@ namespace SGEP_Banco.Models
         public static EntradaDBModel DomainToDB(Entrada e) => new EntradaDBModel()
         {
             Id = e.Id,
-            MaterialID = e.MaterialMovimentado.Id,
+            Material = e.MaterialMovimentado,
             Preco = e.Preco,
             Quantidade = e.Quantidade,
-            Data = e.Data
+            Data = e.Data,
+            AlmoxarifadoDestino = e.AlmoxarifadoDestino
         };
 
         public static SaidaDBModel DomainToDB(Saida e) => new SaidaDBModel()
         {
             Id = e.Id,
-            MaterialID = e.MaterialMovimentado.Id,
-            //ProjetoID = e.ProjetoSolicitante.Id, Isso aqui tem que mudar
-            FuncionarioID = e.Solicitante.Id,
+            Material = e.MaterialMovimentado,
+            AlmoxarifadoDestino = e.AlmoxarifadoDestino,
+            AlmoxarifadoOrigem = e.AlmoxaridadoOrigem,
+            Funcionario = e.Funcionario,
             Quantidade = e.Quantidade,
             Data = e.Data
         };
@@ -102,7 +105,8 @@ namespace SGEP_Banco.Models
             DataInicio = projetoDB.DataInicio,
             PrazoEstimado = projetoDB.PrazoEstimado,
             DataFim = null,
-            Estado = EstadoProjeto.Andamento
+            Estado = EstadoProjeto.Andamento,
+            AlmoxarifadoId = projetoDB.AlmoxarifadoId
         };
 
         public static Projeto DBToDomain(ProjetoDBModel projetoDB, ProjetoFinalizadoDBModel projetoFinalizadoDB) 
@@ -113,43 +117,29 @@ namespace SGEP_Banco.Models
             DataInicio = projetoDB.DataInicio,
             PrazoEstimado = projetoDB.PrazoEstimado,
             DataFim = projetoFinalizadoDB.DataFim,
-            Estado = EstadoProjeto.Finalizado
+            Estado = EstadoProjeto.Finalizado,
+            AlmoxarifadoId = projetoDB.AlmoxarifadoId
         } : DBToDomain(projetoDB);
 
-        public static Entrada DBToDomain(EntradaDBModel entradaDB, MaterialDBModel materialDB) 
-            => (entradaDB.MaterialID == materialDB.Id) ? new Entrada()
+        public static Entrada DBToDomain(EntradaDBModel entradaDB) => new Entrada()
         {
             Id = entradaDB.Id,
-            MaterialMovimentado = DBToDomain(materialDB),
-            Preco = entradaDB.Preco,
-            Quantidade = entradaDB.Quantidade
-        } : null;
+            Quantidade = entradaDB.Quantidade,
+            AlmoxarifadoDestino = entradaDB.AlmoxarifadoDestino,
+            Data = entradaDB.Data,
+            MaterialMovimentado = entradaDB.Material,
+            Preco = entradaDB.Preco
+        };
 
-        public static Saida DBToDomain(SaidaDBModel saidaDB, FuncionarioDBModel funcionarioDB, MaterialDBModel materialDB, ProjetoDBModel projetoDB)
-            => (saidaDB.MaterialID == materialDB.Id && 
-                saidaDB.ProjetoID == projetoDB.Id &&
-                saidaDB.FuncionarioID == funcionarioDB.Id) ? new Saida()
-            {
-                Id = saidaDB.Id,
-                MaterialMovimentado = DBToDomain(materialDB),
-                //ProjetoSolicitante = DBToDomain(projetoDB), Isso aqui tem que mudar
-                Solicitante = DBToDomain(funcionarioDB),
-                Data = saidaDB.Data,
-                Quantidade = saidaDB.Quantidade
-            } : null;
-
-        public static Saida DBToDomain(SaidaDBModel saidaDB, FuncionarioDBModel funcionarioDB, MaterialDBModel materialDB, ProjetoDBModel projetoDB, ProjetoFinalizadoDBModel projetoFinalizadoDB)
-            => (saidaDB.MaterialID == materialDB.Id &&
-                saidaDB.ProjetoID == projetoDB.Id &&
-                saidaDB.FuncionarioID == funcionarioDB.Id &&
-                projetoDB.Id == projetoFinalizadoDB.Id) ? new Saida()
-                {
-                    Id = saidaDB.Id,
-                    MaterialMovimentado = DBToDomain(materialDB),
-                    //ProjetoSolicitante = DBToDomain(projetoDB, projetoFinalizadoDB), Isso aqui tem que mudar
-                    Solicitante = DBToDomain(funcionarioDB),
-                    Data = saidaDB.Data,
-                    Quantidade = saidaDB.Quantidade
-                } : null;
+        public static Saida DBToDomain(SaidaDBModel saidaDB)=> new Saida()
+        {
+            Id = saidaDB.Id,
+            Data = saidaDB.Data,
+            Quantidade = saidaDB.Quantidade,
+            AlmoxaridadoOrigem = saidaDB.AlmoxarifadoOrigem,
+            AlmoxarifadoDestino = saidaDB.AlmoxarifadoDestino,
+            Funcionario = saidaDB.Funcionario,
+            MaterialMovimentado = saidaDB.Material
+        };
     }
 }

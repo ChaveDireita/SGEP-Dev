@@ -11,7 +11,7 @@ namespace SGEP_Banco.Models
         public DateTime Data { get; set; }
         public decimal Preco { get; set; }
         public decimal Quantidade { get; set; }
-        [ForeignKey(nameof(MaterialDBModel))]
-        public ulong MaterialID { get; set; }//Material movimentado
+        public string Material { get; set; }//Material movimentado
+        public string AlmoxarifadoDestino { get; set; }
     }
 }

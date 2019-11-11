@@ -28,12 +28,12 @@ namespace SGEP_Banco.RepositoryImplementations
         public Saida Get(ulong id)
         {
             SaidaDBModel saidaDB = _db.Saida.Find(id);
-            FuncionarioDBModel funcionarioDB = _db.Funcionario.Find(saidaDB.FuncionarioID);
-            MaterialDBModel materialDB = _db.Material.Find(saidaDB.MaterialID);
-            ProjetoDBModel projetoDB = _db.Projeto.Find(saidaDB.ProjetoID);
-            ProjetoFinalizadoDBModel projetoFinalizadoDB = _db.ProjetoFinalizado.Find(saidaDB.ProjetoID);
+            FuncionarioDBModel funcionarioDB = _db.Funcionario.Find(saidaDB.Funcionario);
+            MaterialDBModel materialDB = _db.Material.Find(saidaDB.Material);
+            ProjetoDBModel projetoDB = _db.Projeto.Find(saidaDB.AlmoxarifadoDestino);
+            ProjetoFinalizadoDBModel projetoFinalizadoDB = _db.ProjetoFinalizado.Find(saidaDB.AlmoxarifadoDestino);
 
-            return ModelConverter.DBToDomain(saidaDB, funcionarioDB, materialDB, projetoDB, projetoFinalizadoDB);
+            return ModelConverter.DBToDomain(saidaDB);
         }
 
         public IEnumerable<Saida> GetAll()
@@ -43,12 +43,12 @@ namespace SGEP_Banco.RepositoryImplementations
 
             foreach (SaidaDBModel s in saidaDBs) 
             {
-                FuncionarioDBModel funcionarioDB = _db.Funcionario.Find(s.FuncionarioID);
-                MaterialDBModel materialDB = _db.Material.Find(s.MaterialID);
-                ProjetoDBModel projetoDB = _db.Projeto.Find(s.ProjetoID);
-                ProjetoFinalizadoDBModel projetoFinalizadoDB = _db.ProjetoFinalizado.Find(s.ProjetoID);
+                FuncionarioDBModel funcionarioDB = _db.Funcionario.Find(s.Funcionario);
+                MaterialDBModel materialDB = _db.Material.Find(s.Material);
+                ProjetoDBModel projetoDB = _db.Projeto.Find(s.AlmoxarifadoDestino);
+                ProjetoFinalizadoDBModel projetoFinalizadoDB = _db.ProjetoFinalizado.Find(s.AlmoxarifadoDestino);
 
-                saidas.Add(ModelConverter.DBToDomain(s, funcionarioDB, materialDB, projetoDB, projetoFinalizadoDB));
+                saidas.Add(ModelConverter.DBToDomain(s));
             }
             return saidas;
         }
@@ -60,12 +60,12 @@ namespace SGEP_Banco.RepositoryImplementations
 
             foreach (SaidaDBModel s in saidaDBs)
             {
-                FuncionarioDBModel funcionarioDB = await _db.Funcionario.FindAsync(s.FuncionarioID);
-                MaterialDBModel materialDB = await _db.Material.FindAsync(s.MaterialID);
-                ProjetoDBModel projetoDB = await _db.Projeto.FindAsync(s.ProjetoID);
-                ProjetoFinalizadoDBModel projetoFinalizadoDB = await _db.ProjetoFinalizado.FindAsync(s.ProjetoID);
+                FuncionarioDBModel funcionarioDB = await _db.Funcionario.FindAsync(s.Funcionario);
+                MaterialDBModel materialDB = await _db.Material.FindAsync(s.Material);
+                ProjetoDBModel projetoDB = await _db.Projeto.FindAsync(s.AlmoxarifadoDestino);
+                ProjetoFinalizadoDBModel projetoFinalizadoDB = await _db.ProjetoFinalizado.FindAsync(s.AlmoxarifadoDestino);
 
-                saidas.Add(ModelConverter.DBToDomain(s, funcionarioDB, materialDB, projetoDB, projetoFinalizadoDB));
+                saidas.Add(ModelConverter.DBToDomain(s));
             }
             return saidas;
         }
