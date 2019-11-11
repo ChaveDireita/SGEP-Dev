@@ -53,7 +53,7 @@ namespace SGEP_Banco.Models
         public static EntradaDBModel DomainToDB(Entrada e) => new EntradaDBModel()
         {
             Id = e.Id,
-            MaterialID = e.MaterialMovimentado.Id,
+            //MaterialID = e.MaterialMovimentado.Id,
             Preco = e.Preco,
             Quantidade = e.Quantidade,
             Data = e.Data
@@ -62,9 +62,9 @@ namespace SGEP_Banco.Models
         public static SaidaDBModel DomainToDB(Saida e) => new SaidaDBModel()
         {
             Id = e.Id,
-            MaterialID = e.MaterialMovimentado.Id,
+            //MaterialID = e.MaterialMovimentado.Id,
             //ProjetoID = e.ProjetoSolicitante.Id, Isso aqui tem que mudar
-            FuncionarioID = e.Solicitante.Id,
+            //FuncionarioID = e.Solicitante.Id,
             Quantidade = e.Quantidade,
             Data = e.Data
         };
@@ -120,7 +120,7 @@ namespace SGEP_Banco.Models
             => (entradaDB.MaterialID == materialDB.Id) ? new Entrada()
         {
             Id = entradaDB.Id,
-            MaterialMovimentado = DBToDomain(materialDB),
+            //MaterialMovimentado = DBToDomain(materialDB),
             Preco = entradaDB.Preco,
             Quantidade = entradaDB.Quantidade
         } : null;
@@ -131,9 +131,9 @@ namespace SGEP_Banco.Models
                 saidaDB.FuncionarioID == funcionarioDB.Id) ? new Saida()
             {
                 Id = saidaDB.Id,
-                MaterialMovimentado = DBToDomain(materialDB),
+                //MaterialMovimentado = DBToDomain(materialDB),
                 //ProjetoSolicitante = DBToDomain(projetoDB), Isso aqui tem que mudar
-                Solicitante = DBToDomain(funcionarioDB),
+                //Solicitante = DBToDomain(funcionarioDB),
                 Data = saidaDB.Data,
                 Quantidade = saidaDB.Quantidade
             } : null;
@@ -145,9 +145,9 @@ namespace SGEP_Banco.Models
                 projetoDB.Id == projetoFinalizadoDB.Id) ? new Saida()
                 {
                     Id = saidaDB.Id,
-                    MaterialMovimentado = DBToDomain(materialDB),
+                    //MaterialMovimentado = DBToDomain(materialDB),
                     //ProjetoSolicitante = DBToDomain(projetoDB, projetoFinalizadoDB), Isso aqui tem que mudar
-                    Solicitante = DBToDomain(funcionarioDB),
+                    //Solicitante = DBToDomain(funcionarioDB),
                     Data = saidaDB.Data,
                     Quantidade = saidaDB.Quantidade
                 } : null;

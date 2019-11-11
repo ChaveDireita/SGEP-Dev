@@ -23,6 +23,6 @@ namespace SGEP_Model.Models
         public string TipoMovimentacao { get; set; }
         public string Action { get; set; }
         public string FuncionarioNome { get; set; }
-        public Almoxarifado Destino { get; set; }
+        //public Almoxarifado Destino { get; set; }
     }
 }
