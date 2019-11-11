@@ -58,7 +58,6 @@
     <Folder Include="Models\Movimentação\Entrada\" />
     <Folder Include="Models\Movimentação\Saída\" />
     <Folder Include="Views\Material\Partial\" />
-    <Folder Include="Views\Services\" />
   </ItemGroup>
 
 </Project>
