@@ -78,6 +78,23 @@ namespace SGEP_Banco.Models
             ProjetoId = projeto.Id
         };
 
+        public static (AlmoxarifadoDBModel, IList<AlmoxarifadoMaterialDBModel>) DomainToDB (Almoxarifado almoxarifado)
+        {
+            AlmoxarifadoDBModel almoxarifadoDB = new AlmoxarifadoDBModel () { Id = almoxarifado.Id };
+            List<AlmoxarifadoMaterialDBModel> almoxarifadoMaterialDBs = new List<AlmoxarifadoMaterialDBModel> ();
+            foreach (ulong m in almoxarifado.Materiais.Keys)
+                almoxarifadoMaterialDBs.Add (new AlmoxarifadoMaterialDBModel ()
+                {
+                    AlmoxarifadoId = almoxarifado.Id,
+                    MaterialId = m,
+                    Quantidade = almoxarifado.Materiais[m]
+                });
+
+            return (almoxarifadoDB, almoxarifadoMaterialDBs);
+        }
+
+
+
 
 
 
