@@ -1,8 +1,10 @@
 ﻿using SGEP_Banco.Contexts;
+using SGEP_Banco.Models;
 using SGEP_Model.Models;
 using SGEP_Services.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,18 +17,28 @@ namespace SGEP_Banco.RepositoryImplementations.Default
 
         public void Add (Almoxarifado model)
         {
-            //_db.Almoxarifado.Add ();
+            (AlmoxarifadoDBModel almoxarifado, IList<AlmoxarifadoMaterialDBModel> mat) a = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Add (a.almoxarifado);
+            if (a.mat.Count > 0)
+                foreach (var am in a.mat)
+                    _db.AlmoxarifadoMaterial.Add (am);
+            _db.SaveChanges ();
         }
 
-        public Task AddAsync (Almoxarifado model)
+        public async Task AddAsync (Almoxarifado model)
         {
-            throw new NotImplementedException ();
+            (AlmoxarifadoDBModel almoxarifado, IList<AlmoxarifadoMaterialDBModel> mat) a = ModelConverter.DomainToDB (model);
+
+            await _db.Almoxarifado.AddAsync (a.almoxarifado);
+            if (a.mat.Count > 0)
+                foreach (var am in a.mat)
+                    await _db.AlmoxarifadoMaterial.AddAsync (am);
+            await _db.SaveChangesAsync ();
         }
 
-        public Almoxarifado Get (ulong id)
-        {
-            throw new NotImplementedException ();
-        }
+        public Almoxarifado Get (ulong id) => ModelConverter.DBToDomain (_db.Almoxarifado.Find (id), _db.AlmoxarifadoMaterial.Where (am => am.AlmoxarifadoId == id));
+        
 
         public IEnumerable<Almoxarifado> GetAll ()
         {
@@ -40,12 +52,24 @@ namespace SGEP_Banco.RepositoryImplementations.Default
 
         public void Update (Almoxarifado model)
         {
-            throw new NotImplementedException ();
+            (AlmoxarifadoDBModel almoxarifado, IList<AlmoxarifadoMaterialDBModel> mat) a = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Update (a.almoxarifado);
+            if (a.mat.Count > 0)
+                foreach (var am in a.mat)
+                    _db.AlmoxarifadoMaterial.Update (am);
+            _db.SaveChanges ();
         }
 
-        public Task UpdateAsync (Almoxarifado model)
+        public async Task UpdateAsync (Almoxarifado model)
         {
-            throw new NotImplementedException ();
+            (AlmoxarifadoDBModel almoxarifado, IList<AlmoxarifadoMaterialDBModel> mat) a = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Update (a.almoxarifado);
+            if (a.mat.Count > 0)
+                foreach (var am in a.mat)
+                    _db.AlmoxarifadoMaterial.Update (am);
+            await _db.SaveChangesAsync ();
         }
     }
 }
