@@ -80,7 +80,11 @@ namespace SGEP_Banco.Models
 
         public static (AlmoxarifadoDBModel, IList<AlmoxarifadoMaterialDBModel>) DomainToDB (Almoxarifado almoxarifado)
         {
-            AlmoxarifadoDBModel almoxarifadoDB = new AlmoxarifadoDBModel () { Id = almoxarifado.Id };
+            AlmoxarifadoDBModel almoxarifadoDB = new AlmoxarifadoDBModel () 
+            { 
+                Id = almoxarifado.Id,
+                Nome = almoxarifado.Nome
+            };
             List<AlmoxarifadoMaterialDBModel> almoxarifadoMaterialDBs = new List<AlmoxarifadoMaterialDBModel> ();
             foreach (ulong m in almoxarifado.Materiais.Keys)
                 almoxarifadoMaterialDBs.Add (new AlmoxarifadoMaterialDBModel ()

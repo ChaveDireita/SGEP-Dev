@@ -9,6 +9,7 @@ namespace SGEP_Banco.Models
     public class AlmoxarifadoDBModel
     {
         public ulong Id { get; set; }
+        public string Nome { get; set; }
     }
     
     public class AlmoxarifadoMaterialDBModel

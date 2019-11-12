@@ -7,6 +7,7 @@ namespace SGEP_Model.Models
     public class Almoxarifado
     {
         public ulong Id { get; set; }
+        public string Nome { get; set; }
         public IDictionary<ulong, decimal> Materiais { get; set; }
         public void Add (ulong material, decimal quantidade)
         {
