@@ -9,7 +9,6 @@ namespace SGEP_Site.Models
     public class EntradaCreateViewModel
     {
         public decimal Quantidade { get; set; }
-        public ulong FuncionarioId { get; set; }
         public ulong MaterialId { get; set; }
         public string AlmoxarifadoId { get; set; }
     }

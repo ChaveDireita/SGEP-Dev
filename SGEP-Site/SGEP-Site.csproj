@@ -55,8 +55,6 @@
 
   <ItemGroup>
     <Folder Include="Models\Material\" />
-    <Folder Include="Models\Movimentação\Entrada\" />
-    <Folder Include="Models\Movimentação\Saída\" />
     <Folder Include="Views\Material\Partial\" />
   </ItemGroup>
 

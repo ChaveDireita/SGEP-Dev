@@ -10,7 +10,7 @@ namespace SGEP_Site.Models
     {
         private ModelConverterMovimentacao () { }
 
-        public static MovimentacaoIndexViewModel DomainToIndex (Entrada e) => new MovimentacaoIndexViewModel
+        public static MovimentacaoIndexViewModel DomainToIndexView (Entrada e) => new MovimentacaoIndexViewModel
         {
             Id = e.Id,
             Quantidade = e.Quantidade,
@@ -20,7 +20,7 @@ namespace SGEP_Site.Models
             Action = "Entrada"
         };
 
-        public static MovimentacaoIndexViewModel DomainToIndex (Saida s) => new MovimentacaoIndexViewModel
+        public static MovimentacaoIndexViewModel DomainToIndexView (Saida s) => new MovimentacaoIndexViewModel
         {
             Id = s.Id,
             Quantidade = s.Quantidade,
@@ -28,6 +28,14 @@ namespace SGEP_Site.Models
             Destino = s.AlmoxarifadoDestino,
             Data = s.Data,
             Action = "Saida"
+        };
+
+
+        public static Entrada CreateViewToDomain (EntradaCreateViewModel e) => new Entrada ()
+        {
+            Data = DateTime.Now,
+            Quantidade = e.Quantidade,
+
         };
 
     }

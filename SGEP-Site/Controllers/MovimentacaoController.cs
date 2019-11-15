@@ -25,10 +25,10 @@ namespace SGEP_Site.Controllers
             List<MovimentacaoIndexViewModel> movimentacoes = new List<MovimentacaoIndexViewModel> ();
 
             foreach (var m in _repoIn.GetAll ())
-                movimentacoes.Add (ModelConverterMovimentacao.DomainToIndex(m));
+                movimentacoes.Add (ModelConverterMovimentacao.DomainToIndexView(m));
 
             foreach (var m in _repoOut.GetAll ())
-                movimentacoes.Add (ModelConverterMovimentacao.DomainToIndex (m));
+                movimentacoes.Add (ModelConverterMovimentacao.DomainToIndexView (m));
 
             movimentacoes.Sort ();
 
@@ -51,7 +51,6 @@ namespace SGEP_Site.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CreateEntrada([Bind(nameof(EntradaCreateViewModel.AlmoxarifadoId) + "," +
-                                                 nameof(EntradaCreateViewModel.FuncionarioId)  + "," +
                                                  nameof(EntradaCreateViewModel.MaterialId)     + "," +
                                                  nameof(EntradaCreateViewModel.Quantidade))] EntradaCreateViewModel entradaView)
         {
