@@ -101,7 +101,21 @@ namespace SGEP_Banco.Models
 
 
 
+        public static Almoxarifado DBToDomain (AlmoxarifadoDBModel almoxarifadoDB, IEnumerable<AlmoxarifadoMaterialDBModel> almoxarifadoMaterialDB) 
+        {
+            Almoxarifado almoxarifado = DBToDomain (almoxarifadoDB);
+            foreach (var am in almoxarifadoMaterialDB)
+                almoxarifado.Materiais[am.MaterialId] = am.Quantidade;
 
+            return almoxarifado;
+        }
+
+        public static Almoxarifado DBToDomain (AlmoxarifadoDBModel almoxarifadoDB) => new Almoxarifado ()
+        {
+            Id = almoxarifadoDB.Id,
+            Nome = almoxarifadoDB.Nome,
+            Materiais = new Dictionary<ulong, decimal>()
+        };
         public static Funcionario DBToDomain(FuncionarioDBModel funcionarioDB) => new Funcionario()
         {
             Id = funcionarioDB.Id,

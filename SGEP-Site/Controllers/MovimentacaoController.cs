@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SGEP_Model.Models;
 using SGEP_Services.Repository;
 using SGEP_Site.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -48,11 +50,14 @@ namespace SGEP_Site.Controllers
         // POST: Movimentacao/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateEntrada([Bind("PROPRIEDADES DO CREATE VIEW MODEL AQUI (Separados por vírgula)")] MovimentacaoEntradaCreateViewModel entradaView)
+        public IActionResult CreateEntrada([Bind(nameof(EntradaCreateViewModel.AlmoxarifadoId) + "," +
+                                                 nameof(EntradaCreateViewModel.FuncionarioId)  + "," +
+                                                 nameof(EntradaCreateViewModel.MaterialId)     + "," +
+                                                 nameof(EntradaCreateViewModel.Quantidade))] EntradaCreateViewModel entradaView)
         {
             try
             {
-                // TODO: Add insert logic here
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -63,7 +68,7 @@ namespace SGEP_Site.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateSaida([Bind("PROPRIEDADES DO CREATE VIEW MODEL AQUI (Separados por vírgula)")] MovimentacaoSaidaCreateViewModel saidaView)
+        public IActionResult CreateSaida([Bind("PROPRIEDADES DO CREATE VIEW MODEL AQUI (Separados por vírgula)")] SaidaCreateViewModel saidaView)
         {
             try
             {

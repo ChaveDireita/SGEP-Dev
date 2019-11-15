@@ -1,12 +1,15 @@
-﻿using SGEP_Banco.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using SGEP_Banco.Contexts;
+using SGEP_Banco.Models;
 using SGEP_Model.Models;
 using SGEP_Services.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SGEP_Banco.RepositoryImplementations.Default
+namespace SGEP_Banco.RepositoryImplementations
 {
     public class DefaultAlmoxarifadoRepository : IAlmoxarifadoRepository
     {
@@ -15,37 +18,64 @@ namespace SGEP_Banco.RepositoryImplementations.Default
 
         public void Add (Almoxarifado model)
         {
-            //_db.Almoxarifado.Add ();
+            (AlmoxarifadoDBModel a, IList<AlmoxarifadoMaterialDBModel> am) = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Add (a);
+            foreach (var i in am)
+                _db.AlmoxarifadoMaterial.Add (i);
+
+            _db.SaveChanges ();
         }
 
-        public Task AddAsync (Almoxarifado model)
+        public async Task AddAsync (Almoxarifado model)
         {
-            throw new NotImplementedException ();
+            (AlmoxarifadoDBModel a, IList<AlmoxarifadoMaterialDBModel> am) = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Add (a);
+            foreach (var i in am)
+                _db.AlmoxarifadoMaterial.Add (i);
+
+            await _db.SaveChangesAsync ();
         }
 
         public Almoxarifado Get (ulong id)
         {
-            throw new NotImplementedException ();
+            AlmoxarifadoDBModel a = _db.Almoxarifado.Find (id);
+            IEnumerable<AlmoxarifadoMaterialDBModel> am = _db.AlmoxarifadoMaterial.Where (_am => _am.AlmoxarifadoId == id);
+
+            return ModelConverter.DBToDomain (a, am);
         }
 
         public IEnumerable<Almoxarifado> GetAll ()
         {
-            throw new NotImplementedException ();
+            IEnumerable<Almoxarifado> almoxarifados = _db.Almoxarifado.ToList ()
+                                                                      .ConvertAll(a => ModelConverter.DBToDomain(a));
+            foreach (var a in almoxarifados)
+                a.Materiais = new Dictionary<ulong, decimal> ();
+
+            return almoxarifados;
         }
 
-        public Task<IEnumerable<Almoxarifado>> GetAllAsync ()
+        public async Task<IEnumerable<Almoxarifado>> GetAllAsync ()
         {
-            throw new NotImplementedException ();
+            IEnumerable<Almoxarifado> almoxarifados = (await _db.Almoxarifado.ToListAsync ())
+                                                                             .ConvertAll (a => ModelConverter.DBToDomain (a));
+            foreach (var a in almoxarifados)
+                a.Materiais = new Dictionary<ulong, decimal> ();
+
+            return almoxarifados;
         }
 
         public void Update (Almoxarifado model)
         {
-            throw new NotImplementedException ();
+            _db.Update (model);
+            _db.SaveChanges ();
         }
 
-        public Task UpdateAsync (Almoxarifado model)
+        public async Task UpdateAsync (Almoxarifado model)
         {
-            throw new NotImplementedException ();
+            _db.Update (model);
+            await _db.SaveChangesAsync ();
         }
     }
 }
