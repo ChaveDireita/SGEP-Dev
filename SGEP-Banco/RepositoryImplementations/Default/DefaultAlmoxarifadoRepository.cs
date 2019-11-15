@@ -45,6 +45,7 @@ namespace SGEP_Banco.RepositoryImplementations
 
             return ModelConverter.DBToDomain (a, am);
         }
+        
 
         public IEnumerable<Almoxarifado> GetAll ()
         {
@@ -68,13 +69,23 @@ namespace SGEP_Banco.RepositoryImplementations
 
         public void Update (Almoxarifado model)
         {
-            _db.Update (model);
+            (AlmoxarifadoDBModel almoxarifado, IList<AlmoxarifadoMaterialDBModel> mat) a = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Update (a.almoxarifado);
+            if (a.mat.Count > 0)
+                foreach (var am in a.mat)
+                    _db.AlmoxarifadoMaterial.Update (am);
             _db.SaveChanges ();
         }
 
         public async Task UpdateAsync (Almoxarifado model)
         {
-            _db.Update (model);
+            (AlmoxarifadoDBModel almoxarifado, IList<AlmoxarifadoMaterialDBModel> mat) a = ModelConverter.DomainToDB (model);
+
+            _db.Almoxarifado.Update (a.almoxarifado);
+            if (a.mat.Count > 0)
+                foreach (var am in a.mat)
+                    _db.AlmoxarifadoMaterial.Update (am);
             await _db.SaveChangesAsync ();
         }
     }

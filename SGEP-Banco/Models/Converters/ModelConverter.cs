@@ -8,7 +8,7 @@ namespace SGEP_Banco.Models
 {
     public class ModelConverter
     {
-        public static FuncionarioDBModel DomainToDB(Funcionario funcionarioDomain) => new FuncionarioDBModel
+        public static FuncionarioDBModel DomainToDB (Funcionario funcionarioDomain) => new FuncionarioDBModel
         {
             Id = funcionarioDomain.Id,
             Nome = funcionarioDomain.Nome,
@@ -16,7 +16,7 @@ namespace SGEP_Banco.Models
             Demitido = funcionarioDomain.Demitido
         };
 
-        public static MaterialDBModel DomainToDB(Material materialDomain) => new MaterialDBModel
+        public static MaterialDBModel DomainToDB (Material materialDomain) => new MaterialDBModel
         {
             Id = materialDomain.Id,
             Descricao = materialDomain.Descricao,
@@ -25,7 +25,7 @@ namespace SGEP_Banco.Models
             Unidade = materialDomain.Unidade
         };
 
-        public static (ProjetoDBModel projeto, ProjetoFinalizadoDBModel projetoFinalizado) DomainToDB(Projeto projeto)
+        public static (ProjetoDBModel projeto, ProjetoFinalizadoDBModel projetoFinalizado) DomainToDB (Projeto projeto)
         {
             ProjetoDBModel projetoDB = new ProjetoDBModel ()
             {
@@ -40,10 +40,10 @@ namespace SGEP_Banco.Models
 
             if (projeto.DataFim != null)
             {
-                projetoFinalizadoDB = new ProjetoFinalizadoDBModel()
+                projetoFinalizadoDB = new ProjetoFinalizadoDBModel ()
                 {
                     Id = projeto.Id,
-                    DataFim = projeto.DataFim.GetValueOrDefault()
+                    DataFim = projeto.DataFim.GetValueOrDefault ()
                 };
                 return (projetoDB, projetoFinalizadoDB);
             }
@@ -51,7 +51,7 @@ namespace SGEP_Banco.Models
             return (projetoDB, null);
         }
 
-        public static EntradaDBModel DomainToDB(Entrada e) => new EntradaDBModel()
+        public static EntradaDBModel DomainToDB (Entrada e) => new EntradaDBModel ()
         {
             Id = e.Id,
             Material = e.Material,
@@ -61,7 +61,7 @@ namespace SGEP_Banco.Models
             AlmoxarifadoDestino = e.AlmoxarifadoDestino
         };
 
-        public static SaidaDBModel DomainToDB(Saida e) => new SaidaDBModel()
+        public static SaidaDBModel DomainToDB (Saida e) => new SaidaDBModel ()
         {
             Id = e.Id,
             Material = e.Material,
@@ -72,7 +72,7 @@ namespace SGEP_Banco.Models
             Data = e.Data
         };
 
-        public static FuncionarioProjetoDBModel DomainToDB(Funcionario funcionario, Projeto projeto) => new FuncionarioProjetoDBModel()
+        public static FuncionarioProjetoDBModel DomainToDB (Funcionario funcionario, Projeto projeto) => new FuncionarioProjetoDBModel ()
         {
             FuncionarioId = funcionario.Id,
             ProjetoId = projeto.Id
@@ -80,8 +80,8 @@ namespace SGEP_Banco.Models
 
         public static (AlmoxarifadoDBModel, IList<AlmoxarifadoMaterialDBModel>) DomainToDB (Almoxarifado almoxarifado)
         {
-            AlmoxarifadoDBModel almoxarifadoDB = new AlmoxarifadoDBModel () 
-            { 
+            AlmoxarifadoDBModel almoxarifadoDB = new AlmoxarifadoDBModel ()
+            {
                 Id = almoxarifado.Id,
                 Nome = almoxarifado.Nome
             };
@@ -124,7 +124,7 @@ namespace SGEP_Banco.Models
             Demitido = funcionarioDB.Demitido
         };
 
-        public static Material DBToDomain(MaterialDBModel materialDB) => new Material()
+        public static Material DBToDomain (MaterialDBModel materialDB) => new Material ()
         {
             Id = materialDB.Id,
             Descricao = materialDB.Descricao,
@@ -133,7 +133,7 @@ namespace SGEP_Banco.Models
             Unidade = materialDB.Unidade
         };
 
-        public static Projeto DBToDomain(ProjetoDBModel projetoDB) => new Projeto()
+        public static Projeto DBToDomain (ProjetoDBModel projetoDB) => new Projeto ()
         {
             Id = projetoDB.Id,
             Nome = projetoDB.Nome,
@@ -144,19 +144,19 @@ namespace SGEP_Banco.Models
             AlmoxarifadoId = projetoDB.AlmoxarifadoId
         };
 
-        public static Projeto DBToDomain(ProjetoDBModel projetoDB, ProjetoFinalizadoDBModel projetoFinalizadoDB) 
-            => (projetoFinalizadoDB != null && projetoDB.Id == projetoFinalizadoDB.Id) ? new Projeto()
-        {
-            Id = projetoDB.Id,
-            Nome = projetoDB.Nome,
-            DataInicio = projetoDB.DataInicio,
-            PrazoEstimado = projetoDB.PrazoEstimado,
-            DataFim = projetoFinalizadoDB.DataFim,
-            Estado = EstadoProjeto.Finalizado,
-            AlmoxarifadoId = projetoDB.AlmoxarifadoId
-        } : DBToDomain(projetoDB);
+        public static Projeto DBToDomain (ProjetoDBModel projetoDB, ProjetoFinalizadoDBModel projetoFinalizadoDB)
+            => (projetoFinalizadoDB != null && projetoDB.Id == projetoFinalizadoDB.Id) ? new Projeto ()
+            {
+                Id = projetoDB.Id,
+                Nome = projetoDB.Nome,
+                DataInicio = projetoDB.DataInicio,
+                PrazoEstimado = projetoDB.PrazoEstimado,
+                DataFim = projetoFinalizadoDB.DataFim,
+                Estado = EstadoProjeto.Finalizado,
+                AlmoxarifadoId = projetoDB.AlmoxarifadoId
+            } : DBToDomain (projetoDB);
 
-        public static Entrada DBToDomain(EntradaDBModel entradaDB) => new Entrada()
+        public static Entrada DBToDomain (EntradaDBModel entradaDB) => new Entrada ()
         {
             Id = entradaDB.Id,
             Quantidade = entradaDB.Quantidade,
@@ -166,7 +166,7 @@ namespace SGEP_Banco.Models
             Preco = entradaDB.Preco
         };
 
-        public static Saida DBToDomain(SaidaDBModel saidaDB)=> new Saida()
+        public static Saida DBToDomain (SaidaDBModel saidaDB) => new Saida ()
         {
             Id = saidaDB.Id,
             Data = saidaDB.Data,
@@ -176,6 +176,5 @@ namespace SGEP_Banco.Models
             Funcionario = saidaDB.Funcionario,
             Material = saidaDB.Material
         };
-
     }
 }
