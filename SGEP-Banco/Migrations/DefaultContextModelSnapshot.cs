@@ -22,9 +22,15 @@ namespace SGEP_Banco.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Nome");
+
                     b.HasKey("Id");
 
                     b.ToTable("Almoxarifado");
+
+                    b.HasData(
+                        new { Id = 1ul, Nome = "Geral" }
+                    );
                 });
 
             modelBuilder.Entity("SGEP_Banco.Models.AlmoxarifadoMaterialDBModel", b =>

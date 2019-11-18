@@ -7,6 +7,6 @@ namespace SGEP_Services.Repository
 {
     public interface IAlmoxarifadoRepository : IRepository<Almoxarifado>
     {
-
+        void Remove (Almoxarifado model);
     }
 }

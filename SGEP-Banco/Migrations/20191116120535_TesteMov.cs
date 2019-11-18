@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SGEP_Banco.Migrations
 {
-    public partial class Teset : Migration
+    public partial class TesteMov : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace SGEP_Banco.Migrations
                 columns: table => new
                 {
                     Id = table.Column<ulong>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -139,6 +140,11 @@ namespace SGEP_Banco.Migrations
                 {
                     table.PrimaryKey("PK_Saida", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Almoxarifado",
+                columns: new[] { "Id", "Nome" },
+                values: new object[] { 1ul, "Geral" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

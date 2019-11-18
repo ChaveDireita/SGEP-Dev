@@ -14,6 +14,7 @@ using SGEP_Services.DI;
 using SGEP_App;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using SGEP_Site.Views;
 
 namespace SGEP_Site
 {
@@ -41,6 +42,8 @@ namespace SGEP_Site
 
             DependencyInitializers.GetDBInitializer().Init(services);
             DependencyInitializers.GetRepositoriesInitializer().Init(services);
+
+            services.AddScoped<CreateEntradaService> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

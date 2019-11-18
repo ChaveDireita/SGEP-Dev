@@ -1,0 +1,50 @@
+﻿@model SaidaCreateViewModel;
+
+@using SGEP_Site.Views;
+
+@inject CreateEntradaService service
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="/Entrada/Create" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaterialId" class="control-label"></label>
+                <select asp-for="MaterialId" class="form-control squareborder">
+                    @foreach (var m in await service.GetMateriais ())
+                    {
+                        <option value="@m.Id">@m.Descricao</option>
+                    }
+                </select>
+                <span asp-validation-for="MaterialId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantidade" class="control-label"></label>
+                <input asp-for="Quantidade" type="number" placeholder="Quantidade" class="form-control squareborder" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlmoxarifadoDestinoId" class="control-label"></label>
+                <select asp-for="AlmoxarifadoDestinoId" class="form-control squareborder">
+                    @foreach (var a in await service.GetAlmoxarifados ())
+                    {
+                        <option value="@a.Id">@a.Nome</option>
+                    }
+                </select>
+                <span asp-validation-for="AlmoxarifadoDestinoId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AlmoxarifadoOrigemId" class="control-label"></label>
+                <select asp-for="AlmoxarifadoOrigemId" class="form-control squareborder">
+                    @foreach (var a in await service.GetAlmoxarifados ())
+                    {
+                        <option value="@a.Id">@a.Nome</option>
+                    }
+                </select>
+                <span asp-validation-for="AlmoxarifadoOrigemId" class="text-danger"></span>
+            </div>
+            @await Html.PartialAsync(CaminhoPartialView.BOTOES_FORMULARIO)
+        </form>
+    </div>
+</div>
+

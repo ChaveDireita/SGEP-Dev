@@ -28,6 +28,9 @@
                 @Html.DisplayNameFor(model => model.Data)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Material)
             </th>
             <th>
@@ -41,9 +44,12 @@
     <tbody id="lista" class="scrollbar">
         @foreach (var item in Model)
         {
-            <tr onclick="liberarClick(@item.Id, @item.Action)">
+            <tr onclick="liberarClick(@item.Id, '@item.Action')">
                 <td>
-                    FUN-@Html.DisplayFor(modelItem => item.Data)
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
                 </td>
                 <td data-toggle="tooltip" data-placement="top" title="@Html.DisplayFor(modelItem => item.Material)">
                     @Html.DisplayFor(modelItem => item.Material)

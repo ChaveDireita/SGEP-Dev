@@ -9,8 +9,8 @@ using SGEP_Banco.Contexts;
 namespace SGEP_Banco.Migrations
 {
     [DbContext(typeof(DefaultContext))]
-    [Migration("20191111190120_Teset")]
-    partial class Teset
+    [Migration("20191116120535_TesteMov")]
+    partial class TesteMov
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,15 @@ namespace SGEP_Banco.Migrations
                     b.Property<ulong>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Nome");
+
                     b.HasKey("Id");
 
                     b.ToTable("Almoxarifado");
+
+                    b.HasData(
+                        new { Id = 1ul, Nome = "Geral" }
+                    );
                 });
 
             modelBuilder.Entity("SGEP_Banco.Models.AlmoxarifadoMaterialDBModel", b =>

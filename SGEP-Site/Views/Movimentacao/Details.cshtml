@@ -1,0 +1,10 @@
+﻿@model MovimentacaoDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@if (Model is EntradaDetailsViewModel) 
+{
+    @await Html.PartialAsync(CaminhoPartialView.DETAILS_ENTRADA, Model, ViewData);
+}

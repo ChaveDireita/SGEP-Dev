@@ -18,7 +18,10 @@ namespace SGEP_Banco.Contexts
                    .HasKey(fp => new { fp.FuncionarioId, fp.ProjetoId });
 
             builder.Entity<AlmoxarifadoMaterialDBModel> ()
-                   .HasKey (am => new { am.AlmoxarifadoId, am.MaterialId }); 
+                   .HasKey (am => new { am.AlmoxarifadoId, am.MaterialId });
+
+            builder.Entity<AlmoxarifadoDBModel> ()
+                   .HasData (new AlmoxarifadoDBModel { Id = 1, Nome = "Geral" });
         }
         public DbSet<AlmoxarifadoMaterialDBModel> AlmoxarifadoMaterial { get; set; }
         public DbSet<AlmoxarifadoDBModel> Almoxarifado { get; set; }

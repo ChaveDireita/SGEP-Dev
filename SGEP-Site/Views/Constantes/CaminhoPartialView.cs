@@ -11,7 +11,10 @@
         LISTA_PROJETOS = "Partial/_ListarProj.cshtml",
 
         ADD_FUNCIONARIO = "Partial/_AddFuncionario.cshtml",
-        LISTA_FUNCIONARIO = "Partial/_ListaFuncionario.cshtml"
+        LISTA_FUNCIONARIO = "Partial/_ListaFuncionario.cshtml",
+
+        CREATE_ENTRADA = "Partial/Entrada/_Create.cshtml",
+        DETAILS_ENTRADA = "Partial/Entrada/_Details.cshtml"
         ;
     }
 }

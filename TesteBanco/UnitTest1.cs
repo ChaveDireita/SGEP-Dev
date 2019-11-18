@@ -12,12 +12,12 @@ namespace Tests
     public class Tests
     {
         private ServiceProvider _provider;
-        [SetUp]
-        public void Setup()
+        [OneTimeSetUp]
+        public void OneTimeSetup()
         {
             IServiceCollection services = new ServiceCollection();
-            services.AddDbContext<DefaultContext>(o => o.UseMySql("Server=localhost;Database=SGEP;User=root;Password=cimatec;",
-                                              mysqlo => mysqlo.ServerVersion(new Version(8, 0, 16), ServerType.MySql)));
+            services.AddDbContext<DefaultContext>(o => o.UseMySql("Server=localhost;Database=SGEP;User=root;Password=sgep-teste;",
+                                                  mysqlo => mysqlo.ServerVersion(new Version(8, 0, 16), ServerType.MySql)));
             _provider = services.BuildServiceProvider();
         }
 

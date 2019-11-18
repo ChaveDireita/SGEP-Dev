@@ -8,9 +8,10 @@ namespace SGEP_Site.Models
 {
     public class SaidaCreateViewModel
     {
-        //public MovimentacaoSaidaViewModel Movimentacao { get; set; }
-        //Precisa IEstoque(Destino)
-        //Precisa IEstoque(Origem)
-        public IEnumerable<Funcionario> NomeFuncionario { get; set; }
+        public string Funcionario { get; set; }
+        public ulong AlmoxarifadoDestinoId { get; set; }
+        public ulong AlmoxarifadoOrigemId { get; set; }
+        public ulong MaterialId { get; set; }
+        public decimal Quantidade { get; set; }
     }
 }

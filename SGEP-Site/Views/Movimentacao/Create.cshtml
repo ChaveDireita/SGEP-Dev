@@ -17,8 +17,8 @@
                 </label>
             </div>
         </div>
-        <div id="saida" hidden="hidden">@await Html.PartialAsync("CreateAlocacao", null, ViewData)</div>
-        <div id="entrada">@await Html.PartialAsync("CreateCompra", null, ViewData)</div>
+        <div id="saida" hidden="hidden">SAíDA@*await Html.PartialAsync("CreateAlocacao", null, ViewData)*@</div>
+        <div id="entrada">@await Html.PartialAsync(CaminhoPartialView.CREATE_ENTRADA, null, ViewData)</div>
     </div>
 </div>
 

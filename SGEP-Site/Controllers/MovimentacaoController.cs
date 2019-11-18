@@ -5,6 +5,7 @@ using SGEP_Site.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SGEP_Site.Controllers
 {
@@ -12,11 +13,15 @@ namespace SGEP_Site.Controllers
     {
         private readonly IEntradaRepository _repoIn;
         private readonly ISaidaRepository _repoOut;
+        private readonly IMaterialRepository _repoMat;
+        private readonly IAlmoxarifadoRepository _repoAlm;
 
-        public MovimentacaoController (IEntradaRepository repoIn, ISaidaRepository repoOut)
+        public MovimentacaoController (IEntradaRepository repoIn, ISaidaRepository repoOut, IMaterialRepository repoMat, IAlmoxarifadoRepository repoAlm)
         {
             _repoIn = repoIn;
             _repoOut = repoOut;
+            _repoMat = repoMat;
+            _repoAlm = repoAlm;
         }
 
         // GET: Movimentacao
@@ -35,10 +40,24 @@ namespace SGEP_Site.Controllers
             return View(movimentacoes);
         }
 
-        // GET: Movimentacao/Details/5
-        public IActionResult Details(int id)
+        // GET: Movimentacao/Details/Entrada/5
+        [HttpGet("/Movimentacao/{tipo}/Details/{id}")]
+        public IActionResult Details(string tipo, ulong id)
         {
-            return View();
+            MovimentacaoDetailsViewModel movimentacao = null;
+
+            switch (tipo) 
+            {
+                case "Entrada":
+                    movimentacao = ModelConverterMovimentacao.DomainToDetailsView (_repoIn.Get (id));
+                    break;
+                case "Saida":
+                    break;
+                default:
+                    return BadRequest ();
+            }
+
+            return View(movimentacao);
         }
 
         // GET: Movimentacao/Create
@@ -47,37 +66,66 @@ namespace SGEP_Site.Controllers
             return View();
         }
 
-        // POST: Movimentacao/Create
-        [HttpPost]
+        [HttpPost("/Movimentacao/Entrada/Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateEntrada([Bind(nameof(EntradaCreateViewModel.AlmoxarifadoId) + "," +
-                                                 nameof(EntradaCreateViewModel.MaterialId)     + "," +
-                                                 nameof(EntradaCreateViewModel.Quantidade))] EntradaCreateViewModel entradaView)
+        public async Task<IActionResult> CreateEntrada([Bind(nameof(EntradaCreateViewModel.AlmoxarifadoId) + "," +
+                                                             nameof(EntradaCreateViewModel.MaterialId)     + "," +
+                                                             nameof(EntradaCreateViewModel.Quantidade))] EntradaCreateViewModel entradaView)
         {
             try
             {
+                Almoxarifado almoxarifado = _repoAlm.Get (entradaView.AlmoxarifadoId);
+                Material material = _repoMat.Get (entradaView.MaterialId);
+                if (material == null || almoxarifado == null)
+                    return NotFound ();
+
+                if (almoxarifado.Materiais.ContainsKey (entradaView.MaterialId))
+                    almoxarifado.Materiais[entradaView.MaterialId] += entradaView.Quantidade;
+                else
+                    almoxarifado.Materiais[entradaView.MaterialId] = entradaView.Quantidade;
+
+                Entrada entrada = ModelConverterMovimentacao.CreateViewToDomain (entradaView, material, almoxarifado);
+
+                await _repoAlm.UpdateAsync (almoxarifado);
+                await _repoIn.AddAsync (entrada);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View("Create");
             }
         }
 
-        [HttpPost]
+        [HttpPost("/Movimentacao/Saida/Create")]
         [ValidateAntiForgeryToken]
-        public IActionResult CreateSaida([Bind("PROPRIEDADES DO CREATE VIEW MODEL AQUI (Separados por vírgula)")] SaidaCreateViewModel saidaView)
+        public async Task<IActionResult> CreateSaida([Bind(nameof(SaidaCreateViewModel.AlmoxarifadoDestinoId) + "," +
+                                               nameof(SaidaCreateViewModel.AlmoxarifadoOrigemId)  + "," +
+                                               nameof(SaidaCreateViewModel.Funcionario)         + "," +
+                                               nameof(SaidaCreateViewModel.MaterialId)            + "," +
+                                               nameof(SaidaCreateViewModel.Quantidade))] SaidaCreateViewModel saidaView)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            //try
+            //{
+                Almoxarifado destino = _repoAlm.Get (saidaView.AlmoxarifadoDestinoId);
+                Almoxarifado origem = _repoAlm.Get (saidaView.AlmoxarifadoOrigemId);
+                Material material = _repoMat.Get (saidaView.MaterialId);
+
+                Saida saida = ModelConverterMovimentacao.CreateViewToDomain (saidaView, material, destino, origem);
+
+                destino.Materiais[material.Id] += saidaView.Quantidade;
+                origem.Materiais[material.Id] -= saidaView.Quantidade;
+
+                await _repoAlm.UpdateAsync (destino);
+                await _repoAlm.UpdateAsync (origem);
+                await _repoOut.AddAsync (saida);
+
                 return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
     }
 }

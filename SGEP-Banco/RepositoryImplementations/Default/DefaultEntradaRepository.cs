@@ -28,30 +28,21 @@ namespace SGEP_Banco.RepositoryImplementations
         public Entrada Get(ulong id)
         {
             EntradaDBModel entradaDB = _db.Entrada.Find(id);
-            MaterialDBModel materialDB = _db.Material.Find(entradaDB.Id);
             return ModelConverter.DBToDomain(entradaDB);
         }
 
         public IEnumerable<Entrada> GetAll()
-        {
-            IList<Entrada> entradas = new List<Entrada>();
-            IList<EntradaDBModel> entradaDBs = _db.Entrada.ToList();
+        { 
+            List<EntradaDBModel> entradaDBs = _db.Entrada.ToList();
 
-            foreach (EntradaDBModel e in entradaDBs)
-                entradas.Add(ModelConverter.DBToDomain(e));
-
-            return entradas;
+            return entradaDBs.ConvertAll(e => ModelConverter.DBToDomain(e));
         }
 
         public async Task<IEnumerable<Entrada>> GetAllAsync()
         {
-            IList<Entrada> entradas = new List<Entrada>();
-            IList<EntradaDBModel> entradaDBs = await _db.Entrada.ToListAsync();
+            List<EntradaDBModel> entradaDBs = await _db.Entrada.ToListAsync();
 
-            foreach (EntradaDBModel e in entradaDBs)
-                entradas.Add(ModelConverter.DBToDomain(e));
-
-            return entradas;
+            return entradaDBs.ConvertAll(e => ModelConverter.DBToDomain(e));
         }
 
         public void Update(Entrada entrada)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SGEP_Site.Models
 {
-    public struct MovimentacaoIndexViewModel : IComparer<MovimentacaoIndexViewModel>
+    public struct MovimentacaoIndexViewModel : IComparable<MovimentacaoIndexViewModel>
     {
         public ulong Id { get; set; }
         public DateTime Data { get; set; }
@@ -15,7 +15,8 @@ namespace SGEP_Site.Models
         public string Material { get; set; }
         public decimal Quantidade { get; set; }
         public string Action { get; set; }
+        public string Tipo { get; set; }
 
-        public int Compare (MovimentacaoIndexViewModel x, MovimentacaoIndexViewModel y) => x.Data.CompareTo (y);
+        public int CompareTo (MovimentacaoIndexViewModel other) => -Data.CompareTo (other.Data);
     }
 }

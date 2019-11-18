@@ -1,0 +1,32 @@
+﻿@model EntradaDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    ViewData["tipo"] = "Entrada";
+}
+<h1 class="mt-2 mb-5 text-center">Entrada</h1>
+<hr />
+<div class="shadow-regular">
+    <table class="table table-bordered shadow-regular">
+        <tr>
+            <td class="table-dark" style="width:250px">@Html.DisplayNameFor(model => model.Data)</td>
+            <td>@Html.DisplayFor(model => model.Data)</td>
+        </tr>
+        <tr>
+            <td class="table-dark" style="width:250px">@Html.DisplayNameFor(model => model.Material)</td>
+            <td>@Html.DisplayFor(model => model.Material)</td>
+        </tr>
+        <tr>
+            <td class="table-dark" style="width:250px">@Html.DisplayNameFor(model => model.Destino)</td>
+            <td>@Html.DisplayFor(model => model.Destino)</td>
+        </tr>
+        <tr>
+            <td class="table-dark" style="width:250px">@Html.DisplayNameFor(model => model.Quantidade)</td>
+            <td>@Html.DisplayFor(model => model.Quantidade)</td>
+        </tr>
+        <tr>
+            <td class="table-dark" style="width:250px">@Html.DisplayNameFor(model => model.Preco)</td>
+            <td>@Html.DisplayFor(model => model.Preco)</td>
+        </tr>
+    </table>
+</div>
