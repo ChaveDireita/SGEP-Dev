@@ -11,7 +11,7 @@ namespace SGEP_Banco.Contexts
 {
     public sealed class DefaultContextInitializer : IDependencyInitializer
     {
-        const string CONNECTION_STRING = "Server=localhost;Database=SGEP;User=root;Password=senhadobanco;";
+        const string CONNECTION_STRING = "Server=localhost;Database=SGEP;User=root;Password=cimatec;";
 
         public void Init(IServiceCollection services)
         {

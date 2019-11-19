@@ -17,6 +17,7 @@ namespace SGEP_Banco.RepositoryImplementations
             services.AddScoped<IEntradaRepository, DefaultEntradaRepository>();
             services.AddScoped<ISaidaRepository, DefaultSaidaRepository>();
             services.AddScoped<IAlmoxarifadoRepository, DefaultAlmoxarifadoRepository>();
+            services.AddScoped<ISobraRepository, DefaultSobraRepository>();
         }
     }
 }

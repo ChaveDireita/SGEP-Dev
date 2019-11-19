@@ -15,7 +15,7 @@ namespace SGEP_Site.Models
             Id = e.Id,
             Quantidade = e.Quantidade,
             Material = e.Material,
-            Destino = e.AlmoxarifadoDestino,
+            Destino = e.Destino,
             Data = e.Data,
             Action = "Entrada",
             Tipo = "Entrada",
@@ -26,7 +26,7 @@ namespace SGEP_Site.Models
             Id = s.Id,
             Quantidade = s.Quantidade,
             Material = s.Material,
-            Destino = s.AlmoxarifadoDestino,
+            Destino = s.Destino,
             Data = s.Data,
             Action = "Saida",
             Tipo = "Saída"
@@ -35,7 +35,7 @@ namespace SGEP_Site.Models
         public static EntradaDetailsViewModel DomainToDetailsView (Entrada e) => new EntradaDetailsViewModel
         {
             Data = e.Data,
-            Destino = e.AlmoxarifadoDestino,
+            Destino = e.Destino,
             Material = e.Material,
             Preco = e.Preco,
             Quantidade = e.Quantidade,
@@ -51,7 +51,7 @@ namespace SGEP_Site.Models
             Quantidade = e.Quantidade,
             Material = m.Descricao,
             Preco = e.Quantidade * m.Preco,
-            AlmoxarifadoDestino = a.Nome
+            Destino = a.Nome
         };
         
         public static Saida CreateViewToDomain (SaidaCreateViewModel e, Material m, Almoxarifado ad, Almoxarifado ao) => new Saida ()
@@ -59,8 +59,8 @@ namespace SGEP_Site.Models
             Data = DateTime.Now,
             Quantidade = e.Quantidade,
             Material = m.Descricao,
-            AlmoxarifadoDestino = ad.Nome,
-            AlmoxaridadoOrigem = ao.Nome,
+            Destino = ad.Nome,
+            Origem = ao.Nome,
             Funcionario = e.Funcionario
         };
 

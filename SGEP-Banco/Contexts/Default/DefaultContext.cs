@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 using SGEP_Banco.Models;
+using SGEP_Model.Models;
 
 namespace SGEP_Banco.Contexts
 {
@@ -32,5 +33,6 @@ namespace SGEP_Banco.Contexts
         public DbSet<FuncionarioProjetoDBModel> FuncionarioProjeto { get; set; }
         public DbSet<EntradaDBModel> Entrada { get; set; }
         public DbSet<SaidaDBModel> Saida { get; set; }
+        public DbSet<SobraDBModel> Sobra { get; set; }
     }
 }

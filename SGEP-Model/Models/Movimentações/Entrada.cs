@@ -5,7 +5,7 @@ namespace SGEP_Model.Models
 {
     public class Entrada : Movimentacao, IAutoValida
     {
-        /*private decimal _preco;
+        private decimal _preco;
         public decimal Preco
         {
             get => _preco;
@@ -16,9 +16,9 @@ namespace SGEP_Model.Models
                 else
                     throw new ArgumentOutOfRangeException();
             }
-        }*/
-        public decimal Preco { get; set; }
+        }
         public override string TipoMovimentacao => "Entrada";
+        public string Destino { get; set; }
         public bool Validar() => true;
     }
 }

@@ -56,6 +56,7 @@
   <ItemGroup>
     <Folder Include="Models\Material\" />
     <Folder Include="Views\Material\Partial\" />
+    <Folder Include="Views\Movimentacao\Partial\Sobra\" />
   </ItemGroup>
 
 </Project>

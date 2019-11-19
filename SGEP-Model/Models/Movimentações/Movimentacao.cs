@@ -17,11 +17,10 @@ namespace SGEP_Model.Models
                 if (value > 0)
                     _quantidade = value;
                 else
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException("Quantidade deve ser maior que 0");
             }
         }
         public string Material { get; set; }
         public abstract string TipoMovimentacao { get; }
-        public string AlmoxarifadoDestino { get; set; }
     }
 }

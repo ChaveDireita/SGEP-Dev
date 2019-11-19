@@ -58,15 +58,15 @@ namespace SGEP_Banco.Models
             Preco = e.Preco,
             Quantidade = e.Quantidade,
             Data = e.Data,
-            AlmoxarifadoDestino = e.AlmoxarifadoDestino
+            AlmoxarifadoDestino = e.Destino
         };
 
         public static SaidaDBModel DomainToDB (Saida e) => new SaidaDBModel ()
         {
             Id = e.Id,
             Material = e.Material,
-            AlmoxarifadoDestino = e.AlmoxarifadoDestino,
-            AlmoxarifadoOrigem = e.AlmoxaridadoOrigem,
+            AlmoxarifadoDestino = e.Destino,
+            AlmoxarifadoOrigem = e.Origem,
             Funcionario = e.Funcionario,
             Quantidade = e.Quantidade,
             Data = e.Data
@@ -96,6 +96,21 @@ namespace SGEP_Banco.Models
 
             return (almoxarifadoDB, almoxarifadoMaterialDBs);
         }
+        public static SobraDBModel DomainToDB (Sobra s) => new SobraDBModel ()
+        {
+            Id = s.Id,
+            Almoxarifado = s.Almoxarifado,
+            Data = s.Data,
+            Material = s.Material,
+            Quantidade = s.Quantidade
+        };
+
+
+
+
+
+
+
 
 
 
@@ -160,7 +175,7 @@ namespace SGEP_Banco.Models
         {
             Id = entradaDB.Id,
             Quantidade = entradaDB.Quantidade,
-            AlmoxarifadoDestino = entradaDB.AlmoxarifadoDestino,
+            Destino = entradaDB.AlmoxarifadoDestino,
             Data = entradaDB.Data,
             Material = entradaDB.Material,
             Preco = entradaDB.Preco
@@ -171,10 +186,19 @@ namespace SGEP_Banco.Models
             Id = saidaDB.Id,
             Data = saidaDB.Data,
             Quantidade = saidaDB.Quantidade,
-            AlmoxaridadoOrigem = saidaDB.AlmoxarifadoOrigem,
-            AlmoxarifadoDestino = saidaDB.AlmoxarifadoDestino,
+            Origem = saidaDB.AlmoxarifadoOrigem,
+            Destino = saidaDB.AlmoxarifadoDestino,
             Funcionario = saidaDB.Funcionario,
             Material = saidaDB.Material
+        };
+
+        public static Sobra DBToDomain (SobraDBModel s) => new Sobra ()
+        {
+            Id = s.Id,
+            Data = s.Data,
+            Quantidade = s.Quantidade,
+            Almoxarifado = s.Almoxarifado,
+            Material = s.Material
         };
     }
 }

@@ -6,20 +6,29 @@
 <hr />
 
 <div class="row justify-content-center">
-    <div class="col-md-6">
-        <div>
-            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-primary squareborder active">
-                    <input type="radio" name="options" id="tipo-mov-entrada" autocomplete="off" checked> Entrada
-                </label>
-                <label class="btn btn-primary squareborder">
-                    <input type="radio" name="options" id="tipo-mov-saida" autocomplete="off"> Saída
-                </label>
-            </div>
+    <div>
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-primary squareborder active">
+                <input type="radio" name="options" id="tipo-mov-entrada" autocomplete="off" checked> Entrada
+            </label>
+            <label class="btn btn-primary squareborder">
+                <input type="radio" name="options" id="tipo-mov-saida" autocomplete="off"> Saída
+            </label>
+            <label class="btn btn-primary squareborder">
+                <input type="radio" name="options" id="tipo-mov-sobra" autocomplete="off"> Sobra
+            </label>
         </div>
-        <div id="saida" hidden="hidden">SAíDA@*await Html.PartialAsync("CreateAlocacao", null, ViewData)*@</div>
-        <div id="entrada">@await Html.PartialAsync(CaminhoPartialView.CREATE_ENTRADA, null, ViewData)</div>
+        <br />
+        <br />
+        <br />
     </div>
 </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div id="saida" hidden="hidden">SaíDA@*await Html.PartialAsync("CreateAlocacao", null, ViewData)*@</div>
+            <div id="entrada">@await Html.PartialAsync(CaminhoPartialView.CREATE_ENTRADA, null, ViewData)</div>
+            <div id="sobra" hidden="hidden">SaíDA@*await Html.PartialAsync("CreateAlocacao", null, ViewData)*@</div>
+        </div>
+    </div>
 
-<script type="text/javascript" src="~/js/switch-toogle.js"></script>
+    <script type="text/javascript" src="~/js/switch-toogle.js"></script>
