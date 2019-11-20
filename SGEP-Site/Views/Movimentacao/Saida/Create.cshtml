@@ -1,4 +1,5 @@
-﻿
+﻿@model SaidaCreateViewModel
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -8,9 +9,29 @@
             <form asp-action="Create" autocomplete="off">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label <!--asp-for="TipoMovimentacao"--> class="control-label"></label>
-                    <input <!--asp-for="TipoMovimentacao"--> type="text" placeholder="Tipo Movimentação" class="form-control squareborder" />
-                    <span <!--asp-validation-for="TipoMovimentacao"--> class="text-danger"></span>
+                    <label asp-for="AlmoxarifadoOrigemId" class="control-label"></label>
+                    <input asp-for="AlmoxarifadoOrigemId" type="text" placeholder="Tipo Movimentação" class="form-control squareborder" />
+                    <span asp-validation-for="AlmoxarifadoOrigemId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaterialId" class="control-label"></label>
+                    <input asp-for="MaterialId" type="text" placeholder="Tipo Movimentação" class="form-control squareborder" />
+                    <span asp-validation-for="MaterialId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Quantidade" class="control-label"></label>
+                    <input asp-for="Quantidade" type="text" placeholder="Tipo Movimentação" class="form-control squareborder" />
+                    <span asp-validation-for="Quantidade" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AlmoxarifadoDestinoId" class="control-label"></label>
+                    <input asp-for="AlmoxarifadoDestinoId" type="text" placeholder="Tipo Movimentação" class="form-control squareborder" />
+                    <span asp-validation-for="AlmoxarifadoDestinoId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Funcionario" class="control-label"></label>
+                    <input asp-for="Funcionario" type="text" placeholder="Tipo Movimentação" class="form-control squareborder" />
+                    <span asp-validation-for="Funcionario" class="text-danger"></span>
                 </div>
                 @await Html.PartialAsync(CaminhoPartialView.BOTOES_FORMULARIO)
             </form>

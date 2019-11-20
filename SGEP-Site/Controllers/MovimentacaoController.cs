@@ -53,6 +53,8 @@ namespace SGEP_Site.Controllers
                     break;
                 case "Saida":
                     break;
+                case "Sobra":
+                    break;
                 default:
                     return BadRequest ();
             }
@@ -104,6 +106,36 @@ namespace SGEP_Site.Controllers
                                                nameof(SaidaCreateViewModel.Funcionario)         + "," +
                                                nameof(SaidaCreateViewModel.MaterialId)            + "," +
                                                nameof(SaidaCreateViewModel.Quantidade))] SaidaCreateViewModel saidaView)
+        {
+            //try
+            //{
+                Almoxarifado destino = _repoAlm.Get (saidaView.AlmoxarifadoDestinoId);
+                Almoxarifado origem = _repoAlm.Get (saidaView.AlmoxarifadoOrigemId);
+                Material material = _repoMat.Get (saidaView.MaterialId);
+
+                Saida saida = ModelConverterMovimentacao.CreateViewToDomain (saidaView, material, destino, origem);
+
+                destino.Materiais[material.Id] += saidaView.Quantidade;
+                origem.Materiais[material.Id] -= saidaView.Quantidade;
+
+                await _repoAlm.UpdateAsync (destino);
+                await _repoAlm.UpdateAsync (origem);
+                await _repoOut.AddAsync (saida);
+
+                return RedirectToAction(nameof(Index));
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
+        }
+        [HttpPost("/Movimentacao/Sobra/Create")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateSobra([Bind(nameof(SaidaCreateViewModel.AlmoxarifadoDestinoId) + "," +
+                                                           nameof(SaidaCreateViewModel.AlmoxarifadoOrigemId)  + "," +
+                                                           nameof(SaidaCreateViewModel.Funcionario)         + "," +
+                                                           nameof(SaidaCreateViewModel.MaterialId)            + "," +
+                                                           nameof(SaidaCreateViewModel.Quantidade))] SaidaCreateViewModel saidaView)
         {
             //try
             //{
